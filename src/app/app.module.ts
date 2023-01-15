@@ -28,6 +28,9 @@ import {authReducer} from './store/auth/reducer';
 import {uiReducer} from './store/ui/reducer';
 import {ProfabricComponentsModule} from '@profabric/angular-components';
 import {defineCustomElements} from '@profabric/web-components/loader';
+import { InformationsbeitragErstellenComponent } from './pages/informationsbeitrag/informationsbeitrag-erstellen/informationsbeitrag-erstellen.component';
+import { InformationsbeitragUebersichtComponent } from '@pages/informationsbeitrag/informationsbeitrag-uebersicht/informationsbeitrag-uebersicht.component';
+import { InformationsbeitragBearbeitenComponent } from './pages/informationsbeitrag/informationsbeitrag-uebersicht/informationsbeitrag-bearbeiten/informationsbeitrag-bearbeiten.component';
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
@@ -48,6 +51,9 @@ registerLocaleData(localeEn, 'en-EN');
         MainMenuComponent,
         SubMenuComponent,
         MenuItemComponent,
+        InformationsbeitragErstellenComponent,
+        InformationsbeitragUebersichtComponent,
+        InformationsbeitragBearbeitenComponent,
     ],
     imports: [
         BrowserModule,

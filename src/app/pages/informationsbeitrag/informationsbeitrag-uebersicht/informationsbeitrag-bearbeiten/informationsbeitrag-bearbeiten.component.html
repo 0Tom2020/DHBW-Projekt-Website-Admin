@@ -1,0 +1,146 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Informationsbeitrag erstellen</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item c-breadcrumb" type="button" [routerLink]="'/'">Home</li>
+                    <li class="breadcrumb-item c-breadcrumb" type="button" [routerLink]="'./..'"><a>Informationsbeitrag Übersicht</a>
+                    </li>
+                    <li class="breadcrumb-item active">Titel der News</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <form [formGroup]="editArticle" (ngSubmit)="post()">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Allgemeine Informationen</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="inputOverview">Überschirft</label>
+                            <input type="text" id="inputOverview" formControlName="title" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputDescription">Beschreibung</label>
+                            <textarea id="inputDescription" class="form-control" formControlName="description" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Zusätzliche Informationen</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputFile">Bilder Hochladen</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="file" id="exampleInputFile">
+                                    <label class="custom-file-label" for="exampleInputFile">Datei auswählen</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputLinkage">Verlinkung auf eine andere Seite / weitere Informationen</label>
+                            <input type="text" id="inputLinkage" formControlName="linkage" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-6">
+
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Projektpartner</h3>
+                    </div>
+
+
+
+
+
+
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="option1">
+                                <label for="customCheckbox1" class="custom-control-label">Projektpartner 1</label>
+                            </div>
+
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="customCheckbox2" checked>
+                                <label for="customCheckbox2" class="custom-control-label">Projektpartner 2</label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Bilder</h3>
+                        <div class="card-tools">
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Bild Name</th>
+                                <th>Bild Größe</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Functional-requirements.docx</td>
+                                <td>49.8005 kb</td>
+                                <td class="text-right py-0 align-middle">
+                                    <div class="btn-group btn-group-sm">
+                                        <div class="btn btn-info"><i class="fas fa-eye"></i></div>
+                                        <div class="btn btn-danger"><i class="fas fa-trash"></i></div>
+                                    </div>
+                                </td>
+                            <tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a href="#" class="btn btn-secondary">Abbruch</a>
+                <div class="btn btn-danger float-right c-delete" (click)="delete()">Informationsbeitrag löschen</div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-success float-right">Änderungen speichern</button>
+            </div>
+        </div>
+    </form>
+</section>

@@ -1,0 +1,104 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Informationsbeitrag erstellen</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Informationsbeitrag erstellen</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <form [formGroup]="newArticle" (ngSubmit)="post()">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Allgemeine Informationen</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="inputOverview">Überschirft</label>
+                            <input type="text" id="inputOverview" formControlName="title" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDescription">Beschreibung</label>
+                            <textarea id="inputDescription" class="form-control" formControlName="description" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Zusätzliche Informationen</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputFile">Bilder Hochladen</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="file" id="exampleInputFile">
+                                    <label class="custom-file-label" for="exampleInputFile">Datei auswählen</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="inputLinkage">Verlinkung auf eine andere Seite / weitere Informationen</label>
+                            <input type="text" id="inputLinkage" formControlName="linkage" class="form-control">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Projektpartner</h3>
+                    </div>
+
+
+
+
+
+
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="option1">
+                                <label for="customCheckbox1" class="custom-control-label">Projektpartner 1</label>
+                            </div>
+
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="customCheckbox2" checked>
+                                <label for="customCheckbox2" class="custom-control-label">Projektpartner 2</label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a href="#" class="btn btn-secondary">Abbruch</a>
+                <button type="submit" class="btn btn-success float-right">Informationsbeitrag erstellen</button>
+            </div>
+        </div>
+    </form>
+</section>

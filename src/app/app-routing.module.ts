@@ -10,6 +10,16 @@ import {NonAuthGuard} from '@guards/non-auth.guard';
 import {ForgotPasswordComponent} from '@modules/forgot-password/forgot-password.component';
 import {MainMenuComponent} from '@pages/main-menu/main-menu.component';
 import {SubMenuComponent} from '@pages/main-menu/sub-menu/sub-menu.component';
+import {
+    InformationsbeitragErstellenComponent
+} from "@pages/informationsbeitrag/informationsbeitrag-erstellen/informationsbeitrag-erstellen.component";
+import {
+    InformationsbeitragUebersichtComponent
+} from "@pages/informationsbeitrag/informationsbeitrag-uebersicht/informationsbeitrag-uebersicht.component";
+import {
+    InformationsbeitragBearbeitenComponent
+} from "@pages/informationsbeitrag/informationsbeitrag-uebersicht/informationsbeitrag-bearbeiten/informationsbeitrag-bearbeiten.component";
+
 
 const routes: Routes = [
     {
@@ -37,7 +47,19 @@ const routes: Routes = [
             {
                 path: '',
                 component: DashboardComponent
-            }
+            },
+            {
+                path: 'informationsbeitrag/erstellen',
+                component: InformationsbeitragErstellenComponent
+            },
+            {
+                path: 'informationsbeitrag/uebersicht',
+                component: InformationsbeitragUebersichtComponent
+            },
+            {
+                path: 'informationsbeitrag/uebersicht/:id',
+                component: InformationsbeitragBearbeitenComponent
+            },
         ]
     },
     {

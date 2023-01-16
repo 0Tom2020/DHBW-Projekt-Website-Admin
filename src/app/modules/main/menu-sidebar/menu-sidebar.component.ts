@@ -44,7 +44,7 @@ export const MENU = [
     },
     {
         name: 'Informationsbeitrag',
-        iconClasses: 'fas fa-folder',        
+        iconClasses: 'fas fa-newspaper',
         children: [
             {
                 name: 'Erstellen',
@@ -55,6 +55,22 @@ export const MENU = [
                 name: 'Bearbeiten',
                 iconClasses: 'far fa-edit',
                 path: ['/informationsbeitrag/uebersicht']
+            }
+        ]
+    },
+    {
+        name: 'Dokumentenzugriff',
+        iconClasses: 'fas fa-newspaper',
+        children: [
+            {
+                name: 'Erstellen',
+                iconClasses: 'far fa-plus-square',
+                path: ['/dokumentenzugriff/erstellen']
+            },
+            {
+                name: 'Bearbeiten',
+                iconClasses: 'far fa-edit',
+                path: ['/dokumentenzugriff/uebersicht']
             }
         ]
     },

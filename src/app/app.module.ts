@@ -31,6 +31,9 @@ import {defineCustomElements} from '@profabric/web-components/loader';
 import { InformationsbeitragErstellenComponent } from './pages/informationsbeitrag/informationsbeitrag-erstellen/informationsbeitrag-erstellen.component';
 import { InformationsbeitragUebersichtComponent } from '@pages/informationsbeitrag/informationsbeitrag-uebersicht/informationsbeitrag-uebersicht.component';
 import { InformationsbeitragBearbeitenComponent } from './pages/informationsbeitrag/informationsbeitrag-uebersicht/informationsbeitrag-bearbeiten/informationsbeitrag-bearbeiten.component';
+import { DokumentenzugriffErstellenComponent } from './pages/dokumentenzugriff/dokumentenzugriff-erstellen/dokumentenzugriff-erstellen.component';
+import { DokumentenzugriffUebersichtComponent } from './pages/dokumentenzugriff/dokumentenzugriff-uebersicht/dokumentenzugriff-uebersicht.component';
+import { DokumentenzugriffBearbeitenComponent } from './pages/dokumentenzugriff/dokumentenzugriff-uebersicht/dokumentenzugriff-bearbeiten/dokumentenzugriff-bearbeiten.component';
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
@@ -54,6 +57,9 @@ registerLocaleData(localeEn, 'en-EN');
         InformationsbeitragErstellenComponent,
         InformationsbeitragUebersichtComponent,
         InformationsbeitragBearbeitenComponent,
+        DokumentenzugriffErstellenComponent,
+        DokumentenzugriffUebersichtComponent,
+        DokumentenzugriffBearbeitenComponent,
     ],
     imports: [
         BrowserModule,

@@ -19,6 +19,15 @@ import {
 import {
     InformationsbeitragBearbeitenComponent
 } from "@pages/informationsbeitrag/informationsbeitrag-uebersicht/informationsbeitrag-bearbeiten/informationsbeitrag-bearbeiten.component";
+import {
+    DokumentenzugriffErstellenComponent
+} from "@pages/dokumentenzugriff/dokumentenzugriff-erstellen/dokumentenzugriff-erstellen.component";
+import {
+    DokumentenzugriffUebersichtComponent
+} from "@pages/dokumentenzugriff/dokumentenzugriff-uebersicht/dokumentenzugriff-uebersicht.component";
+import {
+    DokumentenzugriffBearbeitenComponent
+} from "@pages/dokumentenzugriff/dokumentenzugriff-uebersicht/dokumentenzugriff-bearbeiten/dokumentenzugriff-bearbeiten.component";
 
 
 const routes: Routes = [
@@ -59,6 +68,18 @@ const routes: Routes = [
             {
                 path: 'informationsbeitrag/uebersicht/:id',
                 component: InformationsbeitragBearbeitenComponent
+            },
+            {
+                path: 'dokumentenzugriff/erstellen',
+                component: DokumentenzugriffErstellenComponent
+            },
+            {
+                path: 'dokumentenzugriff/uebersicht',
+                component: DokumentenzugriffUebersichtComponent
+            },
+            {
+                path: 'dokumentenzugriff/uebersicht/:id',
+                component: DokumentenzugriffBearbeitenComponent
             },
         ]
     },

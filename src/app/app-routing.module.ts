@@ -28,7 +28,7 @@ import {
 import {
     DokumentenzugriffBearbeitenComponent
 } from "@pages/dokumentenzugriff/dokumentenzugriff-bearbeiten/dokumentenzugriff-bearbeiten.component";
-import {SeminarErstellenComponent} from "@pages/seminare/seminar-erstellen/seminar-erstellen.component";
+import {SeminarErstellenComponent} from "@pages/seminare/seminare-erstellen/seminar-erstellen.component";
 import {SeminareUebersichtComponent} from "@pages/seminare/seminare-uebersicht/seminare-uebersicht.component";
 import {
   SeminareBearbeitenComponent

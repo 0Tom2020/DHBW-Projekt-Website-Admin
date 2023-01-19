@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ListFilterPipe} from "ng-multiselect-dropdown/list-filter.pipe";
+
 
 @Component({
   selector: 'app-informationsbeitrag-erstellen',
   templateUrl: './informationsbeitrag-erstellen.component.html',
-  styleUrls: ['./informationsbeitrag-erstellen.component.scss']
+  styleUrls: ['./informationsbeitrag-erstellen.component.scss'],
 })
 export class InformationsbeitragErstellenComponent implements OnInit {
 
@@ -23,6 +25,37 @@ export class InformationsbeitragErstellenComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+   /* this.dropdownList = [
+      { item_id: 1, item_text: 'Projektpartner 1' },
+      { item_id: 2, item_text: 'Test' },
+      { item_id: 3, item_text: 'Ingo GmbH' },
+      { item_id: 4, item_text: 'Navsari' },
+      { item_id: 5, item_text: 'New Delhi' }
+    ];
+    this.selectedItems = [
+      { item_id: 3, item_text: 'Pune' },
+      { item_id: 4, item_text: 'Navsari' }
+    ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Alle Auswählen',
+      unSelectAllText: 'Alle Abwählen',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };*/
+  }
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
+  }
+
+
+  post() {
+  /*  console.log(this.newArticle.value)
     this.dropdownList = [
       { item_id: 1, item_text: 'Projektpartner 1' },
       { item_id: 2, item_text: 'Test' },
@@ -42,18 +75,7 @@ export class InformationsbeitragErstellenComponent implements OnInit {
       unSelectAllText: 'Alle Abwählen',
       itemsShowLimit: 3,
       allowSearchFilter: true
-    };
-  }
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
-  }
-
-
-  post() {
-    console.log(this.newArticle.value)
+    };*/
 
   }
 

@@ -46,10 +46,11 @@ import {
 import {
   DokumentenzugriffBearbeitenComponent
 } from './pages/dokumentenzugriff/dokumentenzugriff-bearbeiten/dokumentenzugriff-bearbeiten.component';
-import {SeminarErstellenComponent} from './pages/seminare/seminar-erstellen/seminar-erstellen.component';
+import {SeminarErstellenComponent} from './pages/seminare/seminare-erstellen/seminar-erstellen.component';
 import {SeminareUebersichtComponent} from './pages/seminare/seminare-uebersicht/seminare-uebersicht.component';
 import {SeminareBearbeitenComponent} from './pages/seminare/seminare-bearbeiten/seminare-bearbeiten.component';
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
+import {ListFilterPipe} from "ng-multiselect-dropdown/list-filter.pipe";
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');

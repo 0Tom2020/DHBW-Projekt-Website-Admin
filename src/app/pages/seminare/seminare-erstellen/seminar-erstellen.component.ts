@@ -3,11 +3,11 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
-  selector: 'app-seminare-bearbeiten',
-  templateUrl: './seminare-bearbeiten.component.html',
-  styleUrls: ['./seminare-bearbeiten.component.scss']
+  selector: 'app-seminare-erstellen',
+  templateUrl: './seminar-erstellen.component.html',
+  styleUrls: ['./seminar-erstellen.component.scss']
 })
-export class SeminareBearbeitenComponent implements OnInit {
+export class SeminarErstellenComponent implements OnInit{
 
   newSeminar = new FormGroup({
     price: new FormControl('',[Validators.required]),
@@ -22,20 +22,18 @@ export class SeminareBearbeitenComponent implements OnInit {
     postal: new FormControl('',[Validators.required]),
     title: new FormControl('',[Validators.required]),
   })
+
   constructor(private toastr: ToastrService) {
   }
 
   ngOnInit() {
+
   }
 
   post () {
     if (this.newSeminar.invalid) {
       this.toastr.error("Bitte füllen Sie alle Felder aus!", "Fehler")
     }
-  }
-
-  delete () {
-
   }
 
 }

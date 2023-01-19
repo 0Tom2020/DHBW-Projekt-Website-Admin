@@ -7,8 +7,10 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Dokumentenzugriff erstellen</li>
+          <li class="breadcrumb-item c-breadcrumb" type="button" [routerLink]="'/'">Home</li>
+          <li class="breadcrumb-item c-breadcrumb" type="button" [routerLink]="'./..'">Dokumentenzugriff Übersicht</li>
+
+          <li class="breadcrumb-item active">Bearbeiten</li>
         </ol>
       </div>
     </div>
@@ -110,7 +112,7 @@
             <table class="table">
               <thead>
               <tr>
-                <th>Bild Name</th>
+                <th>Datei Name</th>
                 <th></th>
               </tr>
               </thead>

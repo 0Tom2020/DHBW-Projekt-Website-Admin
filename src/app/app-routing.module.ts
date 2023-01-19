@@ -18,7 +18,7 @@ import {
 } from "@pages/informationsbeitrag/informationsbeitrag-uebersicht/informationsbeitrag-uebersicht.component";
 import {
     InformationsbeitragBearbeitenComponent
-} from "@pages/informationsbeitrag/informationsbeitrag-uebersicht/informationsbeitrag-bearbeiten/informationsbeitrag-bearbeiten.component";
+} from "@pages/informationsbeitrag/informationsbeitrag-bearbeiten/informationsbeitrag-bearbeiten.component";
 import {
     DokumentenzugriffErstellenComponent
 } from "@pages/dokumentenzugriff/dokumentenzugriff-erstellen/dokumentenzugriff-erstellen.component";
@@ -27,7 +27,12 @@ import {
 } from "@pages/dokumentenzugriff/dokumentenzugriff-uebersicht/dokumentenzugriff-uebersicht.component";
 import {
     DokumentenzugriffBearbeitenComponent
-} from "@pages/dokumentenzugriff/dokumentenzugriff-uebersicht/dokumentenzugriff-bearbeiten/dokumentenzugriff-bearbeiten.component";
+} from "@pages/dokumentenzugriff/dokumentenzugriff-bearbeiten/dokumentenzugriff-bearbeiten.component";
+import {SeminarErstellenComponent} from "@pages/seminare/seminar-erstellen/seminar-erstellen.component";
+import {SeminareUebersichtComponent} from "@pages/seminare/seminare-uebersicht/seminare-uebersicht.component";
+import {
+  SeminareBearbeitenComponent
+} from "@pages/seminare/seminare-bearbeiten/seminare-bearbeiten.component";
 
 
 const routes: Routes = [
@@ -80,6 +85,18 @@ const routes: Routes = [
             {
                 path: 'dokumentenzugriff/uebersicht/:id',
                 component: DokumentenzugriffBearbeitenComponent
+            },
+          {
+                path: 'seminare/erstellen',
+                component: SeminarErstellenComponent
+            },
+          {
+                path: 'seminare/uebersicht',
+                component: SeminareUebersichtComponent
+            },
+          {
+                path: 'seminare/uebersicht/:id',
+                component: SeminareBearbeitenComponent
             },
         ]
     },

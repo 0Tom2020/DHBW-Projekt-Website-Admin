@@ -30,10 +30,13 @@ import {ProfabricComponentsModule} from '@profabric/angular-components';
 import {defineCustomElements} from '@profabric/web-components/loader';
 import { InformationsbeitragErstellenComponent } from './pages/informationsbeitrag/informationsbeitrag-erstellen/informationsbeitrag-erstellen.component';
 import { InformationsbeitragUebersichtComponent } from '@pages/informationsbeitrag/informationsbeitrag-uebersicht/informationsbeitrag-uebersicht.component';
-import { InformationsbeitragBearbeitenComponent } from './pages/informationsbeitrag/informationsbeitrag-uebersicht/informationsbeitrag-bearbeiten/informationsbeitrag-bearbeiten.component';
+import { InformationsbeitragBearbeitenComponent } from './pages/informationsbeitrag/informationsbeitrag-bearbeiten/informationsbeitrag-bearbeiten.component';
 import { DokumentenzugriffErstellenComponent } from './pages/dokumentenzugriff/dokumentenzugriff-erstellen/dokumentenzugriff-erstellen.component';
 import { DokumentenzugriffUebersichtComponent } from './pages/dokumentenzugriff/dokumentenzugriff-uebersicht/dokumentenzugriff-uebersicht.component';
-import { DokumentenzugriffBearbeitenComponent } from './pages/dokumentenzugriff/dokumentenzugriff-uebersicht/dokumentenzugriff-bearbeiten/dokumentenzugriff-bearbeiten.component';
+import { DokumentenzugriffBearbeitenComponent } from './pages/dokumentenzugriff/dokumentenzugriff-bearbeiten/dokumentenzugriff-bearbeiten.component';
+import { SeminarErstellenComponent } from './pages/seminare/seminar-erstellen/seminar-erstellen.component';
+import { SeminareUebersichtComponent } from './pages/seminare/seminare-uebersicht/seminare-uebersicht.component';
+import { SeminareBearbeitenComponent } from './pages/seminare/seminare-bearbeiten/seminare-bearbeiten.component';
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
@@ -60,6 +63,9 @@ registerLocaleData(localeEn, 'en-EN');
         DokumentenzugriffErstellenComponent,
         DokumentenzugriffUebersichtComponent,
         DokumentenzugriffBearbeitenComponent,
+        SeminarErstellenComponent,
+        SeminareUebersichtComponent,
+        SeminareBearbeitenComponent,
     ],
     imports: [
         BrowserModule,

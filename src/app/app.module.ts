@@ -10,7 +10,7 @@ import {HeaderComponent} from '@modules/main/header/header.component';
 import {FooterComponent} from '@modules/main/footer/footer.component';
 import {MenuSidebarComponent} from '@modules/main/menu-sidebar/menu-sidebar.component';
 import {BlankComponent} from '@pages/blank/blank.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProfileComponent} from '@pages/profile/profile.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DashboardComponent} from '@pages/dashboard/dashboard.component';
@@ -28,45 +28,58 @@ import {authReducer} from './store/auth/reducer';
 import {uiReducer} from './store/ui/reducer';
 import {ProfabricComponentsModule} from '@profabric/angular-components';
 import {defineCustomElements} from '@profabric/web-components/loader';
-import { InformationsbeitragErstellenComponent } from './pages/informationsbeitrag/informationsbeitrag-erstellen/informationsbeitrag-erstellen.component';
-import { InformationsbeitragUebersichtComponent } from '@pages/informationsbeitrag/informationsbeitrag-uebersicht/informationsbeitrag-uebersicht.component';
-import { InformationsbeitragBearbeitenComponent } from './pages/informationsbeitrag/informationsbeitrag-bearbeiten/informationsbeitrag-bearbeiten.component';
-import { DokumentenzugriffErstellenComponent } from './pages/dokumentenzugriff/dokumentenzugriff-erstellen/dokumentenzugriff-erstellen.component';
-import { DokumentenzugriffUebersichtComponent } from './pages/dokumentenzugriff/dokumentenzugriff-uebersicht/dokumentenzugriff-uebersicht.component';
-import { DokumentenzugriffBearbeitenComponent } from './pages/dokumentenzugriff/dokumentenzugriff-bearbeiten/dokumentenzugriff-bearbeiten.component';
-import { SeminarErstellenComponent } from './pages/seminare/seminar-erstellen/seminar-erstellen.component';
-import { SeminareUebersichtComponent } from './pages/seminare/seminare-uebersicht/seminare-uebersicht.component';
-import { SeminareBearbeitenComponent } from './pages/seminare/seminare-bearbeiten/seminare-bearbeiten.component';
+import {
+  InformationsbeitragErstellenComponent
+} from './pages/informationsbeitrag/informationsbeitrag-erstellen/informationsbeitrag-erstellen.component';
+import {
+  InformationsbeitragUebersichtComponent
+} from '@pages/informationsbeitrag/informationsbeitrag-uebersicht/informationsbeitrag-uebersicht.component';
+import {
+  InformationsbeitragBearbeitenComponent
+} from './pages/informationsbeitrag/informationsbeitrag-bearbeiten/informationsbeitrag-bearbeiten.component';
+import {
+  DokumentenzugriffErstellenComponent
+} from './pages/dokumentenzugriff/dokumentenzugriff-erstellen/dokumentenzugriff-erstellen.component';
+import {
+  DokumentenzugriffUebersichtComponent
+} from './pages/dokumentenzugriff/dokumentenzugriff-uebersicht/dokumentenzugriff-uebersicht.component';
+import {
+  DokumentenzugriffBearbeitenComponent
+} from './pages/dokumentenzugriff/dokumentenzugriff-bearbeiten/dokumentenzugriff-bearbeiten.component';
+import {SeminarErstellenComponent} from './pages/seminare/seminar-erstellen/seminar-erstellen.component';
+import {SeminareUebersichtComponent} from './pages/seminare/seminare-uebersicht/seminare-uebersicht.component';
+import {SeminareBearbeitenComponent} from './pages/seminare/seminare-bearbeiten/seminare-bearbeiten.component';
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        MainComponent,
-        LoginComponent,
-        HeaderComponent,
-        FooterComponent,
-        MenuSidebarComponent,
-        BlankComponent,
-        ProfileComponent,
-        DashboardComponent,
-        UserComponent,
-        ForgotPasswordComponent,
-        MainMenuComponent,
-        SubMenuComponent,
-        MenuItemComponent,
-        InformationsbeitragErstellenComponent,
-        InformationsbeitragUebersichtComponent,
-        InformationsbeitragBearbeitenComponent,
-        DokumentenzugriffErstellenComponent,
-        DokumentenzugriffUebersichtComponent,
-        DokumentenzugriffBearbeitenComponent,
-        SeminarErstellenComponent,
-        SeminareUebersichtComponent,
-        SeminareBearbeitenComponent,
-    ],
+  declarations: [
+    AppComponent,
+    MainComponent,
+    LoginComponent,
+    HeaderComponent,
+    FooterComponent,
+    MenuSidebarComponent,
+    BlankComponent,
+    ProfileComponent,
+    DashboardComponent,
+    UserComponent,
+    ForgotPasswordComponent,
+    MainMenuComponent,
+    SubMenuComponent,
+    MenuItemComponent,
+    InformationsbeitragErstellenComponent,
+    InformationsbeitragUebersichtComponent,
+    InformationsbeitragBearbeitenComponent,
+    DokumentenzugriffErstellenComponent,
+    DokumentenzugriffUebersichtComponent,
+    DokumentenzugriffBearbeitenComponent,
+    SeminarErstellenComponent,
+    SeminareUebersichtComponent,
+    SeminareBearbeitenComponent,
+  ],
     imports: [
         BrowserModule,
         StoreModule.forRoot({auth: authReducer, ui: uiReducer}),
@@ -79,9 +92,12 @@ registerLocaleData(localeEn, 'en-EN');
             positionClass: 'toast-top-right',
             preventDuplicates: true
         }),
-        ProfabricComponentsModule
+        ProfabricComponentsModule,
+        NgMultiSelectDropDownModule.forRoot(),
+        FormsModule
     ],
-    providers: [],
-    bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

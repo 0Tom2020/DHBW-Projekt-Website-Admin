@@ -59,54 +59,6 @@ export const MENU = [
     iconClasses: 'fas fa-graduation-cap',
     path: ['/seminare/uebersicht']
   },
-  /*{
-    name: 'Informationsbeitrag',
-    iconClasses: 'fas fa-newspaper',
-    children: [
-      {
-        name: 'Erstellen',
-        iconClasses: 'far fa-plus-square',
-        path: ['/informationsbeitrag/erstellen']
-      },
-      {
-        name: 'Bearbeiten',
-        iconClasses: 'far fa-edit',
-        path: ['/informationsbeitrag/uebersicht']
-      }
-    ]
-  },*/
-  /*{
-    name: 'Dokumentenzugriff',
-    iconClasses: 'fas fa-newspaper',
-    children: [
-      {
-        name: 'Erstellen',
-        iconClasses: 'far fa-plus-square',
-        path: ['/dokumentenzugriff/erstellen']
-      },
-      {
-        name: 'Bearbeiten',
-        iconClasses: 'far fa-edit',
-        path: ['/dokumentenzugriff/uebersicht']
-      }
-    ]
-  },*/
- /* {
-    name: 'Seminare',
-    iconClasses: 'fas fa-newspaper',
-    children: [
-      {
-        name: 'Erstellen',
-        iconClasses: 'far fa-plus-square',
-        path: ['/seminare/erstellen']
-      },
-      {
-        name: 'Bearbeiten',
-        iconClasses: 'far fa-edit',
-        path: ['/seminare/uebersicht']
-      }
-    ]
-  }*/,
   {
     name: 'Main Menu',
     iconClasses: 'fas fa-folder',

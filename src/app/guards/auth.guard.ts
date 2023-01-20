@@ -7,14 +7,16 @@ import {
     UrlTree,
     Router
 } from '@angular/router';
-import {Observable} from 'rxjs';
+import {catchError, map, Observable, of} from 'rxjs';
 import {AppService} from '@services/app.service';
+import {ApiService} from "@services/api.service";
+import {error} from "protractor";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
-    constructor(private router: Router, private appService: AppService) {}
+    constructor(private router: Router, private appService: AppService, private apiService: ApiService) {}
 
     canActivate(
         next: ActivatedRouteSnapshot,
@@ -24,7 +26,26 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         | Promise<boolean | UrlTree>
         | boolean
         | UrlTree {
-        return this.getProfile();
+
+      if (this.appService.user) {
+        return true
+      }
+
+      return this.apiService.getWhoAmI().pipe(
+        map(user => {
+          if (user) {
+            this.appService.user = user
+            return true
+          } else  {
+            this.router.navigate(['/login'])
+            return false;
+          }
+        }), catchError((err) => {
+          console.log(err)
+          this.router.navigate(['/login'])
+          return of(false)
+        })
+      );
     }
 
     canActivateChild(
@@ -36,18 +57,5 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         | boolean
         | UrlTree {
         return this.canActivate(next, state);
-    }
-
-    async getProfile() {
-        if (this.appService.user) {
-            return true;
-        }
-
-        try {
-            await this.appService.getProfile();
-            return true;
-        } catch (error) {
-            return false;
-        }
     }
 }

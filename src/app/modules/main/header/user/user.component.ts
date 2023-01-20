@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppService} from '@services/app.service';
 import {DateTime} from 'luxon';
+import {AdminUser} from "@services/api.model";
 
 @Component({
     selector: 'app-user',
@@ -8,7 +9,7 @@ import {DateTime} from 'luxon';
     styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-    public user;
+    public user: AdminUser;
 
     constructor(private appService: AppService) {}
 
@@ -17,7 +18,7 @@ export class UserComponent implements OnInit {
     }
 
     logout() {
-        this.appService.logout();
+        this.appService.logout().subscribe();
     }
 
     formatDate(date) {

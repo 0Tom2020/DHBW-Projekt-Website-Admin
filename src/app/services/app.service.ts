@@ -2,100 +2,45 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {Gatekeeper} from 'gatekeeper-client-sdk';
+import {ApiService} from "@services/api.service";
+import {catchError, map, Observable, of} from "rxjs";
+import {AdminUser} from "@services/api.model";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AppService {
-    public user: any = null;
+    public user: AdminUser = null;
 
-    constructor(private router: Router, private toastr: ToastrService) {}
+    constructor(private router: Router, private toastr: ToastrService, private apiService: ApiService) {}
 
-    async loginByAuth({email, password}) {
-        try {
-            const token = await Gatekeeper.loginByAuth(email, password);
-            localStorage.setItem('token', token);
-            await this.getProfile();
-            this.router.navigate(['/']);
-            this.toastr.success('Login success');
-        } catch (error) {
-            this.toastr.error(error.message);
-        }
-    }
-
-    async registerByAuth({email, password}) {
-        try {
-            const token = await Gatekeeper.registerByAuth(email, password);
-            localStorage.setItem('token', token);
-            await this.getProfile();
-            this.router.navigate(['/']);
-            this.toastr.success('Register success');
-        } catch (error) {
-            this.toastr.error(error.message);
-        }
-    }
-
-    async loginByGoogle() {
-        try {
-            const token = await Gatekeeper.loginByGoogle();
-            localStorage.setItem('token', token);
-            await this.getProfile();
-            this.router.navigate(['/']);
-            this.toastr.success('Login success');
-        } catch (error) {
-            this.toastr.error(error.message);
-        }
-    }
-
-    async registerByGoogle() {
-        try {
-            const token = await Gatekeeper.registerByGoogle();
-            localStorage.setItem('token', token);
-            await this.getProfile();
-            this.router.navigate(['/']);
-            this.toastr.success('Register success');
-        } catch (error) {
-            this.toastr.error(error.message);
-        }
-    }
-
-    async loginByFacebook() {
-        try {
-            const token = await Gatekeeper.loginByFacebook();
-            localStorage.setItem('token', token);
-            await this.getProfile();
-            this.router.navigate(['/']);
-            this.toastr.success('Login success');
-        } catch (error) {
-            this.toastr.error(error.message);
-        }
-    }
-
-    async registerByFacebook() {
-        try {
-            const token = await Gatekeeper.registerByFacebook();
-            localStorage.setItem('token', token);
-            await this.getProfile();
-            this.router.navigate(['/']);
-            this.toastr.success('Register success');
-        } catch (error) {
-            this.toastr.error(error.message);
-        }
-    }
-
-    async getProfile() {
-        try {
-            this.user = await Gatekeeper.getProfile();
-        } catch (error) {
-            this.logout();
-            throw error;
-        }
+    loginByAuth({email, password}): Observable<boolean> {
+        return this.apiService.loginUser(email, password).pipe(
+          map(response => {
+            if (response) {
+              this.user = response
+              return true;
+            } else {
+              return false;
+            }
+          }), catchError(err => {
+            this.toastr.error(err.error.message)
+            return of(false);
+          })
+        )
     }
 
     logout() {
-        localStorage.removeItem('token');
-        localStorage.removeItem('gatekeeper_token');
-        this.user = null;
-        this.router.navigate(['/login']);
+        return this.apiService.logoutUser().pipe(
+          map(value => {
+            this.user = null;
+            this.router.navigate(['/login']);
+          }),
+          catchError((err) => {
+            this.toastr.error("Ein Fehler ist aufgetreten!")
+            console.log(err)
+            return of(false)
+          })
+        )
     }
 }

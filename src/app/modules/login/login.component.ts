@@ -8,6 +8,7 @@ import {
 import {UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {AppService} from '@services/app.service';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     constructor(
         private renderer: Renderer2,
         private toastr: ToastrService,
-        private appService: AppService
+        private appService: AppService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -41,23 +43,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     async loginByAuth() {
         if (this.loginForm.valid) {
             this.isAuthLoading = true;
-            await this.appService.loginByAuth(this.loginForm.value);
+             this.appService.loginByAuth(this.loginForm.value).subscribe(value => {
+               if (value){
+                 this.router.navigate(['/']);
+               }
+             })
             this.isAuthLoading = false;
         } else {
             this.toastr.error('Form is not valid!');
         }
-    }
-
-    async loginByGoogle() {
-        this.isGoogleLoading = true;
-        await this.appService.loginByGoogle();
-        this.isGoogleLoading = false;
-    }
-
-    async loginByFacebook() {
-        this.isFacebookLoading = true;
-        await this.appService.loginByFacebook();
-        this.isFacebookLoading = false;
     }
 
     ngOnDestroy() {

@@ -8,13 +8,15 @@ import {
     UrlTree,
     Router
 } from '@angular/router';
-import {Observable} from 'rxjs';
+import {catchError, map, Observable, of} from 'rxjs';
+import {ApiService} from "@services/api.service";
+import {AppService} from "@services/app.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class NonAuthGuard implements CanActivate, CanActivateChild {
-    constructor(private router: Router) {}
+    constructor(private router: Router, private apiService: ApiService, private appService: AppService) {}
 
     canActivate(
         next: ActivatedRouteSnapshot,
@@ -24,11 +26,25 @@ export class NonAuthGuard implements CanActivate, CanActivateChild {
         | Promise<boolean | UrlTree>
         | boolean
         | UrlTree {
-        if (!localStorage.getItem('token')) {
-            return true;
-        }
-        this.router.navigate(['/']);
+      if (this.appService.user) {
+        this.router.navigate(['/'])
         return false;
+      }
+
+      return this.apiService.getWhoAmI().pipe(
+        map(user => {
+          if (user) {
+            this.appService.user = user
+            this.router.navigate(['/'])
+            return false;
+          } else  {
+            return true;
+          }
+        }), catchError((err) => {
+          console.log(err)
+          return of(true)
+        })
+      );
     }
     canActivateChild(
         next: ActivatedRouteSnapshot,

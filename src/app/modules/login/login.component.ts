@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
              })
             this.isAuthLoading = false;
         } else {
-            this.toastr.error('Form is not valid!');
+            this.toastr.error('Bitte gültige Email-Adresse und Passwort eingeben!');
         }
     }
 

@@ -30,27 +30,30 @@ import {ProfabricComponentsModule} from '@profabric/angular-components';
 import {defineCustomElements} from '@profabric/web-components/loader';
 import {
   InformationsbeitragErstellenComponent
-} from './pages/informationsbeitrag/informationsbeitrag-erstellen/informationsbeitrag-erstellen.component';
+} from '@pages/informationsbeitrag/informationsbeitrag-erstellen/informationsbeitrag-erstellen.component';
 import {
   InformationsbeitragUebersichtComponent
 } from '@pages/informationsbeitrag/informationsbeitrag-uebersicht/informationsbeitrag-uebersicht.component';
 import {
   InformationsbeitragBearbeitenComponent
-} from './pages/informationsbeitrag/informationsbeitrag-bearbeiten/informationsbeitrag-bearbeiten.component';
+} from '@pages/informationsbeitrag/informationsbeitrag-bearbeiten/informationsbeitrag-bearbeiten.component';
 import {
   DokumentenzugriffErstellenComponent
-} from './pages/dokumentenzugriff/dokumentenzugriff-erstellen/dokumentenzugriff-erstellen.component';
+} from '@pages/dokumentenzugriff/dokumentenzugriff-erstellen/dokumentenzugriff-erstellen.component';
 import {
   DokumentenzugriffUebersichtComponent
-} from './pages/dokumentenzugriff/dokumentenzugriff-uebersicht/dokumentenzugriff-uebersicht.component';
+} from '@pages/dokumentenzugriff/dokumentenzugriff-uebersicht/dokumentenzugriff-uebersicht.component';
 import {
   DokumentenzugriffBearbeitenComponent
-} from './pages/dokumentenzugriff/dokumentenzugriff-bearbeiten/dokumentenzugriff-bearbeiten.component';
-import {SeminarErstellenComponent} from './pages/seminare/seminare-erstellen/seminar-erstellen.component';
-import {SeminareUebersichtComponent} from './pages/seminare/seminare-uebersicht/seminare-uebersicht.component';
-import {SeminareBearbeitenComponent} from './pages/seminare/seminare-bearbeiten/seminare-bearbeiten.component';
+} from '@pages/dokumentenzugriff/dokumentenzugriff-bearbeiten/dokumentenzugriff-bearbeiten.component';
+import {SeminarErstellenComponent} from '@pages/seminare/seminare-erstellen/seminar-erstellen.component';
+import {SeminareUebersichtComponent} from '@pages/seminare/seminare-uebersicht/seminare-uebersicht.component';
+import {SeminareBearbeitenComponent} from '@pages/seminare/seminare-bearbeiten/seminare-bearbeiten.component';
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
-import {ListFilterPipe} from "ng-multiselect-dropdown/list-filter.pipe";
+import { DokumenteUebersichtComponent } from '@pages/dokumente/dokumente-uebersicht/dokumente-uebersicht.component';
+import { DokumenteHinzufuegenComponent } from './pages/dokumente/dokumente-hinzufuegen/dokumente-hinzufuegen.component';
+import { DokumentFilterPipe } from './pipes/dokument-filter.pipe';
+import { BreadcrumbComponent } from '@components/breadcrumb/breadcrumb.component';
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
@@ -80,6 +83,10 @@ registerLocaleData(localeEn, 'en-EN');
     SeminarErstellenComponent,
     SeminareUebersichtComponent,
     SeminareBearbeitenComponent,
+    DokumenteUebersichtComponent,
+    DokumenteHinzufuegenComponent,
+    DokumentFilterPipe,
+    BreadcrumbComponent,
   ],
     imports: [
         BrowserModule,

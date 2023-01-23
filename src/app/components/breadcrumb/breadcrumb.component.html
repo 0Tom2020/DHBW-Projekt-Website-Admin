@@ -1,0 +1,7 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item" *ngFor="let item of items; let last = last">
+    <a class="c-breadcrumb" [routerLink]="item.route" *ngIf="!last">{{item.label}}</a>
+    <span class="active"  *ngIf="last">{{item.label}}</span>
+    <!--<span *ngIf="!last"> / </span>-->
+  </li>
+</ol>

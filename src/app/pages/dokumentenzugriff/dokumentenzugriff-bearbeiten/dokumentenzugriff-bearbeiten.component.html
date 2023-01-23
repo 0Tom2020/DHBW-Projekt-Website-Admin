@@ -1,38 +1,58 @@
-<!-- Content Header (Page header) -->
+<!--Beginn: Header-->
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Dokumentenzugriff bearbeiten</h1>
+        <h1>{{title}}</h1>
       </div>
       <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
+        <app-breadcrumb class="float-sm-right" [items]="breadcrumbItems"></app-breadcrumb>
+        <!--<ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item c-breadcrumb" type="button" [routerLink]="'/'">Home</li>
           <li class="breadcrumb-item c-breadcrumb" type="button" [routerLink]="'./..'">Dokumentenzugriff Übersicht</li>
 
           <li class="breadcrumb-item active">Bearbeiten</li>
-        </ol>
+        </ol>-->
       </div>
     </div>
   </div>
-  <!-- /.container-fluid -->
 </section>
+<!--End: Header-->
 
+<!--Beginn: Formular Zugriff erstellen-->
 <section class="content">
   <form [formGroup]="newAccessCode" (ngSubmit)="post()">
     <div class="row">
+      <!--Beginn: Linke spalte-->
       <div class="col-md-6">
+        <!--Beginn: Kartenelement-->
         <div class="card card-secondary">
+          <!--Beginn: Kartenheader-->
           <div class="card-header">
             <h3 class="card-title">Allgemeines</h3>
           </div>
-
+          <!--End: Kartenheader-->
           <div class="card-body">
+            <!--Beginn: Bezeichnung Formularfeld-->
             <div class="form-group">
               <label for="inputOverview">Bezeichnug des Zugriffs</label>
               <input type="text" id="inputOverview" formControlName="title" class="form-control">
             </div>
+            <!--End: Bezeichnung Formularfeld-->
 
+            <!--Beginn: Zugangscode Formularfeld-->
+            <div class="form-group">
+              <label for="accessCode">Zugangscode</label>
+              <div class="input-group mb-3">
+                <input type="text" id="accessCode" formControlName="accessCode" class="form-control">
+                <div class="input-group-append">
+                  <div type="button" class="btn btn-success" (click)="generateCode(10)">Code generieren</div>
+                </div>
+              </div>
+            </div>
+            <!--End: Zugangscode Formularfeld-->
+
+            <!--Beginn: Dokumente hochladen-->
             <div class="form-group">
               <label for="inputFile">Dokumente hochladen</label>
               <div class="input-group">
@@ -42,17 +62,35 @@
                 </div>
               </div>
             </div>
-
-
+            <!--End: Dokumente hochladen-->
           </div>
-
         </div>
+        <!--End: Kartenelement-->
+
+        <!--Beginn: Kartenelement-->
         <div class="card card-secondary">
+          <!--Beginn: Kartenheader-->
           <div class="card-header">
-            <h3 class="card-title">Zusätzliche Dokumente hinzufügen</h3>
+            <h3 class="card-title">Dokumente hinzufügen</h3>
             <div class="card-tools">
             </div>
           </div>
+          <!--End: Kartenheader-->
+
+          <!--Beginn: Dokument hinzufügen Formularfeld-->
+          <div class="card-body">
+            <!--Beginn: Dokumentenfilter-->
+            <div class="form-group">
+              <label for="filter">Filter</label>
+              <div class="input-group mb-3">
+                <input type="text" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" id="filter"
+                       class="form-control">
+              </div>
+            </div>
+            <!--End: Dokumentenfilter-->
+          </div>
+
+          <!--Beginn: Auflistung der Dokumente-->
           <div class="card-body p-0">
             <table class="table">
               <thead>
@@ -62,78 +100,85 @@
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>Functional-requirements.docx</td>
+              <tr *ngFor="let singleDocument of documents | dokumentFilter: searchTerm">
+                <td>{{singleDocument.documentName}}</td>
                 <td class="text-right py-0 align-middle">
                   <div class="btn-group btn-group-sm">
                     <div class="btn btn-info"><i class="fas fa-eye"></i></div>
-                    <div class="btn btn-success"><i class="fas fa-plus"></i></div>
+                    <div class="btn btn-success" (click)="addDocument(singleDocument.documentID)"><i class="fas fa-plus"></i></div>
                   </div>
                 </td>
               <tr>
               </tbody>
             </table>
           </div>
+          <!--End: Auflistung der Dokumente-->
+          <!--End: Dokument hinzufügen Formularfeld-->
         </div>
+        <!--End: Kartenelement-->
 
 
       </div>
+      <!--End: Linke Spalte-->
 
+      <!--Beginn: Rechte Spalte-->
 
       <div class="col-md-6">
+        <!--Beginn: Kartenelement-->
         <div class="card card-secondary">
+          <!--Beginn: Kartenheader-->
           <div class="card-header">
-            <h3 class="card-title">Zugangscode ändern</h3>
-          </div>
-
-
-          <div class="card-body">
-            <div class="form-group">
-              <label for="accessCode">Zugangscode</label>
-              <div class="input-group mb-3">
-
-                <input type="text" id="accessCode" formControlName="accessCode" class="form-control">
-                <div class="input-group-append">
-                  <div type="button" class="btn btn-success" (click)="generateCode(10)">Code generieren</div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="card card-secondary">
-          <div class="card-header">
-            <h3 class="card-title">Bereits hinzugefügte Dateien</h3>
+            <h3 class="card-title">Hinzugefügte Dokumente</h3>
             <div class="card-tools">
             </div>
           </div>
+          <!--End: Kartenheader-->
+
+          <!--Beginn: Dokument hinzufügen Formularfeld-->
+          <div class="card-body">
+            <!--Beginn: Dokumentenfilter-->
+            <div class="form-group">
+              <label for="filterAdded">Filter</label>
+              <div class="input-group mb-3">
+                <input type="text" [(ngModel)]="searchTermAdded" [ngModelOptions]="{standalone: true}" id="filterAdded"
+                       class="form-control">
+              </div>
+            </div>
+            <!--End: Dokumentenfilter-->
+          </div>
+
+          <!--Beginn: Auflistung der Dokumente-->
           <div class="card-body p-0">
             <table class="table">
               <thead>
               <tr>
-                <th>Datei Name</th>
+                <th>Dokumentnamen</th>
                 <th></th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>Functional-requirements.docx</td>
+              <tr *ngFor="let singleDocument of documentsAdded | dokumentFilter: searchTermAdded">
+                <td>{{singleDocument.documentName}}</td>
                 <td class="text-right py-0 align-middle">
                   <div class="btn-group btn-group-sm">
                     <div class="btn btn-info"><i class="fas fa-eye"></i></div>
-                    <div class="btn btn-danger"><i class="fas fa-trash"></i></div>
+                    <div class="btn btn-danger" (click)="removeDocument(singleDocument.documentID)"><i class="fas fa-trash"></i></div>
                   </div>
                 </td>
               <tr>
               </tbody>
             </table>
           </div>
+          <!--End: Auflistung der Dokumente-->
+          <!--End: Dokument hinzufügen Formularfeld-->
         </div>
+        <!--End: Kartenelement-->
       </div>
+      <!--Beginn: Rechte Spalte-->
     </div>
 
     <div class="row">
+      <!--Beginn: Buttons-->
       <div class="col-12">
         <a href="#" class="btn btn-secondary">Abbruch</a>
         <div class="btn btn-danger float-right c-delete" (click)="delete()">Datenzugriff löschen</div>
@@ -141,6 +186,7 @@
       <div class="col-12">
         <button type="submit" class="btn btn-success float-right">Änderungen speichern</button>
       </div>
+      <!--End: Buttons-->
     </div>
   </form>
 </section>

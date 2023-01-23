@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-dokumentenzugriff-uebersicht',
@@ -8,10 +9,14 @@ import {Component, OnInit} from '@angular/core';
 export class DokumentenzugriffUebersichtComponent implements OnInit{
 
   accessCode:string = "test"
+  title! :string
 
-  constructor() {
+  constructor(private activeRoute: ActivatedRoute) {
   }
   ngOnInit() {
+    this.activeRoute.data.subscribe(value => {
+      this.title = value['title']
+    })
 
   }
 

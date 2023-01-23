@@ -45,6 +45,11 @@ export const MENU = [
     path: ['/blank']
   },
   {
+    name: 'Dokumente',
+    iconClasses: 'fas fa-folder',
+    path: ['/dokumente/uebersicht']
+  },
+  {
     name: 'Informationsbeitrag',
     iconClasses: 'fas fa-newspaper',
     path: ['/informationsbeitrag/uebersicht']

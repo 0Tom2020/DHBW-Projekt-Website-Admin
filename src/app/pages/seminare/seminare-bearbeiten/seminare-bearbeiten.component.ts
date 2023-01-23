@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-seminare-bearbeiten',
@@ -8,6 +9,8 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./seminare-bearbeiten.component.scss']
 })
 export class SeminareBearbeitenComponent implements OnInit {
+
+  title!:string
 
   newSeminar = new FormGroup({
     price: new FormControl('',[Validators.required]),
@@ -22,10 +25,13 @@ export class SeminareBearbeitenComponent implements OnInit {
     postal: new FormControl('',[Validators.required]),
     title: new FormControl('',[Validators.required]),
   })
-  constructor(private toastr: ToastrService) {
+  constructor(private toastr: ToastrService, private activeRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.activeRoute.data.subscribe(value => {
+      this.title = value['title']
+    })
   }
 
   post () {

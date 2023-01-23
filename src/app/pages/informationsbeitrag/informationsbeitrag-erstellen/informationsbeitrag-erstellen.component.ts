@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ListFilterPipe} from "ng-multiselect-dropdown/list-filter.pipe";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -11,40 +11,40 @@ import {ListFilterPipe} from "ng-multiselect-dropdown/list-filter.pipe";
 export class InformationsbeitragErstellenComponent implements OnInit {
 
   dropdownList = [];
-  selectedItems = [];
   dropdownSettings = {};
+  title!:string
 
   newArticle = new FormGroup ({
     title: new FormControl('',[Validators.required]),
     description: new FormControl('',[Validators.required]),
     file: new FormControl,
     linkage: new FormControl,
-    test: new FormControl
+    partners: new FormControl
   })
 
-  constructor() {}
+  constructor(private activeRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-   /* this.dropdownList = [
-      { item_id: 1, item_text: 'Projektpartner 1' },
-      { item_id: 2, item_text: 'Test' },
-      { item_id: 3, item_text: 'Ingo GmbH' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
-    ];
-    this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' }
+    this.activeRoute.data.subscribe(value => {
+      this.title = value['title']
+    })
+    this.dropdownList = [
+      { partnerID: 1, partnerName: 'Projektpartner 1' },
+      { partnerID: 2, partnerName: 'Test' },
+      { partnerID: 3, partnerName: 'Ingo GmbH' },
+      { partnerID: 4, partnerName: 'Navsari' },
+      { partnerID: 5, partnerName: 'New Delhi' }
     ];
     this.dropdownSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'partnerID',
+      textField: 'partnerName',
       selectAllText: 'Alle Auswählen',
       unSelectAllText: 'Alle Abwählen',
+      searchPlaceholderText: 'Suche',
       itemsShowLimit: 3,
       allowSearchFilter: true
-    };*/
+    };
   }
   onItemSelect(item: any) {
     console.log(item);

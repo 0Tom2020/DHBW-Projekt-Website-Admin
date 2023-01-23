@@ -1,9 +1,8 @@
-<!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Informationsbeitrag erstellen</h1>
+                <h1>{{title}}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -13,7 +12,6 @@
             </div>
         </div>
     </div>
-    <!-- /.container-fluid -->
 </section>
 
 <section class="content">
@@ -81,24 +79,13 @@
                         <div class="form-group">
 
 
-                          <!--<ng-multiselect-dropdown
+                          <ng-multiselect-dropdown
                             [placeholder]="'Projektpartner'"
                             [settings]="dropdownSettings"
                             [data]="dropdownList"
-                            formControlName="test"
-                            (onSelect)="onItemSelect($event)"
-                            (onSelectAll)="onSelectAll($event)"
+                            formControlName="partners"
                           >
-                          </ng-multiselect-dropdown>-->
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="option1">
-                                <label for="customCheckbox1" class="custom-control-label">Projektpartner 1</label>
-                            </div>
-
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="customCheckbox2" checked>
-                                <label for="customCheckbox2" class="custom-control-label">Projektpartner 2</label>
-                            </div>
+                          </ng-multiselect-dropdown>
 
                         </div>
                     </div>

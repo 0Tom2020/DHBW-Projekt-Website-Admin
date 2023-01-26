@@ -54,6 +54,8 @@ import { DokumenteUebersichtComponent } from '@pages/dokumente/dokumente-uebersi
 import { DokumenteHinzufuegenComponent } from './pages/dokumente/dokumente-hinzufuegen/dokumente-hinzufuegen.component';
 import { DokumentFilterPipe } from './pipes/dokument-filter.pipe';
 import { BreadcrumbComponent } from '@components/breadcrumb/breadcrumb.component';
+import { DragAndDropDirective } from './directives/drag-and-drop.directive';
+import { FileSizeFormatterPipe } from './pipes/file-size-formatter.pipe';
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
@@ -87,6 +89,8 @@ registerLocaleData(localeEn, 'en-EN');
     DokumenteHinzufuegenComponent,
     DokumentFilterPipe,
     BreadcrumbComponent,
+    DragAndDropDirective,
+    FileSizeFormatterPipe,
   ],
     imports: [
         BrowserModule,

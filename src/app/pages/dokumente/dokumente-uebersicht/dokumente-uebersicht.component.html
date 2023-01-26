@@ -20,10 +20,7 @@
 <section class="content">
   <!-- Default box -->
   <div class="container-fluid">
-    <button class="btn btn-success float-right c-button" [routerLink]="'/dokumente/uebersicht/hochladen'">Dokumente
-      hochladen
-    </button>
-    <div class="card card-secondary w-100">
+    <div class="card card-secondary w-100" appDragAndDrop (fileDropped)="onFileDropped($event)">
       <div class="card-header">
         <h3 class="card-title">Dokumente</h3>
         <div class="card-tools">
@@ -39,9 +36,16 @@
         </div>
       </div>
 
+      <div class="card-body">
+        <div class="form-group">
+          <label for="filter">Upload</label>
+          <div class="input-group mb-3">
+            <p>Dokumente per Drag and Drop in die Liste ziehen, um diese hochzuladen</p>
+          </div>
+        </div>
+      </div>
+
       <div class="card-body p-0">
-
-
         <table class="table">
           <thead>
           <tr>
@@ -50,11 +54,11 @@
           </thead>
           <tbody>
           <tr *ngFor="let singleDocument of documents | dokumentFilter: searchTerm">
-            <td>{{singleDocument.documentName}}</td>
+            <td>{{singleDocument.name}} ({{singleDocument.size | fileSizeFormatter}})</td>
             <td class="text-right py-0 align-middle">
               <div class="btn-group btn-group-sm">
-                <div class="btn btn-info"><i class="fas fa-eye"></i></div>
-                <div class="btn btn-danger"><i class="fas fa-trash"></i></div>
+                <div class="btn btn-info" (click)="viewDocument(singleDocument)"><i class="fas fa-eye"></i></div>
+                <div class="btn btn-danger" (click)="deleteDocument(singleDocument)"><i class="fas fa-trash"></i></div>
               </div>
             </td>
           <tr>

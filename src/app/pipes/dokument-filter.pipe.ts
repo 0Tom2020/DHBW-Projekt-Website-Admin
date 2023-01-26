@@ -10,7 +10,7 @@ export class DokumentFilterPipe implements PipeTransform {
     if (!searchTerm) return items;
     searchTerm = searchTerm.toLowerCase();
     return items.filter(item => {
-      return item.documentName.toLowerCase().includes(searchTerm);
+      return item.name.toLowerCase().includes(searchTerm);
     });
   }
 

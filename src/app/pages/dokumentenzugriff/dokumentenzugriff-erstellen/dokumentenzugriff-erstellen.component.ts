@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {ActivatedRoute} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-dokumentenzugriff-erstellen',
@@ -13,17 +14,7 @@ export class DokumentenzugriffErstellenComponent implements OnInit{
   searchTermAdded: string = ""
   title!: string
 
-  documents = [
-    {documentID: "1", documentName: "Testdokument1"},
-    {documentID: "2", documentName: "Testdokument2"},
-    {documentID: "3", documentName: "Testdokument3"},
-    {documentID: "4", documentName: "Testdokument4"},
-    {documentID: "5", documentName: "Testdokument5"},
-    {documentID: "6", documentName: "Testdokument6"},
-    {documentID: "7", documentName: "Testdokument7"},
-    {documentID: "8", documentName: "Testdokument8"},
-    {documentID: "9", documentName: "Testdokument9"},
-  ]
+  documents = []
   documentsAdded = []
   newAccessCode = new FormGroup({
     accessCode: new FormControl('',[this.onlyCharsValidator, Validators.required]),
@@ -32,13 +23,20 @@ export class DokumentenzugriffErstellenComponent implements OnInit{
 
   })
 
-  constructor(private toastr: ToastrService, private activeRoute: ActivatedRoute) {
+  constructor(private toastr: ToastrService, private activeRoute: ActivatedRoute, private http: HttpClient) {
   }
 
   ngOnInit() {
     this.activeRoute.data.subscribe(value => {
       this.title = value['title']
     })
+    this.http.get<[]>('http://localhost:8080/data-transfer/documents/', {withCredentials: true}).subscribe(value => {
+      for (const doc of value) {
+        this.documents.push(doc);
+      }
+    }, error => {
+      console.log(error);
+    });
 
   }
 
@@ -68,8 +66,8 @@ export class DokumentenzugriffErstellenComponent implements OnInit{
   }
 
   sortFunction (documentNameA, documentNameB) {
-    const tmpDocumentNameA = documentNameA.documentName.toUpperCase();
-    const tmpDocumentNameB = documentNameB.documentName.toUpperCase();
+    const tmpDocumentNameA = documentNameA.name.toUpperCase();
+    const tmpDocumentNameB = documentNameB.name.toUpperCase();
     if (tmpDocumentNameA < tmpDocumentNameB) {
       return -1;
     }
@@ -79,20 +77,19 @@ export class DokumentenzugriffErstellenComponent implements OnInit{
     return 0;
   }
 
-  addDocument(documentID: string) {
-    let tmpObj = this.documents.find(o => o.documentID === documentID);
-    let index = this.documents.indexOf(tmpObj)
-    this.documents.splice(index, 1)
-    this.documentsAdded.push(tmpObj)
+  addDocument(document: any) {
+    this.documents.splice(this.documents.indexOf(document), 1)
+    this.documentsAdded.push(document)
     this.documentsAdded.sort(this.sortFunction)
   }
 
-  removeDocument(documentID: string) {
-    let tmpObj = this.documentsAdded.find(o => o.documentID === documentID);
-    let index = this.documentsAdded.indexOf(tmpObj)
-    this.documentsAdded.splice(index, 1)
-    this.documents.push(tmpObj)
+  removeDocument(document: any) {
+    this.documentsAdded.splice(this.documentsAdded.indexOf(document), 1)
+    this.documents.push(document)
     this.documents.sort(this.sortFunction)
   }
 
+  viewDocument(singleDocument: any) {
+    window.open('http://localhost:8080/data-transfer/document/' + singleDocument.id + '/data', '_blank');
+  }
 }

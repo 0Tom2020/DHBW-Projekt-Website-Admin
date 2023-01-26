@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-dokumente-uebersicht',
@@ -11,19 +12,9 @@ export class DokumenteUebersichtComponent implements OnInit {
 
   searchTerm:string = ""
   title!: string;
-  documents = [
-    {documentID: "15648945631", documentName: "Testdokument1"},
-    {documentID: "45671534657", documentName: "Testdokument2"},
-    {documentID: "45646544564", documentName: "Testdokument3"},
-    {documentID: "78918978975", documentName: "Testdokument4"},
-    {documentID: "78975156489", documentName: "Testdokument5"},
-    {documentID: "14571312548", documentName: "Testdokument6"},
-    {documentID: "31548943155", documentName: "Testdokument7"},
-    {documentID: "14878325988", documentName: "Testdokument8"},
-    {documentID: "15648913548", documentName: "Testdokument9"},
-  ]
+  documents = []
 
-  constructor(private activeRoute: ActivatedRoute) {
+  constructor(private activeRoute: ActivatedRoute, private http: HttpClient) {
 
   }
 
@@ -31,6 +22,44 @@ export class DokumenteUebersichtComponent implements OnInit {
     this.activeRoute.data.subscribe(value => {
       this.title = value['title']
     })
+    this.http.get<[]>('http://localhost:8080/data-transfer/documents/', {withCredentials: true}).subscribe(value => {
+      for (const doc of value) {
+        this.documents.push(doc);
+      }
+    }, error => {
+      console.log(error);
+    });
   }
 
+  onFileDropped($event: any) {
+    this.upload($event);
+  }
+
+  private upload(files: Array<any>) {
+    for(const file of files) {
+      const formData = new FormData();
+      formData.append('file', file, file.name)
+      this.http.post<[]>('http://localhost:8080/data-transfer/documents/', formData, {withCredentials: true}).subscribe(value => {
+        for (const doc of value) {
+          this.documents.push(doc);
+        }
+      }, error => {
+        console.log(error);
+      });
+
+
+    }
+  }
+
+  viewDocument(singleDocument: any) {
+    window.open('http://localhost:8080/data-transfer/document/' + singleDocument.id + '/data', '_blank');
+  }
+
+  deleteDocument(singleDocument: any) {
+    this.http.delete('http://localhost:8080/data-transfer/document/' + singleDocument.id, {withCredentials: true}).subscribe(value => {
+      this.documents.splice(this.documents.indexOf(singleDocument), 1)
+    }, error => {
+      console.log(error);
+    });
+  }
 }

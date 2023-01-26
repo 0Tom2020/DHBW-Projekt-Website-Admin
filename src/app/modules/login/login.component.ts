@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit, OnDestroy {
             'login-page'
         );
         this.loginForm = new UntypedFormGroup({
-            email: new UntypedFormControl(null, Validators.required),
-            password: new UntypedFormControl(null, Validators.required)
+            email: new UntypedFormControl('test@test.de', Validators.required),
+            password: new UntypedFormControl('ftpl', Validators.required)
         });
     }
 

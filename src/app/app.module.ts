@@ -51,9 +51,11 @@ import {SeminareUebersichtComponent} from '@pages/seminare/seminare-uebersicht/s
 import {SeminareBearbeitenComponent} from '@pages/seminare/seminare-bearbeiten/seminare-bearbeiten.component';
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import { DokumenteUebersichtComponent } from '@pages/dokumente/dokumente-uebersicht/dokumente-uebersicht.component';
-import { DokumenteHinzufuegenComponent } from './pages/dokumente/dokumente-hinzufuegen/dokumente-hinzufuegen.component';
 import { DokumentFilterPipe } from './pipes/dokument-filter.pipe';
 import { BreadcrumbComponent } from '@components/breadcrumb/breadcrumb.component';
+import { PartnerUebersichtComponent } from '@pages/partner/partner-uebersicht/partner-uebersicht.component';
+import { PartnerBearbeitenComponent } from '@pages/partner/partner-bearbeiten/partner-bearbeiten.component';
+import { PartnerErstellenComponent } from '@pages/partner/partner-erstellen/partner-erstellen.component';
 import { DragAndDropDirective } from './directives/drag-and-drop.directive';
 import { FileSizeFormatterPipe } from './pipes/file-size-formatter.pipe';
 
@@ -86,9 +88,11 @@ registerLocaleData(localeEn, 'en-EN');
     SeminareUebersichtComponent,
     SeminareBearbeitenComponent,
     DokumenteUebersichtComponent,
-    DokumenteHinzufuegenComponent,
     DokumentFilterPipe,
     BreadcrumbComponent,
+    PartnerUebersichtComponent,
+    PartnerBearbeitenComponent,
+    PartnerErstellenComponent,
     DragAndDropDirective,
     FileSizeFormatterPipe,
   ],

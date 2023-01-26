@@ -35,6 +35,9 @@ import {
 } from "@pages/seminare/seminare-bearbeiten/seminare-bearbeiten.component";
 import {DokumenteUebersichtComponent} from "@pages/dokumente/dokumente-uebersicht/dokumente-uebersicht.component";
 import {DokumenteHinzufuegenComponent} from "@pages/dokumente/dokumente-hinzufuegen/dokumente-hinzufuegen.component";
+import {PartnerUebersichtComponent} from "@pages/partner/partner-uebersicht/partner-uebersicht.component";
+import {PartnerErstellenComponent} from "@pages/partner/partner-erstellen/partner-erstellen.component";
+import {PartnerBearbeitenComponent} from "@pages/partner/partner-bearbeiten/partner-bearbeiten.component";
 
 
 const routes: Routes = [
@@ -142,6 +145,27 @@ const routes: Routes = [
         component: DokumenteHinzufuegenComponent,
         data: {
           title: "Dokumente hochladen"
+        }
+      },
+      {
+        path: 'partner/uebersicht',
+        component: PartnerUebersichtComponent,
+        data: {
+          title: "Partnerübersicht"
+        }
+      },
+      {
+        path: 'partner/uebersicht/erstellen',
+        component: PartnerErstellenComponent,
+        data: {
+          title: "Partner erstellen"
+        }
+      },
+      {
+        path: 'partner/uebersicht/:id',
+        component: PartnerBearbeitenComponent,
+        data: {
+          title: "Partner bearbeiten"
         }
       },
     ]

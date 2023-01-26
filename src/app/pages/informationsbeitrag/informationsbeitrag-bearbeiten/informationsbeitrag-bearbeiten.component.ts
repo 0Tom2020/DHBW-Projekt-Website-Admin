@@ -55,7 +55,6 @@ export class InformationsbeitragBearbeitenComponent implements OnInit{
 
   post() {
     console.log(this.editArticle.value)
-
   }
 
   delete() {

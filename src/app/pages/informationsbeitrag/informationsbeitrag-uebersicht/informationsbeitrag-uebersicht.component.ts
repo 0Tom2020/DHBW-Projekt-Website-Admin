@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-informationsbeitrag-uebersicht',
@@ -9,12 +10,24 @@ import {ActivatedRoute} from "@angular/router";
 export class InformationsbeitragUebersichtComponent implements OnInit {
 
   title! :string
-  constructor(private activeRoute: ActivatedRoute) {
+  infoEntry
+
+  breadcrumbItems = [
+    {label: "Home", route: '/'},
+    {label: "Übersicht", route: './..'},
+  ]
+
+  constructor(private activeRoute: ActivatedRoute, private client: HttpClient) {
   }
 
   ngOnInit() {
     this.activeRoute.data.subscribe(value => {
       this.title = value['title']
+    })
+
+    this.client.get('http://localhost:8080/info-post').subscribe(data => {
+      this.infoEntry = data
+      console.log(data)
     })
   }
 

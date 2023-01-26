@@ -65,6 +65,26 @@ export const MENU = [
     path: ['/seminare/uebersicht']
   },
   {
+    name: 'Partner',
+    iconClasses: 'fas fa-handshake',
+    path: ['/partner/uebersicht']
+  },
+  {
+    name: 'Admin-Benutzer',
+    iconClasses: 'fas fa-user',
+    path: ['/admin/uebersicht']
+  },
+  {
+    name: 'Anfragen',
+    iconClasses: 'fas fa-file-signature',
+    path: ['/anfrage/uebersicht']
+  },
+  {
+    name: 'Angebote',
+    iconClasses: 'fas fa-file-signature',
+    path: ['/angebot/uebersicht']
+  },
+  {
     name: 'Main Menu',
     iconClasses: 'fas fa-folder',
     children: [

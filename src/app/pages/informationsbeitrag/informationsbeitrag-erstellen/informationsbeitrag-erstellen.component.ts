@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -10,7 +12,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class InformationsbeitragErstellenComponent implements OnInit {
 
-  dropdownList = [];
+  dropdownList: Object = [];
   dropdownSettings = {};
   title!:string
 
@@ -22,23 +24,25 @@ export class InformationsbeitragErstellenComponent implements OnInit {
     partners: new FormControl
   })
 
-  constructor(private activeRoute: ActivatedRoute) {}
+  constructor(private activeRoute: ActivatedRoute, private client: HttpClient, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.activeRoute.data.subscribe(value => {
       this.title = value['title']
     })
+
+    this.client.get('http://localhost:8080/partner').subscribe(data => {
+      this.dropdownList = data
+    })
+
+
+
     this.dropdownList = [
-      { partnerID: 1, partnerName: 'Projektpartner 1' },
-      { partnerID: 2, partnerName: 'Test' },
-      { partnerID: 3, partnerName: 'Ingo GmbH' },
-      { partnerID: 4, partnerName: 'Navsari' },
-      { partnerID: 5, partnerName: 'New Delhi' }
     ];
     this.dropdownSettings = {
       singleSelection: false,
-      idField: 'partnerID',
-      textField: 'partnerName',
+      idField: 'id',
+      textField: 'name',
       selectAllText: 'Alle Auswählen',
       unSelectAllText: 'Alle Abwählen',
       searchPlaceholderText: 'Suche',
@@ -46,36 +50,22 @@ export class InformationsbeitragErstellenComponent implements OnInit {
       allowSearchFilter: true
     };
   }
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
-  }
 
 
   post() {
-  /*  console.log(this.newArticle.value)
-    this.dropdownList = [
-      { item_id: 1, item_text: 'Projektpartner 1' },
-      { item_id: 2, item_text: 'Test' },
-      { item_id: 3, item_text: 'Ingo GmbH' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
-    ];
-    this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' }
-    ];
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Alle Auswählen',
-      unSelectAllText: 'Alle Abwählen',
-      itemsShowLimit: 3,
-      allowSearchFilter: true
-    };*/
+    if (this.newArticle.invalid) {
+      this.toastr.error("Bitte füllen Sie alle Felder aus!", "Fehler")
+    } else {
+      const body = this.newArticle.value
+      this.client.post('http://localhost:8080/info-post/create', body, {withCredentials:true, }).subscribe(response => {
+        console.log(body)
+        this.newArticle.reset()
+        this.toastr.success("Es wurde erfolgreich ein neuer Partner angelegt")
+      })
+
+    }
+
+
 
   }
 

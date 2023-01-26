@@ -16,7 +16,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DashboardComponent} from '@pages/dashboard/dashboard.component';
 import {ToastrModule} from 'ngx-toastr';
 
-import {registerLocaleData} from '@angular/common';
+import {APP_BASE_HREF, registerLocaleData} from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import {UserComponent} from '@modules/main/header/user/user.component';
 import {ForgotPasswordComponent} from '@modules/forgot-password/forgot-password.component';
@@ -58,6 +58,7 @@ import { PartnerBearbeitenComponent } from '@pages/partner/partner-bearbeiten/pa
 import { PartnerErstellenComponent } from '@pages/partner/partner-erstellen/partner-erstellen.component';
 import { DragAndDropDirective } from './directives/drag-and-drop.directive';
 import { FileSizeFormatterPipe } from './pipes/file-size-formatter.pipe';
+import {environment} from "../environments/environment";
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
@@ -112,7 +113,7 @@ registerLocaleData(localeEn, 'en-EN');
         NgMultiSelectDropDownModule.forRoot(),
         FormsModule
     ],
-  providers: [],
+  providers: [{provide: APP_BASE_HREF, useValue: environment.baseUrl}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

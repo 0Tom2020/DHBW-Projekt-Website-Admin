@@ -5,7 +5,7 @@
   "scripts": {
     "prepare": "husky install",
     "start": "ng serve",
-    "build": "ng build --configuration production",
+    "build": "ng build --configuration production --base-href=/admin --deploy-url /admin/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

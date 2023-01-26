@@ -4,6 +4,7 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AppService} from '@services/app.service';
 import {Observable} from 'rxjs';
+import {environment} from "../../../../environments/environment";
 
 const BASE_CLASSES = 'main-sidebar elevation-4';
 
@@ -13,6 +14,8 @@ const BASE_CLASSES = 'main-sidebar elevation-4';
   styleUrls: ['./menu-sidebar.component.scss']
 })
 export class MenuSidebarComponent implements OnInit {
+
+  baseUrl = environment.baseUrl;
   @HostBinding('class') classes: string = BASE_CLASSES;
   public ui: Observable<UiState>;
   public user;

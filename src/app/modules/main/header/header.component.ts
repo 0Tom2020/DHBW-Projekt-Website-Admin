@@ -6,6 +6,7 @@ import {UntypedFormGroup, UntypedFormControl} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {AppService} from '@services/app.service';
 import {Observable} from 'rxjs';
+import {environment} from "../../../../environments/environment";
 
 const BASE_CLASSES = 'main-header navbar navbar-expand';
 @Component({
@@ -14,6 +15,7 @@ const BASE_CLASSES = 'main-header navbar navbar-expand';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+    baseUrl = environment.baseUrl;
     @HostBinding('class') classes: string = BASE_CLASSES;
     public ui: Observable<UiState>;
     public searchForm: UntypedFormGroup;

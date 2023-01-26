@@ -54,8 +54,8 @@
 
 
                         <div class="form-group">
-                            <label for="inputLinkage">Verlinkung auf eine andere Seite / weitere Informationen</label>
-                            <input type="text" id="inputLinkage" formControlName="linkage" class="form-control">
+                            <label for="inputMoreInfoLink">Verlinkung auf eine andere Seite / weitere Informationen</label>
+                            <input type="text" id="inputMoreInfoLink" formControlName="moreInfoLink" class="form-control">
                         </div>
                     </div>
 
@@ -96,7 +96,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <a href="#" class="btn btn-secondary">Abbruch</a>
+                <a [routerLink]="'./..'" class="btn btn-secondary">Abbruch</a>
                 <button type="submit" class="btn btn-success float-right">Informationsbeitrag erstellen</button>
             </div>
         </div>

@@ -1,0 +1,18 @@
+/*Zentrale Stylings*/
+
+.card-title {
+  margin-top: 10px;
+}
+
+.c-button {
+  margin-bottom: 10px;
+  margin-right: 11px;
+}
+
+.c-breadcrumb {
+  color: #007bff;
+}
+
+.c-delete {
+  margin-bottom: 10px;
+}

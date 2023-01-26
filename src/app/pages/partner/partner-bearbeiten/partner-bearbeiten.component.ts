@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {readonlynessOptionsDefaults} from "@typescript-eslint/type-utils";
 import {ToastrService} from "ngx-toastr";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-partner-bearbeiten',
@@ -13,7 +14,6 @@ import {ToastrService} from "ngx-toastr";
 export class PartnerBearbeitenComponent implements OnInit{
 
   title!:string
-  httpSub
   partner
   id
   editPartner = new FormGroup({
@@ -34,9 +34,9 @@ export class PartnerBearbeitenComponent implements OnInit{
       this.title = value['title']
     })
 
-    this.httpSub = this.activeRoute.params.subscribe(params => {
+    this.activeRoute.params.subscribe(params => {
       this.id = params['id']
-      this.httpSub = this.client.get('http://localhost:8080/partner/single/' + this.id, {withCredentials:true}).subscribe( data => {
+      this.client.get(environment.backend + '/partner/single/' + this.id, {withCredentials:true}).subscribe( data => {
         this.partner = data
         this.editPartner.controls['name'].setValue(this.partner['name'])
         this.editPartner.controls['website'].setValue(this.partner['website'])
@@ -53,7 +53,7 @@ export class PartnerBearbeitenComponent implements OnInit{
       this.toastr.error("Bitte füllen Sie alle Felder aus!", "Fehler")
     } else {
       const body = this.editPartner.value
-      this.client.put('http://localhost:8080/partner/single/' + this.id, body, {withCredentials:true}).subscribe(data => {
+      this.client.put(environment.backend + '/partner/single/' + this.id, body, {withCredentials:true}).subscribe(data => {
         console.log(data)
         this.toastr.success("Es wurde erfolgreich der Partner geändert")
       })
@@ -62,9 +62,9 @@ export class PartnerBearbeitenComponent implements OnInit{
   }
 
   delete() {
-    this.httpSub = this.client.delete('http://localhost:8080/partner/single/' + this.id, {withCredentials:true}).subscribe(() => {
+    this.client.delete(environment.backend + '/partner/single/' + this.id, {withCredentials:true}).subscribe(() => {
+      this.toastr.success("Partner wurde erfolgreich gelöscht")
+      this.router.navigate(['/partner/uebersicht'])
     })
-    this.toastr.success("Partner wurde erfolgreich gelöscht")
-    this.router.navigate(['/partner/uebersicht'])
   }
 }

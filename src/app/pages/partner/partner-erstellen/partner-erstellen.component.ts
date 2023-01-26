@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-partner-erstellen',
@@ -40,7 +41,7 @@ export class PartnerErstellenComponent implements OnInit {
     } else {
       const body = this.newPartner.value
       console.log(body)
-      this.client.post('http://localhost:8080/partner/create', body, {withCredentials:true}).subscribe(data => {
+      this.client.post(environment.backend + '/partner/create', body, {withCredentials:true}).subscribe(data => {
         this.newPartner.reset()
         this.toastr.success("Es wurde erfolgreich ein neuer Partner angelegt")
       })

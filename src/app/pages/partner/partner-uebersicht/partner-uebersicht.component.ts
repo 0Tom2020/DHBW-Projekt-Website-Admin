@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-partner-uebersicht',
@@ -29,7 +30,7 @@ export class PartnerUebersichtComponent implements OnInit{
       this.title = value['title']
     })
 
-    this.httpSub = this.client.get('http://localhost:8080/partner').subscribe( data => {
+    this.httpSub = this.client.get(environment.backend + 'partner').subscribe( data => {
       this.partners = data
     })
 

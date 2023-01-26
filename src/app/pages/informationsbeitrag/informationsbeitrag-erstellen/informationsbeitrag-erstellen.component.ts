@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
+import {environment} from "../../../../environments/environment";
 
 
 @Component({
@@ -13,14 +14,14 @@ import {ToastrService} from "ngx-toastr";
 export class InformationsbeitragErstellenComponent implements OnInit {
 
   dropdownList: Object = [];
-  dropdownSettings = {};
+  dropdownSettings;
   title!:string
 
   newArticle = new FormGroup ({
     title: new FormControl('',[Validators.required]),
     description: new FormControl('',[Validators.required]),
     file: new FormControl,
-    linkage: new FormControl,
+    moreInfoLink: new FormControl,
     partners: new FormControl
   })
 
@@ -31,7 +32,7 @@ export class InformationsbeitragErstellenComponent implements OnInit {
       this.title = value['title']
     })
 
-    this.client.get('http://localhost:8080/partner').subscribe(data => {
+    this.client.get(environment.backend + '/partner').subscribe(data => {
       this.dropdownList = data
     })
 
@@ -57,9 +58,9 @@ export class InformationsbeitragErstellenComponent implements OnInit {
       this.toastr.error("Bitte füllen Sie alle Felder aus!", "Fehler")
     } else {
       const body = this.newArticle.value
-      this.client.post('http://localhost:8080/info-post/create', body, {withCredentials:true, }).subscribe(response => {
+      this.client.post(environment.backend + '/infoEntry/create', body, {withCredentials:true, }).subscribe(response => {
         console.log(body)
-        this.newArticle.reset()
+        //this.newArticle.reset()
         this.toastr.success("Es wurde erfolgreich ein neuer Partner angelegt")
       })
 

@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-dokumentenzugriff-bearbeiten',
@@ -13,31 +15,22 @@ export class DokumentenzugriffBearbeitenComponent implements OnInit {
   breadcrumbItems = [
     {label: "Home", route: '/'},
     {label: "Übersicht", route: './..'},
-    {label: "Test", route: '/'},
+    {label: "Zugangscode", route: '/'},
   ]
 
   searchTerm:string = ""
   searchTermAdded:string = ""
-  documents = [
-    {documentID: "1", documentName: "Testdokument1"},
-    {documentID: "2", documentName: "Testdokument2"},
-    {documentID: "3", documentName: "Testdokument3"},
-    {documentID: "4", documentName: "Testdokument4"},
-    {documentID: "5", documentName: "Testdokument5"},
-    {documentID: "6", documentName: "Testdokument6"},
-    {documentID: "7", documentName: "Testdokument7"},
-    {documentID: "8", documentName: "Testdokument8"},
-    {documentID: "9", documentName: "Testdokument9"},
-  ]
+
+  keyId:string = "";
+  documents = []
   documentsAdded = []
   title! :string
   newAccessCode = new FormGroup({
-    accessCode: new FormControl('',[this.onlyCharsValidator, Validators.required]),
-    file: new FormControl('', [Validators.required]),
+    accessCode: new FormControl({value: '', disabled: true},[this.onlyCharsValidator, Validators.required]),
     title: new FormControl('', [Validators.required]),
   })
 
-  constructor(private toastr: ToastrService, private activatedRoute: ActivatedRoute) {
+  constructor(private toastr: ToastrService, private activatedRoute: ActivatedRoute, private http: HttpClient, private router: Router) {
   }
 
 
@@ -47,6 +40,14 @@ export class DokumentenzugriffBearbeitenComponent implements OnInit {
       this.title = value['title']
     })
 
+    this.activatedRoute.params.subscribe(value => {
+      if (value['id']) {
+        this.keyId = value['id'];
+        this.loadData();
+      }
+    })
+
+
 
 
   }
@@ -55,17 +56,44 @@ export class DokumentenzugriffBearbeitenComponent implements OnInit {
     if (this.newAccessCode.controls.accessCode.invalid) {
       return this.toastr.error("Es sind nur folgende Zeichen zugelassen: Klein- und Großbuchstaben, sowie Zahlen")
     }
+
+    if (!this.newAccessCode.controls.title.invalid) {
+      this.http.post(environment.backend + '/data-transfer/key/' + this.keyId, {
+        description: this.newAccessCode.controls.title.value,
+        documents: this.documentsAdded.map(value => value.id)
+      }, {withCredentials: true}).subscribe(value => {
+        this.toastr.success("Zugangscode erfolgreich bearbeitet");
+        this.loadData();
+      });
+    }
   }
 
-  generateCode (length:number):string {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789';
-    const charactersLength = characters.length;
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    this.newAccessCode.controls.accessCode.setValue(result)
-    return result;
+  loadData() {
+    this.http.get<[]>(environment.backend + '/data-transfer/key/' + this.keyId, {withCredentials: true}).subscribe(key => {
+      this.newAccessCode.controls['title'].setValue(key['description'])
+      this.newAccessCode.controls['accessCode'].setValue(key['id'])
+    }, error => {
+      console.log(error);
+    });
+
+    this.http.get<[]>(environment.backend + '/data-transfer/key/' + this.keyId + '/documents', {withCredentials: true}).subscribe(documents => {
+      this.documentsAdded = [];
+      for (const document of documents) {
+        this.documentsAdded.push(document);
+      }
+      this.documentsAdded.sort(this.sortFunction)
+
+      this.http.get<[]>(environment.backend + '/data-transfer/documents', {withCredentials: true}).subscribe(documents => {
+        this.documents = [];
+        for (const document of documents) {
+          if (!this.documentsAdded.find(value => value.id === document["id"])) {
+            this.documents.push(document);
+          }
+        }
+        this.documents.sort(this.sortFunction)
+      })
+
+    });
   }
 
   onlyCharsValidator(control: FormControl) {
@@ -77,12 +105,15 @@ export class DokumentenzugriffBearbeitenComponent implements OnInit {
   }
 
   delete () {
-
+    this.http.delete(environment.backend + '/data-transfer/key/' + this.keyId, {withCredentials: true}).subscribe(value => {
+      this.toastr.success("Zugangscode erfolgreich gelöscht");
+      this.router.navigate(['/dokumentenzugriff/uebersicht']);
+    });
   }
 
   sortFunction (documentNameA, documentNameB) {
-    const tmpDocumentNameA = documentNameA.documentName.toUpperCase();
-    const tmpDocumentNameB = documentNameB.documentName.toUpperCase();
+    const tmpDocumentNameA = documentNameA.name.toUpperCase();
+    const tmpDocumentNameB = documentNameB.name.toUpperCase();
     if (tmpDocumentNameA < tmpDocumentNameB) {
       return -1;
     }
@@ -92,20 +123,20 @@ export class DokumentenzugriffBearbeitenComponent implements OnInit {
     return 0;
   }
 
-  addDocument(documentID: string) {
-    let tmpObj = this.documents.find(o => o.documentID === documentID);
-    let index = this.documents.indexOf(tmpObj)
-    this.documents.splice(index, 1)
-    this.documentsAdded.push(tmpObj)
+  addDocument(document: any) {
+    this.documents.splice(this.documents.indexOf(document), 1)
+    this.documentsAdded.push(document)
     this.documentsAdded.sort(this.sortFunction)
   }
 
-  removeDocument(documentID: string) {
-    let tmpObj = this.documentsAdded.find(o => o.documentID === documentID);
-    let index = this.documentsAdded.indexOf(tmpObj)
-    this.documentsAdded.splice(index, 1)
-    this.documents.push(tmpObj)
+  removeDocument(document: any) {
+    this.documentsAdded.splice(this.documentsAdded.indexOf(document), 1)
+    this.documents.push(document)
     this.documents.sort(this.sortFunction)
+  }
+
+  viewDocument(singleDocument: any) {
+    window.open(environment.backend + '/data-transfer/document/' + singleDocument.id + '/data', '_blank');
   }
 
 }

@@ -106,7 +106,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'dokumentenzugriff/uebersicht/:id',
+        path: 'dokumentenzugriff/code/:id',
         component: DokumentenzugriffBearbeitenComponent,
         data: {
           title: 'Dokumentenzugriff bearbeiten'

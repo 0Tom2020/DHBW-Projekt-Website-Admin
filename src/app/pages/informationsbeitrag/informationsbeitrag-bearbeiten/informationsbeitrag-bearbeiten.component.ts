@@ -56,10 +56,10 @@ export class InformationsbeitragBearbeitenComponent implements OnInit{
         moreInfoLink: value.moreInfoLink,
       })
     })
-    this.client.get(environment.backend + 'partner', {withCredentials: true}).subscribe((value: any) => {
+    this.client.get(environment.backend + '/partner', {withCredentials: true}).subscribe((value: any) => {
       this.dropdownList = value
     })
-    this.client.get(environment.backend + 'partner/infoEntry/' + this.id, {withCredentials: true}).subscribe((value: any) => {
+    this.client.get(environment.backend + '/partner/infoEntry/' + this.id, {withCredentials: true}).subscribe((value: any) => {
       this.selectedItems = value
     })
   }

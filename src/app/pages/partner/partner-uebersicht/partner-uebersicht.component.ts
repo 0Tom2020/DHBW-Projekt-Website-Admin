@@ -30,7 +30,7 @@ export class PartnerUebersichtComponent implements OnInit{
       this.title = value['title']
     })
 
-    this.httpSub = this.client.get(environment.backend + 'partner').subscribe( data => {
+    this.httpSub = this.client.get(environment.backend + '/partner').subscribe( data => {
       this.partners = data
     })
 

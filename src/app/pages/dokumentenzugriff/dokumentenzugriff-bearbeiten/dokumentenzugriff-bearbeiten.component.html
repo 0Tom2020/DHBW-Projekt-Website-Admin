@@ -38,25 +38,10 @@
             <div class="form-group">
               <label for="accessCode">Zugangscode</label>
               <div class="input-group mb-3">
-                <input type="text" id="accessCode" formControlName="accessCode" class="form-control">
-                <div class="input-group-append">
-                  <div type="button" class="btn btn-success" (click)="generateCode(10)">Code generieren</div>
-                </div>
+                <input type="text" id="accessCode" formControlName="accessCode" class="form-control" disabled>
               </div>
             </div>
             <!--End: Zugangscode Formularfeld-->
-
-            <!--Beginn: Dokumente hochladen-->
-            <div class="form-group">
-              <label for="inputFile">Dokumente hochladen</label>
-              <div class="input-group">
-                <div class="custom-files">
-                  <input type="file" class="custom-file-input" formControlName="file" id="inputFile" multiple>
-                  <label class="custom-file-label" for="inputFile">Datei auswählen</label>
-                </div>
-              </div>
-            </div>
-            <!--End: Dokumente hochladen-->
           </div>
         </div>
         <!--End: Kartenelement-->
@@ -95,11 +80,11 @@
               </thead>
               <tbody>
               <tr *ngFor="let singleDocument of documents | dokumentFilter: searchTerm">
-                <td>{{singleDocument.documentName}}</td>
+                <td>{{singleDocument.name}}</td>
                 <td class="text-right py-0 align-middle">
                   <div class="btn-group btn-group-sm">
-                    <div class="btn btn-info"><i class="fas fa-eye"></i></div>
-                    <div class="btn btn-success" (click)="addDocument(singleDocument.documentID)"><i class="fas fa-plus"></i></div>
+                    <div class="btn btn-info" (click)="viewDocument(singleDocument)"><i class="fas fa-eye"></i></div>
+                    <div class="btn btn-success" (click)="addDocument(singleDocument)"><i class="fas fa-plus"></i></div>
                   </div>
                 </td>
               <tr>
@@ -152,11 +137,11 @@
               </thead>
               <tbody>
               <tr *ngFor="let singleDocument of documentsAdded | dokumentFilter: searchTermAdded">
-                <td>{{singleDocument.documentName}}</td>
+                <td>{{singleDocument.name}}</td>
                 <td class="text-right py-0 align-middle">
                   <div class="btn-group btn-group-sm">
-                    <div class="btn btn-info"><i class="fas fa-eye"></i></div>
-                    <div class="btn btn-danger" (click)="removeDocument(singleDocument.documentID)"><i class="fas fa-trash"></i></div>
+                    <div class="btn btn-info" (click)="viewDocument(singleDocument)"><i class="fas fa-eye"></i></div>
+                    <div class="btn btn-danger" (click)="removeDocument(singleDocument)"><i class="fas fa-trash"></i></div>
                   </div>
                 </td>
               <tr>

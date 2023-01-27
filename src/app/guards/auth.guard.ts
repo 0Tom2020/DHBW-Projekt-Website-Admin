@@ -37,12 +37,12 @@ export class AuthGuard implements CanActivate, CanActivateChild {
             this.appService.user = user
             return true
           } else  {
-            this.router.navigate(['/login'])
+            this.router.navigate(['/login'], { queryParams: { redirect_to: state.url }})
             return false;
           }
         }), catchError((err) => {
           console.log(err)
-          this.router.navigate(['/login'])
+          this.router.navigate(['/login'], { queryParams: { redirect_to: state.url }})
           return of(false)
         })
       );

@@ -8,7 +8,7 @@ import {
 import {UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {AppService} from '@services/app.service';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: 'app-login',
@@ -22,11 +22,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     public isGoogleLoading = false;
     public isFacebookLoading = false;
 
+    private redirectUrl: string = "/";
+
     constructor(
         private renderer: Renderer2,
         private toastr: ToastrService,
         private appService: AppService,
-        private router: Router
+        private router: Router,
+        private activatedRoute: ActivatedRoute
     ) {}
 
     ngOnInit() {
@@ -38,6 +41,10 @@ export class LoginComponent implements OnInit, OnDestroy {
             email: new UntypedFormControl('test@test.de', Validators.required),
             password: new UntypedFormControl('', Validators.required)
         });
+
+        this.activatedRoute.queryParams.subscribe(params => {
+          this.redirectUrl = params['redirect_to'];
+        });
     }
 
     async loginByAuth() {
@@ -45,7 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.isAuthLoading = true;
              this.appService.loginByAuth(this.loginForm.value).subscribe(value => {
                if (value){
-                 this.router.navigate(['/']);
+                 this.router.navigate([this.redirectUrl]);
                }
              })
             this.isAuthLoading = false;

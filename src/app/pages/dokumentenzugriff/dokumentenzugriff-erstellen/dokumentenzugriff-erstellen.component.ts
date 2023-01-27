@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 
@@ -21,10 +21,11 @@ export class DokumentenzugriffErstellenComponent implements OnInit{
     accessCode: new FormControl('',[this.onlyCharsValidator, Validators.required]),
     file: new FormControl('', [Validators.required]),
     title: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.email])
 
   })
 
-  constructor(private toastr: ToastrService, private activeRoute: ActivatedRoute, private http: HttpClient) {
+  constructor(private toastr: ToastrService, private activeRoute: ActivatedRoute, private http: HttpClient, private router: Router) {
   }
 
   ngOnInit() {
@@ -45,6 +46,25 @@ export class DokumentenzugriffErstellenComponent implements OnInit{
     if (this.newAccessCode.controls.accessCode.invalid) {
       return this.toastr.error("Es sind nur folgende Zeichen zugelassen: Klein- und Großbuchstaben, sowie Zahlen")
     }
+
+    const files = [];
+
+    for (const doc of this.documentsAdded) {
+      files.push(doc.id)
+    }
+
+    this.http.post(environment.backend + '/data-transfer/keys/', {
+      id: this.newAccessCode.controls.accessCode.value,
+      description: this.newAccessCode.controls.title.value,
+      documents: files,
+      email: this.newAccessCode.controls.email.value
+    }, {withCredentials: true}).subscribe(value => {
+      this.toastr.success("Dokument wurde erfolgreich hochgeladen")
+      this.router.navigate( ['/dokumentenzugriff/code/' + value['id']]);
+    }, error => {
+      console.log(error);
+      this.toastr.error(error.error.message)
+    });
   }
 
   generateCode (length:number):string {

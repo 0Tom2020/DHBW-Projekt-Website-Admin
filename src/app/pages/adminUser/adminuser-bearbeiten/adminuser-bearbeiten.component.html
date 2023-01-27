@@ -1,0 +1,63 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>{{title}}</h1>
+            </div>
+            <div class="col-sm-6">
+                <app-breadcrumb class="float-right" [items]="breadcrumbItems"></app-breadcrumb>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <form [formGroup]="editAdminUser" (ngSubmit)="post()">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Admin</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="inputName">Vorname</label>
+                            <input type="text" id="inputName" formControlName="firstName" class="form-control">
+                        </div>
+                        <div>
+                            <label for="inputLastName">Nachname</label>
+                            <input id="inputLastName" formControlName="lastName" class="form-control">
+                        </div>
+                        <div>
+                            <label for="inputEmail">Email</label>
+                            <input id="inputEmail" formControlName="email" class="form-control">
+                        </div>
+                        <div>
+                            <label for="inputPassword">Passwort</label>
+                            <input id="inputPassword" formControlName="password" class="form-control">
+                        </div>
+                        <div>
+                            <label for="inputPasswordRepeat">Passwort wiederholen</label>
+                            <input id="inputPasswordRepeat" formControlName="passwordRepeat" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <a [routerLink]="'./..'" class="btn btn-secondary">Abbruch</a>
+                <div class="btn btn-danger float-right c-delete" (click)="delete()">Admin löschen</div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-success float-right">Änderungen speichern</button>
+            </div>
+        </div>
+    </form>
+</section>
+

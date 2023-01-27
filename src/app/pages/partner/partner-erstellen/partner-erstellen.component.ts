@@ -44,6 +44,8 @@ export class PartnerErstellenComponent implements OnInit {
       this.client.post(environment.backend + '/partner/create', body, {withCredentials:true}).subscribe(data => {
         this.newPartner.reset()
         this.toastr.success("Es wurde erfolgreich ein neuer Partner angelegt")
+      }, error => {
+        console.log(error)
       })
 
     }

@@ -10,7 +10,13 @@ import {environment} from "../../../../environments/environment";
   templateUrl: './informationsbeitrag-bearbeiten.component.html',
   styleUrls: ['./informationsbeitrag-bearbeiten.component.scss']
 })
-export class InformationsbeitragBearbeitenComponent implements OnInit{
+export class InformationsbeitragBearbeitenComponent implements OnInit {
+
+  breadcrumbItems = [
+    {label: "Home", route: '/'},
+    {label: "Übersicht", route: './..'},
+    {label: "Bearbeiten", route: ''},
+  ]
 
   dropdownList;
   selectedItems;

@@ -59,6 +59,9 @@ import { PartnerErstellenComponent } from '@pages/partner/partner-erstellen/part
 import { DragAndDropDirective } from './directives/drag-and-drop.directive';
 import { FileSizeFormatterPipe } from './pipes/file-size-formatter.pipe';
 import {environment} from "../environments/environment";
+import { AdminuserUebersichtComponent } from '@pages/adminUser/adminuser-uebersicht/adminuser-uebersicht.component';
+import { AdminuserErstellenComponent } from '@pages/adminUser/adminuser-erstellen/adminuser-erstellen.component';
+import { AdminuserBearbeitenComponent } from '@pages/adminUser/adminuser-bearbeiten/adminuser-bearbeiten.component';
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
@@ -96,6 +99,9 @@ registerLocaleData(localeEn, 'en-EN');
     PartnerErstellenComponent,
     DragAndDropDirective,
     FileSizeFormatterPipe,
+    AdminuserUebersichtComponent,
+    AdminuserErstellenComponent,
+    AdminuserBearbeitenComponent,
   ],
     imports: [
         BrowserModule,

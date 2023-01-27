@@ -17,6 +17,12 @@ export class InformationsbeitragErstellenComponent implements OnInit {
   dropdownSettings;
   title!:string
 
+  breadcrumbItems = [
+    {label: "Home", route: '/'},
+    {label: "Übersicht", route: './..'},
+    {label: "Erstellen", route: ''},
+  ]
+
   newArticle = new FormGroup ({
     title: new FormControl('',[Validators.required]),
     description: new FormControl('',[Validators.required]),

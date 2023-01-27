@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {readonlynessOptionsDefaults} from "@typescript-eslint/type-utils";
 import {ToastrService} from "ngx-toastr";
 import {environment} from "../../../../environments/environment";
 

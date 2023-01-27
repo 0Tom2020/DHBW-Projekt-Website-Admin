@@ -1,0 +1,40 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>{{title}}</h1>
+            </div>
+            <div class="col-sm-6">
+                <app-breadcrumb class="float-right" [items]="breadcrumbItems"></app-breadcrumb>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="container-fluid">
+        <button class="btn btn-success float-right c-button" [routerLink]="'/admin/uebersicht/erstellen'">
+            Erstellen
+        </button>
+        <div class="card w-100" *ngFor="let adminUser of adminUsers">
+            <div class="card-header">
+                <h3 class="card-title">{{adminUser.firstName}} {{adminUser.lastName}}</h3>
+                <div class="card-tools">
+                    <div typeof="button" class="btn btn-primary" [routerLink]="adminUser.id">
+                        Bearbeiten
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->
+
+

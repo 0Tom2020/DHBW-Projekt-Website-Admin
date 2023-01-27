@@ -8,7 +8,6 @@ import {DashboardComponent} from '@pages/dashboard/dashboard.component';
 import {AuthGuard} from '@guards/auth.guard';
 import {NonAuthGuard} from '@guards/non-auth.guard';
 import {ForgotPasswordComponent} from '@modules/forgot-password/forgot-password.component';
-import {MainMenuComponent} from '@pages/main-menu/main-menu.component';
 import {SubMenuComponent} from '@pages/main-menu/sub-menu/sub-menu.component';
 import {
   InformationsbeitragErstellenComponent
@@ -38,6 +37,9 @@ import {DokumenteHinzufuegenComponent} from "@pages/dokumente/dokumente-hinzufue
 import {PartnerUebersichtComponent} from "@pages/partner/partner-uebersicht/partner-uebersicht.component";
 import {PartnerErstellenComponent} from "@pages/partner/partner-erstellen/partner-erstellen.component";
 import {PartnerBearbeitenComponent} from "@pages/partner/partner-bearbeiten/partner-bearbeiten.component";
+import {AdminuserUebersichtComponent} from "@pages/adminUser/adminuser-uebersicht/adminuser-uebersicht.component";
+import {AdminuserBearbeitenComponent} from "@pages/adminUser/adminuser-bearbeiten/adminuser-bearbeiten.component";
+import {AdminuserErstellenComponent} from "@pages/adminUser/adminuser-erstellen/adminuser-erstellen.component";
 
 
 const routes: Routes = [
@@ -166,6 +168,27 @@ const routes: Routes = [
         component: PartnerBearbeitenComponent,
         data: {
           title: "Partner bearbeiten"
+        }
+      },
+      {
+        path: 'admin/uebersicht',
+        component: AdminuserUebersichtComponent,
+        data: {
+          title: "Admin Übersicht"
+        }
+      },
+      {
+        path: 'admin/uebersicht/erstellen',
+        component: AdminuserErstellenComponent,
+        data: {
+          title: "Admin erstellen"
+        }
+      },
+      {
+        path: 'admin/uebersicht/:id',
+        component: AdminuserBearbeitenComponent,
+        data: {
+          title: "Admin bearbeiten"
         }
       },
     ]

@@ -39,6 +39,8 @@ export class PartnerBearbeitenComponent implements OnInit{
         this.partner = data
         this.editPartner.controls['name'].setValue(this.partner['name'])
         this.editPartner.controls['website'].setValue(this.partner['website'])
+      }, error => {
+        console.log(error)
       })
     })
 
@@ -55,6 +57,8 @@ export class PartnerBearbeitenComponent implements OnInit{
       this.client.put(environment.backend + '/partner/single/' + this.id, body, {withCredentials:true}).subscribe(data => {
         console.log(data)
         this.toastr.success("Es wurde erfolgreich der Partner geändert")
+      }, error => {
+        console.log(error)
       })
 
     }
@@ -64,6 +68,8 @@ export class PartnerBearbeitenComponent implements OnInit{
     this.client.delete(environment.backend + '/partner/single/' + this.id, {withCredentials:true}).subscribe(() => {
       this.toastr.success("Partner wurde erfolgreich gelöscht")
       this.router.navigate(['/partner/uebersicht'])
+    }, error => {
+      console.log(error)
     })
   }
 }

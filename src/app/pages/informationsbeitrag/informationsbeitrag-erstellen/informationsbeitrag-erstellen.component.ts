@@ -40,6 +40,8 @@ export class InformationsbeitragErstellenComponent implements OnInit {
 
     this.client.get(environment.backend + '/partner').subscribe(data => {
       this.dropdownList = data
+    }, error => {
+      console.log(error)
     })
 
 
@@ -65,9 +67,10 @@ export class InformationsbeitragErstellenComponent implements OnInit {
     } else {
       const body = this.newArticle.value
       this.client.post(environment.backend + '/infoEntry/create', body, {withCredentials:true, }).subscribe(response => {
-        console.log(body)
-        //this.newArticle.reset()
         this.toastr.success("Es wurde erfolgreich ein neuer Partner angelegt")
+      }, error => {
+        console.log("test")
+        console.log(error)
       })
 
     }

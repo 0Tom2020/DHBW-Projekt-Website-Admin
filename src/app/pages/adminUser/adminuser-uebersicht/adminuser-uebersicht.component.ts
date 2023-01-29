@@ -25,6 +25,8 @@ export class AdminuserUebersichtComponent implements OnInit {
 
     this.client.get('http://localhost:8080/auth/admins').subscribe(data => {
       this.adminUsers = data
+    }, error => {
+      console.log(error)
     })
 
   }

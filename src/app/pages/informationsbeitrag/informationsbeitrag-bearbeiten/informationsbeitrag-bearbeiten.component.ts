@@ -61,12 +61,18 @@ export class InformationsbeitragBearbeitenComponent implements OnInit {
         description: value.description,
         moreInfoLink: value.moreInfoLink,
       })
+    }, error => {
+      console.log(error)
     })
     this.client.get(environment.backend + '/partner', {withCredentials: true}).subscribe((value: any) => {
       this.dropdownList = value
+    }, error => {
+      console.log(error)
     })
     this.client.get(environment.backend + '/partner/infoEntry/' + this.id, {withCredentials: true}).subscribe((value: any) => {
       this.selectedItems = value
+    }, error => {
+      console.log(error)
     })
   }
 
@@ -75,6 +81,8 @@ export class InformationsbeitragBearbeitenComponent implements OnInit {
     console.log(body)
     this.client.put(environment.backend + '/infoEntry/single/' + this.id, body, {withCredentials: true}).subscribe(() => {
       this.toastr.success("Informationsbeitrag wurde erfolgreich bearbeitet")
+    }, error => {
+      console.log(error)
     })
   }
 
@@ -82,6 +90,8 @@ export class InformationsbeitragBearbeitenComponent implements OnInit {
     this.client.delete(environment.backend + '/infoEntry/single/' + this.id, {withCredentials:true}).subscribe(() => {
       this.toastr.success("Informationsbeitrag wurde erfolgreich gelöscht")
       this.router.navigate(['/informationsbeitrag/uebersicht'])
+    }, error => {
+      console.log(error)
     })
   }
 

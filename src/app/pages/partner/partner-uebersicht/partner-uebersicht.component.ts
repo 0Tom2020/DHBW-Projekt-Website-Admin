@@ -17,7 +17,6 @@ export class PartnerUebersichtComponent implements OnInit{
 
   partners
 
-  httpSub
 
   title!:string
 
@@ -30,14 +29,12 @@ export class PartnerUebersichtComponent implements OnInit{
       this.title = value['title']
     })
 
-    this.httpSub = this.client.get(environment.backend + '/partner').subscribe( data => {
+    this.client.get(environment.backend + '/partner').subscribe( data => {
       this.partners = data
+    }, error => {
+      console.log(error)
     })
 
-  }
-
-  ngOnDestroy() {
-    this.httpSub.unsubscribe()
   }
 
 

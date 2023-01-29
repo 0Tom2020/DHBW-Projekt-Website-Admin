@@ -28,6 +28,8 @@ export class InformationsbeitragUebersichtComponent implements OnInit {
 
     this.client.get(environment.backend + '/infoEntry').subscribe(data => {
       this.infoEntry = data
+    }, error => {
+      console.log(error)
     })
   }
 

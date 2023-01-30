@@ -23,7 +23,7 @@
     <button class="btn btn-success float-right c-button" [routerLink]="'/dokumentenzugriff/uebersicht/erstellen'">Erstellen</button>
     <div class="card w-100" *ngFor="let key of keys">
       <div class="card-header">
-        <h3 class="card-title">{{key.id}}</h3>
+        <h3 class="card-title">{{key.key}}</h3>
         <div class="card-tools">
           <div typeof="button" class="btn btn-primary" [routerLink]="'/dokumentenzugriff/code/' + key.id">
             Bearbeiten</div>

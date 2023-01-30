@@ -71,7 +71,7 @@ export class DokumentenzugriffBearbeitenComponent implements OnInit {
   loadData() {
     this.http.get<[]>(environment.backend + '/data-transfer/key/' + this.keyId, {withCredentials: true}).subscribe(key => {
       this.newAccessCode.controls['title'].setValue(key['description'])
-      this.newAccessCode.controls['accessCode'].setValue(key['id'])
+      this.newAccessCode.controls['accessCode'].setValue(key['key'])
     }, error => {
       console.log(error);
     });

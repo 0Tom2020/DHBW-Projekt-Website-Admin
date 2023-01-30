@@ -12,11 +12,11 @@ import {environment} from "../../../../environments/environment";
 })
 export class PartnerErstellenComponent implements OnInit {
 
-  title!:string
+  title!: string
 
-  newPartner = new FormGroup ({
+  newPartner = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    website: new FormControl('', [Validators.required]),
+    website: new FormControl(''),
     file: new FormControl,
   })
 
@@ -30,7 +30,7 @@ export class PartnerErstellenComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activeRoute.data.subscribe( value => {
+    this.activeRoute.data.subscribe(value => {
       this.title = value['title']
     })
   }
@@ -41,13 +41,12 @@ export class PartnerErstellenComponent implements OnInit {
     } else {
       const body = this.newPartner.value
       console.log(body)
-      this.client.post(environment.backend + '/partner/create', body, {withCredentials:true}).subscribe(data => {
+      this.client.post(environment.backend + '/partner/create', body, {withCredentials: true}).subscribe(data => {
         this.newPartner.reset()
         this.toastr.success("Es wurde erfolgreich ein neuer Partner angelegt")
       }, error => {
         console.log(error)
       })
-
     }
   }
 

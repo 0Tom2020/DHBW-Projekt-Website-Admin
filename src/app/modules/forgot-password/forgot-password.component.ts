@@ -8,6 +8,8 @@ import {
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {AppService} from '@services/app.service';
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
 @Component({
     selector: 'app-forgot-password',
@@ -22,7 +24,8 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
     constructor(
         private renderer: Renderer2,
         private toastr: ToastrService,
-        private appService: AppService
+        private appService: AppService,
+        private http: HttpClient
     ) {}
 
     ngOnInit(): void {
@@ -37,8 +40,22 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
 
     forgotPassword() {
         if (this.forgotPasswordForm.valid) {
+          const email = this.forgotPasswordForm.value.email;
+          this.http.post(environment.backend + "/auth/forgot-password", {email}).subscribe((data) => {
+            this.toastr.success(data["message"])
+          }, error => {
+            if (error.error.message) {
+              this.toastr.error(error.error.message);
+            } else {
+              console.log(error);
+              this.toastr.error("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.");
+            }
+          });
         } else {
-            this.toastr.error('Hello world!', 'Toastr fun!');
+            this.toastr.error(
+                'Bitte füllen Sie alle Felder aus.',
+                'Fehler'
+            );
         }
     }
 

@@ -43,7 +43,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         });
 
         this.activatedRoute.queryParams.subscribe(params => {
-          this.redirectUrl = params['redirect_to'];
+          if (params['redirect_to']) {
+            this.redirectUrl = params['redirect_to'];
+          }
         });
     }
 

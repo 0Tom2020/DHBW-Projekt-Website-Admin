@@ -54,7 +54,7 @@ export class DokumentenzugriffErstellenComponent implements OnInit{
     }
 
     this.http.post(environment.backend + '/data-transfer/keys/', {
-      id: this.newAccessCode.controls.accessCode.value,
+      key: this.newAccessCode.controls.accessCode.value,
       description: this.newAccessCode.controls.title.value,
       documents: files,
       email: this.newAccessCode.controls.email.value

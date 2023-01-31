@@ -1,4 +1,4 @@
-<!-- Content Header (Page header) -->
+<!--Beginn: Header-->
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -10,28 +10,23 @@
       </div>
     </div>
   </div>
-  <!-- /.container-fluid -->
 </section>
+<!--End: Header-->
 
-
-<!-- Main content -->
 <section class="content">
   <!-- Default box -->
   <div class="container-fluid">
-    <button class="btn btn-success float-right c-button" [routerLink]="'/informationsbeitrag/uebersicht/erstellen'">
-      Erstellen
-    </button>
-    <div class="card w-100" *ngFor="let singleInfoEntry of infoEntry">
+    <div class="card w-100" *ngFor="let singleInquiry of inquires">
       <div class="card-header">
-        <h3 class="card-title">{{singleInfoEntry.title}}</h3>
+        <h3 class="card-title">{{singleInquiry.title}}</h3>
         <div class="card-tools">
-          <div typeof="button" class="btn btn-primary" [routerLink]="singleInfoEntry.id">
+          <div typeof="button" class="btn btn-primary" [routerLink]="singleInquiry.id">
             Bearbeiten
           </div>
         </div>
       </div>
       <div class="card-body">
-        {{singleInfoEntry.description}}
+        {{singleInquiry.description}}
       </div>
     </div>
   </div>

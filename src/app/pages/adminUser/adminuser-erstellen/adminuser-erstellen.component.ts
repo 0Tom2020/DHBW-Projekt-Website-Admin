@@ -23,8 +23,8 @@ export class AdminuserErstellenComponent implements OnInit {
   newAdminUser = new FormGroup ({
     firstName: new FormControl('',[Validators.required]),
     lastName: new FormControl('',[Validators.required]),
-    password: new FormControl('',[Validators.required]),
-    passwordRepeat: new FormControl('',[Validators.required]),
+    password: new FormControl('',[Validators.required, Validators.minLength(8)]),
+    passwordRepeat: new FormControl('',[Validators.required, Validators.minLength(8)]),
     email: new FormControl('',[Validators.required]),
   })
 

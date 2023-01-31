@@ -1,0 +1,46 @@
+<!--Beginn: Header-->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>{{title}}</h1>
+      </div>
+      <div class="col-sm-6">
+        <app-breadcrumb class="float-right" [items]="breadcrumbItems"></app-breadcrumb>
+      </div>
+    </div>
+  </div>
+</section>
+<!--End: Header-->
+<section class="content">
+  <form [formGroup]="editMachine" (ngSubmit)="post()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">Informationen</h3>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="inputMachineName">Name der Maschine</label>
+              <input type="text" id="inputMachineName" formControlName="name" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="inputHourlyRate">Studensatz</label>
+              <input type="number" id="inputHourlyRate" formControlName="hourlyRate" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <a [routerLink]="'./..'" class="btn btn-secondary">Abbruch</a>
+        <div class="btn btn-danger float-right c-delete" (click)="delete()">Maschine löschen</div>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-success float-right">Änderungen speichern</button>
+      </div>
+    </div>
+  </form>
+</section>

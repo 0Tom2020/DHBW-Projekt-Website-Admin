@@ -1,4 +1,4 @@
-<!-- Content Header (Page header) -->
+<!--Beginn: Header-->
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -6,12 +6,12 @@
         <h1>{{title}}</h1>
       </div>
       <div class="col-sm-6">
-        <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
+        <app-breadcrumb class="float-right" [items]="breadcrumbItems"></app-breadcrumb>
       </div>
     </div>
   </div>
-  <!-- /.container-fluid -->
 </section>
+<!--End: Header-->
 
 <section class="content">
   <form [formGroup]="editArticle" (ngSubmit)="post()">

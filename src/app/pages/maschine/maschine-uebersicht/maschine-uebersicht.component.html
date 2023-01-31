@@ -1,0 +1,55 @@
+<!--Beginn: Header-->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>{{title}}</h1>
+      </div>
+      <div class="col-sm-6">
+        <app-breadcrumb class="float-right" [items]="breadcrumbItems"></app-breadcrumb>
+      </div>
+    </div>
+  </div>
+</section>
+<!--End: Header-->
+
+
+<!--&lt;!&ndash; Main content &ndash;&gt;-->
+<!--<section class="content">-->
+<!--  &lt;!&ndash; Default box &ndash;&gt;-->
+<!--  <div class="container-fluid">-->
+<!--    <button class="btn btn-success float-right c-button" [routerLink]="'./erstellen'">Erstellen</button>-->
+<!--    <div class="card w-100" *ngFor="let singleMachine of machines">-->
+<!--      <div class="card-header">-->
+<!--        <h3 class="card-title">{{singleMachine.name}}</h3>-->
+<!--        <div class="card-tools">-->
+<!--          <div typeof="button" class="btn btn-primary"  [routerLink]="singleMachine.id">-->
+<!--            Bearbeiten</div>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  &lt;!&ndash; /.card &ndash;&gt;-->
+<!--</section>-->
+<!--&lt;!&ndash; /.content &ndash;&gt;-->
+
+<!-- Main content -->
+<section class="content">
+  <!-- Default box -->
+  <div class="container-fluid">
+    <button class="btn btn-success float-right c-button" [routerLink]="'./erstellen'">Erstellen</button>
+    <div class="card w-100" >
+      <div class="card-header">
+        <h3 class="card-title">Test</h3>
+        <div class="card-tools">
+          <div typeof="button" class="btn btn-primary"  [routerLink]="'./test'">
+            Bearbeiten</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- /.card -->
+</section>
+<!-- /.content -->

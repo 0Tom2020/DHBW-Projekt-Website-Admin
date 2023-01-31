@@ -33,13 +33,19 @@ import {
   SeminareBearbeitenComponent
 } from "@pages/seminare/seminare-bearbeiten/seminare-bearbeiten.component";
 import {DokumenteUebersichtComponent} from "@pages/dokumente/dokumente-uebersicht/dokumente-uebersicht.component";
-import {DokumenteHinzufuegenComponent} from "@pages/dokumente/dokumente-hinzufuegen/dokumente-hinzufuegen.component";
 import {PartnerUebersichtComponent} from "@pages/partner/partner-uebersicht/partner-uebersicht.component";
 import {PartnerErstellenComponent} from "@pages/partner/partner-erstellen/partner-erstellen.component";
 import {PartnerBearbeitenComponent} from "@pages/partner/partner-bearbeiten/partner-bearbeiten.component";
 import {AdminuserUebersichtComponent} from "@pages/adminUser/adminuser-uebersicht/adminuser-uebersicht.component";
 import {AdminuserBearbeitenComponent} from "@pages/adminUser/adminuser-bearbeiten/adminuser-bearbeiten.component";
 import {AdminuserErstellenComponent} from "@pages/adminUser/adminuser-erstellen/adminuser-erstellen.component";
+import {MaschineErstellenComponent} from "@pages/maschine/maschine-erstellen/maschine-erstellen.component";
+import {MaschineUebersichtComponent} from "@pages/maschine/maschine-uebersicht/maschine-uebersicht.component";
+import {MaschineBearbeitenComponent} from "@pages/maschine/maschine-bearbeiten/maschine-bearbeiten.component";
+import {AnfrageUebersichtComponent} from "@pages/anfrage/anfrage-uebersicht/anfrage-uebersicht.component";
+import {AngebotUebersichtComponent} from "@pages/angebot/angebot-uebersicht/angebot-uebersicht.component";
+import {AngebotErstellenComponent} from "@pages/angebot/angebot-erstellen/angebot-erstellen.component";
+import {AnfrageBearbeitenComponent} from "@pages/anfrage/anfrage-bearbeiten/anfrage-bearbeiten.component";
 
 
 const routes: Routes = [
@@ -143,13 +149,6 @@ const routes: Routes = [
         }
       },
       {
-        path: 'dokumente/uebersicht/hochladen',
-        component: DokumenteHinzufuegenComponent,
-        data: {
-          title: "Dokumente hochladen"
-        }
-      },
-      {
         path: 'partner/uebersicht',
         component: PartnerUebersichtComponent,
         data: {
@@ -191,6 +190,55 @@ const routes: Routes = [
           title: "Admin bearbeiten"
         }
       },
+      {
+        path: 'maschinen/uebersicht',
+        component: MaschineUebersichtComponent,
+        data: {
+          title: "Maschinenübersicht"
+        }
+      },
+      {
+        path: 'maschinen/uebersicht/erstellen',
+        component: MaschineErstellenComponent,
+        data: {
+          title: "Maschine erstellen"
+        }
+      },
+      {
+        path: 'maschinen/uebersicht/:id',
+        component: MaschineBearbeitenComponent,
+        data: {
+          title: "Maschine bearbeiten"
+        }
+      },
+      {
+        path: 'anfrage/uebersicht',
+        component: AnfrageUebersichtComponent,
+        data: {
+          title: "Anfrage Übersicht"
+        }
+      },
+      {
+        path: 'anfrage/uebersicht/:id',
+        component: AnfrageBearbeitenComponent,
+        data: {
+          title: "Anfrage bearbeiten"
+        }
+      },
+      {
+        path: 'angebot/uebersicht',
+        component: AngebotUebersichtComponent,
+        data: {
+          title: "Angebot Übersicht"
+        }
+      },
+      {
+        path: 'angebot/uebersicht/erstellen',
+        component: AngebotErstellenComponent,
+        data: {
+          title: "Angebot erstellen"
+        }
+      }
     ]
   },
   {

@@ -88,6 +88,11 @@ export const MENU = [
     path: ['/angebot/uebersicht']
   },
   {
+    name: 'Maschinen',
+    iconClasses: 'fas fa-microscope',
+    path: ['/maschinen/uebersicht']
+  },
+  {
     name: 'Main Menu',
     iconClasses: 'fas fa-folder',
     children: [

@@ -4,19 +4,18 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 
 @Component({
-  selector: 'app-partner-uebersicht',
-  templateUrl: './partner-uebersicht.component.html',
-  styleUrls: ['./partner-uebersicht.component.scss']
+  selector: 'app-maschine-uebersicht',
+  templateUrl: './maschine-uebersicht.component.html',
+  styleUrls: ['./maschine-uebersicht.component.scss']
 })
-export class PartnerUebersichtComponent implements OnInit{
+export class MaschineUebersichtComponent implements OnInit {
 
   breadcrumbItems = [
     {label: "Home", route: '/'},
     {label: "Übersicht", route: './..'},
   ]
 
-  partners: any
-
+  machines
 
   title!:string
 
@@ -24,16 +23,11 @@ export class PartnerUebersichtComponent implements OnInit{
 
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activeRoute.data.subscribe( value => {
       this.title = value['title']
     })
 
-    this.client.get(environment.backend + '/partner').subscribe( data => {
-      this.partners = data
-    }, error => {
-      console.log(error)
-    })
 
   }
 

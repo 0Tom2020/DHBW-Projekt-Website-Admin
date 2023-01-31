@@ -62,6 +62,13 @@ import {environment} from "../environments/environment";
 import { AdminuserUebersichtComponent } from '@pages/adminUser/adminuser-uebersicht/adminuser-uebersicht.component';
 import { AdminuserErstellenComponent } from '@pages/adminUser/adminuser-erstellen/adminuser-erstellen.component';
 import { AdminuserBearbeitenComponent } from '@pages/adminUser/adminuser-bearbeiten/adminuser-bearbeiten.component';
+import { AnfrageBearbeitenComponent } from './pages/anfrage/anfrage-bearbeiten/anfrage-bearbeiten.component';
+import { AnfrageUebersichtComponent } from './pages/anfrage/anfrage-uebersicht/anfrage-uebersicht.component';
+import { AngebotErstellenComponent } from './pages/angebot/angebot-erstellen/angebot-erstellen.component';
+import { AngebotUebersichtComponent } from './pages/angebot/angebot-uebersicht/angebot-uebersicht.component';
+import { MaschineUebersichtComponent } from './pages/maschine/maschine-uebersicht/maschine-uebersicht.component';
+import { MaschineErstellenComponent } from './pages/maschine/maschine-erstellen/maschine-erstellen.component';
+import { MaschineBearbeitenComponent } from './pages/maschine/maschine-bearbeiten/maschine-bearbeiten.component';
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
@@ -102,6 +109,13 @@ registerLocaleData(localeEn, 'en-EN');
     AdminuserUebersichtComponent,
     AdminuserErstellenComponent,
     AdminuserBearbeitenComponent,
+    AnfrageBearbeitenComponent,
+    AnfrageUebersichtComponent,
+    AngebotErstellenComponent,
+    AngebotUebersichtComponent,
+    MaschineUebersichtComponent,
+    MaschineErstellenComponent,
+    MaschineBearbeitenComponent,
   ],
     imports: [
         BrowserModule,

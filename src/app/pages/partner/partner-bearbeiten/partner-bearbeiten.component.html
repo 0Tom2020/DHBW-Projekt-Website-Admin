@@ -44,7 +44,7 @@
             <div class="form-group">
               <label for="exampleInputFile">Logo Hochladen</label>
               <div class="custom-file">
-                <input type="file" class="custom-file-input" formControlName="file" id="exampleInputFile">
+                <input type="file" class="custom-file-input" formControlName="file" id="exampleInputFile" (change)="onFileChange($event)">
                 <label class="custom-file-label" for="exampleInputFile">Datei auswählen</label>
               </div>
             </div>
@@ -67,7 +67,7 @@
 
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-12">
         <a [routerLink]="'./..'" class="btn btn-secondary">Abbruch</a>

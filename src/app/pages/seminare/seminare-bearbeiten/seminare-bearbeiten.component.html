@@ -1,132 +1,132 @@
-<!-- Content Header (Page header)-->
+<!--Beginn: Header-->
 <section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>{{title}}</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item c-breadcrumb" type="button" [routerLink]="'/'">Home</li>
-                    <li class="breadcrumb-item c-breadcrumb" type="button" [routerLink]="'./..'">Seminarübersicht</li>
-                    <li class="breadcrumb-item active">Seminar bearbeiten</li>
-                </ol>
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>{{title}}</h1>
+      </div>
+      <div class="col-sm-6">
+        <app-breadcrumb class="float-sm-right" [items]="breadcrumbItems"></app-breadcrumb>
+      </div>
     </div>
-    <!-- /.container-fluid -->
+  </div>
 </section>
+<!--End: Header-->
 
 <section class="content">
-    <form [formGroup]="newSeminar" (ngSubmit)="post()">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card card-secondary">
-                    <div class="card-header">
-                        <h3 class="card-title">Allgemeine Informationen</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="inputName">Name</label>
-                            <input type="text" id="inputName" formControlName="title" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputDescription">Beschreibung</label>
-                            <textarea id="inputDescription" class="form-control" formControlName="description" rows="4"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card card-secondary">
-                    <div class="card-header">
-                        <h3 class="card-title">Adressdaten</h3>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="form-group">
-
-                            <div class="form-group">
-                                <label for="inputStreet">Straße</label>
-                                <input type="text" id="inputStreet" formControlName="street" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPostal">Postleitzahl</label>
-                                <input type="text" id="inputPostal" formControlName="postal" class="form-control">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputCity">Stadt</label>
-                                <input type="text" id="inputCity" formControlName="city" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
+  <form [formGroup]="editSeminar" (ngSubmit)="post()">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">Allgemeine Informationen</h3>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="inputName">Name</label>
+              <input type="text" id="inputName" formControlName="title" class="form-control">
             </div>
-
-
-            <div class="col-md-6">
-
-                <div class="card card-secondary">
-                    <div class="card-header">
-                        <h3 class="card-title">Zusätzliche Informationen</h3>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="form-group">
-
-                            <div class="form-group">
-                                <label for="inputStartDate">Startdatum</label>
-                                <input type="text" id="inputStartDate" formControlName="startDate" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEndDate">Enddatum</label>
-                                <input type="text" id="inputEndDate" formControlName="endDate" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputCapacity">Anzahl Personen</label>
-                                <input type="text" id="inputCapacity" formControlName="capacity" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card card-secondary">
-                    <div class="card-header">
-                        <h3 class="card-title">Preisinformationen</h3>
-                    </div>
-                    <div class="card-body">
-
-                        <div class="form-group">
-                            <label for="inputPrice">Preis der Schulung</label>
-                            <input type="text" id="inputPrice" formControlName="price" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="inputPriceAccommodation">Preis p.P. für die Unterkunft</label>
-                            <input type="text" id="inputPriceAccommodation" formControlName="priceAccommodation" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPriceCatering">Preis p.P. für die Verpflegung</label>
-                            <input type="text" id="inputPriceCatering" formControlName="priceCatering" class="form-control">
-                        </div>
-                    </div>
-                </div>
-
-
-
-
+            <div class="form-group">
+              <label for="inputDescription">Beschreibung</label>
+              <textarea id="inputDescription" class="form-control" formControlName="description" rows="4"></textarea>
             </div>
+          </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <a href="#" class="btn btn-secondary">Abbruch</a>
-                <div class="btn btn-danger float-right c-delete" (click)="delete()">Seminar löschen</div>
+
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">Adressdaten</h3>
+          </div>
+
+          <div class="card-body">
+            <div class="form-group">
+
+              <div class="form-group">
+                <label for="inputStreet">Straße</label>
+                <input type="text" id="inputStreet" formControlName="street" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="inputPostal">Postleitzahl</label>
+                <input type="text" id="inputPostal" formControlName="postal" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="inputCity">Stadt</label>
+                <input type="text" id="inputCity" formControlName="city" class="form-control">
+              </div>
             </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-success float-right">Änderungen speichern</button>
-            </div>
+          </div>
         </div>
+
+
+      </div>
+
+
+      <div class="col-md-6">
+
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">Zusätzliche Informationen</h3>
+          </div>
+
+          <div class="card-body">
+            <div class="form-group">
+
+              <div class="form-group">
+                <label >Startdatum</label>
+                <input type="text"
+                       class="form-control"
+                       bsDatepicker
+                       formControlName="startDate"
+                       [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
+                       readonly="readonly">
+              </div>
+              <div class="form-group">
+                <label>Enddatum</label>
+                <input type="text"
+                       class="form-control"
+                       bsDatepicker
+                       formControlName="endDate"
+                       [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
+                       readonly>
+              </div>
+              <div class="form-group">
+                <label for="inputCapacity">Anzahl Personen</label>
+                <input type="number" id="inputCapacity" formControlName="capacity" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">Preisinformationen</h3>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="inputPrice">Preis der Schulung in €</label>
+              <input type="number" id="inputPrice" formControlName="price" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="inputAccommodationPrice">Preis p.P. für die Unterkunft in €</label>
+              <input type="number" id="inputAccommodationPrice" formControlName="accommodationPrice" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="inputMealsPrice">Preis p.P. für die Verpflegung in €</label>
+              <input type="number" id="inputMealsPrice" formControlName="mealsPrice" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="row">
+        <div class="col-12">
+          <a [routerLink]="'./..'" class="btn btn-secondary">Abbruch</a>
+          <div class="btn btn-danger float-right c-delete" (click)="delete()">Partner löschen</div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-success float-right">Änderungen speichern</button>
+        </div>
+      </div>
     </form>
 </section>

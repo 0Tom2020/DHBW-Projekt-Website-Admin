@@ -69,6 +69,7 @@ import { AngebotUebersichtComponent } from './pages/angebot/angebot-uebersicht/a
 import { MaschineUebersichtComponent } from './pages/maschine/maschine-uebersicht/maschine-uebersicht.component';
 import { MaschineErstellenComponent } from './pages/maschine/maschine-erstellen/maschine-erstellen.component';
 import { MaschineBearbeitenComponent } from './pages/maschine/maschine-bearbeiten/maschine-bearbeiten.component';
+import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
@@ -131,7 +132,8 @@ registerLocaleData(localeEn, 'en-EN');
         }),
         ProfabricComponentsModule,
         NgMultiSelectDropDownModule.forRoot(),
-        FormsModule
+        FormsModule,
+      BsDatepickerModule.forRoot(),
     ],
   providers: [{provide: APP_BASE_HREF, useValue: environment.baseUrl}],
   bootstrap: [AppComponent]

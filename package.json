@@ -39,6 +39,7 @@
     "gatekeeper-client-sdk": "0.4.2",
     "luxon": "3.0.3",
     "ng-multiselect-dropdown": "^0.3.9",
+    "ngx-bootstrap": "^10.2.0",
     "ngx-toastr": "16.0.1",
     "process": "0.11.10",
     "rxjs": "7.5.6",

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 
 @Component({
@@ -36,7 +36,7 @@ export class SeminareBearbeitenComponent implements OnInit {
     title: new FormControl(''),
   })
 
-  constructor(private toastr: ToastrService, private activeRoute: ActivatedRoute, private client: HttpClient) {
+  constructor(private router: Router ,private toastr: ToastrService, private activeRoute: ActivatedRoute, private client: HttpClient) {
   }
 
   ngOnInit() {
@@ -125,7 +125,12 @@ export class SeminareBearbeitenComponent implements OnInit {
   }
 
   delete() {
-
+    this.client.delete('http://localhost:8080/seminar/' + this.id, {withCredentials: true}).subscribe(value => {
+      this.toastr.success("Seminar erfolgreich gelöscht!", "Erfolg")
+      this.router.navigate(['/partner/uebersicht'])
+    }, error => {
+        this.toastr.error(error.error.message, "Fehler")
+    })
   }
 
 }

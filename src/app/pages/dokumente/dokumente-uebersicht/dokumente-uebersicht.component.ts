@@ -64,7 +64,6 @@ export class DokumenteUebersichtComponent implements OnInit {
       const tmp = this.searchTerm
       this.searchTerm = ""
       timer(1).subscribe(() => this.searchTerm = tmp)
-
     }, error => {
       console.log(error);
     });

@@ -21,6 +21,7 @@ export class MaschineErstellenComponent implements OnInit {
   newMachine = new FormGroup({
     name: new FormControl('', [Validators.required]),
     hourlyRate: new FormControl('', [Validators.required]),
+    maxCapacityInHours: new FormControl('', [Validators.required]),
   })
   constructor(private activeRoute: ActivatedRoute, private toastr: ToastrService, private client: HttpClient) { }
 
@@ -31,7 +32,11 @@ export class MaschineErstellenComponent implements OnInit {
   }
 
   post() {
-
+    this.client.post('http://localhost:8080/machines', this.newMachine.value, {withCredentials: true}).subscribe(value => {
+      this.toastr.success('Maschine erfolgreich erstellt', 'Erfolgreich')
+    }, error => {
+      this.toastr.error(error.error.message, 'Fehler')
+    })
   }
 
 }

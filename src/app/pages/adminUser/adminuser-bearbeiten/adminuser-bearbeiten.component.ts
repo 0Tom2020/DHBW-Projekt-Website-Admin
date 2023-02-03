@@ -20,6 +20,7 @@ export class AdminuserBearbeitenComponent implements OnInit {
 
   id:string
   title!:string
+
   editAdminUser = new FormGroup ({
     firstName: new FormControl('',[Validators.required]),
     lastName: new FormControl('',[Validators.required]),
@@ -89,6 +90,7 @@ export class AdminuserBearbeitenComponent implements OnInit {
       this.toastr.success("Informationsbeitrag wurde erfolgreich gelöscht")
       this.router.navigate(['/admin/uebersicht'])
     }, error => {
+      this.toastr.error(error.error.message)
         console.log(error)
     })
   }

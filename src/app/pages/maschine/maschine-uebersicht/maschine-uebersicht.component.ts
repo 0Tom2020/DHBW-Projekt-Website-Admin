@@ -28,8 +28,9 @@ export class MaschineUebersichtComponent implements OnInit {
       this.title = value['title']
     })
 
+    this.client.get('http://localhost:8080/machines', {withCredentials: true}).subscribe(value => {
+      this.machines = value
+    })
 
   }
-
-
 }

@@ -15,6 +15,7 @@ defineLocale('de', deLocale);
 export class SeminarErstellenComponent implements OnInit {
 
   title!: string
+  minDate = new Date()
 
   newSeminar = new FormGroup({
     price: new FormControl(''),

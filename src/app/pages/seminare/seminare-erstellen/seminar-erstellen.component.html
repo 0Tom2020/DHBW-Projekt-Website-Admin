@@ -80,7 +80,9 @@
                                      bsDatepicker
                                      formControlName="startDate"
                                      [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
+                                     [minDate]="minDate"
                                      readonly="readonly">
+
                             </div>
                             <div class="form-group">
                               <label>Enddatum</label>
@@ -89,6 +91,7 @@
                                      bsDatepicker
                                      formControlName="endDate"
                                      [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
+                                     [minDate]="minDate"
                                      readonly
                               >
                             </div>

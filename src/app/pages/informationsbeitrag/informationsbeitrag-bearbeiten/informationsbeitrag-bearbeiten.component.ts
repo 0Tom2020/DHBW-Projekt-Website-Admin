@@ -17,7 +17,6 @@ export class InformationsbeitragBearbeitenComponent implements OnInit {
     {label: "Übersicht", route: './..'},
     {label: "Bearbeiten", route: ''},
   ]
-
   dropdownList;
   selectedItems;
   dropdownSettings;

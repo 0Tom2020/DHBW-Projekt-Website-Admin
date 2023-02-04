@@ -1,0 +1,186 @@
+<!--Beginn: Header-->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>{{title}}</h1>
+            </div>
+            <div class="col-sm-6">
+                <app-breadcrumb class="float-sm-right" [items]="breadcrumbItems"></app-breadcrumb>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End: Header-->
+
+<section class="content">
+    <form [formGroup]="editSeminar" (ngSubmit)="post()">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Allgemeine Informationen</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="inputName">Name</label>
+                            <input type="text" id="inputName" formControlName="title" class="form-control" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDescription">Beschreibung</label>
+                            <textarea id="inputDescription" class="form-control" formControlName="description" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Adressdaten</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="form-group">
+
+                            <div class="form-group">
+                                <label for="inputStreet">Straße</label>
+                                <input type="text" id="inputStreet" formControlName="street" class="form-control" >
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPostal">Postleitzahl</label>
+                                <input type="text" id="inputPostal" formControlName="postal" class="form-control" >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputCity">Stadt</label>
+                                <input type="text" id="inputCity" formControlName="city" class="form-control" >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Zusätzliche Informationen</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="form-group">
+
+                            <div class="form-group">
+                                <label>Startdatum</label>
+                                <input type="text"
+                                       class="form-control"
+                                       bsDatepicker
+                                       formControlName="startDate"
+                                       [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
+                                       disabled
+                                       readonly="readonly">
+                            </div>
+                            <div class="form-group">
+                                <label>Enddatum</label>
+                                <input type="text"
+                                       class="form-control"
+                                       bsDatepicker
+                                       formControlName="endDate"
+                                       [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
+                                       disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCapacity">Anzahl Personen</label>
+                                <input type="number" id="inputCapacity" formControlName="capacity" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Preisinformationen</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="inputPrice">Preis der Schulung in €</label>
+                            <input type="number" id="inputPrice" formControlName="price" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAccommodationPrice">Preis p.P. für die Unterkunft in €</label>
+                            <input type="number" id="inputAccommodationPrice" formControlName="accommodationPrice"
+                                   class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputMealsPrice">Preis p.P. für die Verpflegung in €</label>
+                            <input type="number" id="inputMealsPrice" formControlName="mealsPrice" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <!--Beginn: Kartenelement-->
+                <div class="card card-secondary">
+                    <!--Beginn: Kartenheader-->
+                    <div class="card-header">
+                        <h3 class="card-title">Buchungen</h3>
+                        <div class="card-tools">
+                        </div>
+                    </div>
+                    <!--End: Kartenheader-->
+
+                    <!--Beginn: Buchung-->
+                    <div class="card-body">
+
+                        <div class="row" *ngFor="let participant of participants, let last = last">
+                            <div class="col-6">
+                                <ul>
+                                    <li>Name</li>
+                                    <li>Nachname</li>
+                                    <li>Email</li>
+                                    <li>Begleitpersonen</li>
+                                    <li>Unterkunft</li>
+                                    <li>Verpflegung</li>
+                                </ul>
+                            </div>
+                            <div class="col-6">
+                                <ul>
+                                    <li>{{participant.firstName}}</li>
+                                    <li>{{participant.lastName}}</li>
+                                    <li>{{participant.email}}</li>
+                                    <li>{{participant.numberOfPeople}}</li>
+                                    <li><input id="accommodation" type="checkbox" *ngIf="!participant.accommodation" disabled></li>
+                                    <li><input id="accomondationBooked" type="checkbox" checked *ngIf="participant.accommodation" disabled></li>
+                                    <li><input type="checkbox" id="meals" *ngIf="!participant.meals" disabled></li>
+                                    <li><input type="checkbox" id="mealsBooked" *ngIf="participant.meals" checked disabled></li>
+                                </ul>
+                            </div>
+                            <div class="col-12">
+                                <hr *ngIf="!last">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card-body p-0">
+
+
+                    </div>
+                    <!--End: Buchung-->
+                </div>
+                <!--End: Kartenelement-->
+
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a [routerLink]="'./..'" class="btn btn-secondary">Abbruch</a>
+            </div>
+        </div>
+    </form>
+</section>

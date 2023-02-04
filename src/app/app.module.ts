@@ -70,6 +70,8 @@ import { MaschineUebersichtComponent } from './pages/maschine/maschine-uebersich
 import { MaschineErstellenComponent } from './pages/maschine/maschine-erstellen/maschine-erstellen.component';
 import { MaschineBearbeitenComponent } from './pages/maschine/maschine-bearbeiten/maschine-bearbeiten.component';
 import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
+import { SeminareArchivUebersichtComponent } from './pages/seminare_archiv/seminare-archiv-uebersicht/seminare-archiv-uebersicht.component';
+import { SeminareArchrivBearbeitenComponent } from './pages/seminare_archiv/seminare-archiv-bearbeiten/seminare-archriv-bearbeiten.component';
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
@@ -117,6 +119,8 @@ registerLocaleData(localeEn, 'en-EN');
     MaschineUebersichtComponent,
     MaschineErstellenComponent,
     MaschineBearbeitenComponent,
+    SeminareArchivUebersichtComponent,
+    SeminareArchrivBearbeitenComponent,
   ],
     imports: [
         BrowserModule,

@@ -24,16 +24,16 @@ export class SeminareBearbeitenComponent implements OnInit {
   minDate = new Date()
 
   editSeminar = new FormGroup({
-    price: new FormControl(''),
-    accommodationPrice: new FormControl(''),
-    mealsPrice: new FormControl(''),
-    startDate: new FormControl(''),
-    endDate: new FormControl(''),
-    capacity: new FormControl(''),
+    price: new FormControl({value: '', disabled: true}),
+    accommodationPrice: new FormControl({value: '', disabled: true}),
+    mealsPrice: new FormControl({value: '', disabled: true}),
+    startDate: new FormControl({value: '', disabled: true}),
+    endDate: new FormControl({value: '', disabled: true}),
+    capacity: new FormControl({value: '', disabled: true}),
     description: new FormControl(''),
-    street: new FormControl(''),
-    city: new FormControl(''),
-    postal: new FormControl(''),
+    street: new FormControl({value: '', disabled: true}),
+    city: new FormControl({value: '', disabled: true}),
+    postal: new FormControl({value: '', disabled: true}),
     title: new FormControl(''),
   })
 
@@ -135,7 +135,7 @@ export class SeminareBearbeitenComponent implements OnInit {
   delete() {
     this.client.delete('http://localhost:8080/seminar/' + this.id, {withCredentials: true}).subscribe(value => {
       this.toastr.success("Seminar erfolgreich gelöscht!", "Erfolg")
-      this.router.navigate(['/seminare/uebersicht'])
+      /*this.router.navigate(['/seminare/uebersicht'])*/
     }, error => {
         this.toastr.error(error.error.message, "Fehler")
     })

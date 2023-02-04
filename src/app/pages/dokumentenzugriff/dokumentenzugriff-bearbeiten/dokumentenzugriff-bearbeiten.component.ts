@@ -4,6 +4,7 @@ import {ToastrService} from "ngx-toastr";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
+import {timer} from "rxjs";
 
 @Component({
   selector: 'app-dokumentenzugriff-bearbeiten',
@@ -14,7 +15,7 @@ export class DokumentenzugriffBearbeitenComponent implements OnInit {
 
   breadcrumbItems = [
     {label: "Home", route: '/'},
-    {label: "Übersicht", route: './..'},
+    {label: "Übersicht", route: './../../uebersicht'},
     {label: "Zugangscode", route: '/'},
   ]
 
@@ -127,12 +128,18 @@ export class DokumentenzugriffBearbeitenComponent implements OnInit {
     this.documents.splice(this.documents.indexOf(document), 1)
     this.documentsAdded.push(document)
     this.documentsAdded.sort(this.sortFunction)
+    const tmp = this.searchTerm
+    this.searchTerm = ""
+    timer(1).subscribe(() => this.searchTerm = tmp)
   }
 
   removeDocument(document: any) {
     this.documentsAdded.splice(this.documentsAdded.indexOf(document), 1)
     this.documents.push(document)
     this.documents.sort(this.sortFunction)
+    const tmp = this.searchTermAdded
+    this.searchTermAdded = ""
+    timer(1).subscribe(() => this.searchTermAdded = tmp)
   }
 
   viewDocument(singleDocument: any) {

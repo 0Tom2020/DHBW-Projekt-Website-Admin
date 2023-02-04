@@ -22,8 +22,8 @@ export class MaschineBearbeitenComponent implements OnInit {
 
   editMachine = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    hourlyRate: new FormControl('', [Validators.required]),
-    maxCapacityInHours: new FormControl('', [Validators.required]),
+    hourlyRate: new FormControl({value: '', disabled: true}, [Validators.required]),
+    maxCapacityInHours: new FormControl({value: '', disabled: true}, [Validators.required]),
   })
 
   constructor(private activeRoute: ActivatedRoute, private toastr: ToastrService, private client: HttpClient) {

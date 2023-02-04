@@ -46,6 +46,12 @@ import {AnfrageUebersichtComponent} from "@pages/anfrage/anfrage-uebersicht/anfr
 import {AngebotUebersichtComponent} from "@pages/angebot/angebot-uebersicht/angebot-uebersicht.component";
 import {AngebotErstellenComponent} from "@pages/angebot/angebot-erstellen/angebot-erstellen.component";
 import {AnfrageBearbeitenComponent} from "@pages/anfrage/anfrage-bearbeiten/anfrage-bearbeiten.component";
+import {
+  SeminareArchivUebersichtComponent
+} from "@pages/seminare_archiv/seminare-archiv-uebersicht/seminare-archiv-uebersicht.component";
+import {
+  SeminareArchrivBearbeitenComponent
+} from "@pages/seminare_archiv/seminare-archiv-bearbeiten/seminare-archriv-bearbeiten.component";
 
 
 const routes: Routes = [
@@ -131,7 +137,7 @@ const routes: Routes = [
         path: 'seminare/uebersicht',
         component: SeminareUebersichtComponent,
         data: {
-          title: "Seminarsübersicht"
+          title: "Seminarübersicht"
         }
       },
       {
@@ -139,6 +145,20 @@ const routes: Routes = [
         component: SeminareBearbeitenComponent,
         data: {
           title: "Seminar bearbeiten"
+        }
+      },
+      {
+        path: 'seminararchiv/uebersicht',
+        component: SeminareArchivUebersichtComponent,
+        data: {
+          title: "Archiv - Seminarübersicht"
+        }
+      },
+      {
+        path: 'seminararchiv/uebersicht/:id',
+        component: SeminareArchrivBearbeitenComponent,
+        data: {
+          title: "Archiv - Seminar Detail"
         }
       },
       {

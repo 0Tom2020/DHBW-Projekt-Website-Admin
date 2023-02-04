@@ -68,6 +68,11 @@ export const MENU = [
     path: ['/seminare/uebersicht']
   },
   {
+    name: 'Seminararchiv',
+    iconClasses: 'fas fa-graduation-cap',
+    path: ['/seminararchiv/uebersicht']
+  },
+  {
     name: 'Partner',
     iconClasses: 'fas fa-handshake',
     path: ['/partner/uebersicht']

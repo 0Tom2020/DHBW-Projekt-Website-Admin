@@ -27,7 +27,6 @@ export class SeminareUebersichtComponent implements OnInit {
 
     this.client.get('http://localhost:8080/seminar', {withCredentials: true}).subscribe(value => {
       this.seminars = value as any[]
-      console.log(this.seminars)
     })
   }
 

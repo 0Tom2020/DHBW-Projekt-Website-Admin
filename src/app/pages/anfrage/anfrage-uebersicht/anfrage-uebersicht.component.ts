@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../environments/environment";
+import {forEach} from "@angular-devkit/schematics";
 
 @Component({
   selector: 'app-anfrage-uebersicht',
@@ -14,17 +16,19 @@ export class AnfrageUebersichtComponent implements OnInit {
     {label: "Übersicht", route: './..'},
   ]
   title!:string
-  inquires: any[] = [{
-    title: "Test",
-    description: "Test",
-    id: 1
-  }]
+  inquires: any[] = []
 
   constructor(private activeRoute: ActivatedRoute, private client: HttpClient) { }
 
   ngOnInit(): void {
     this.activeRoute.data.subscribe( value => {
       this.title = value['title']
+    })
+
+    this.client.get<any[]>(environment.backend + '/inquiry', {withCredentials: true}).subscribe(value => {
+      for(const inquiry of value) {
+        this.inquires.push(inquiry)
+      }
     })
   }
 

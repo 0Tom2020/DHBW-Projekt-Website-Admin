@@ -44,14 +44,15 @@ import {MaschineUebersichtComponent} from "@pages/maschine/maschine-uebersicht/m
 import {MaschineBearbeitenComponent} from "@pages/maschine/maschine-bearbeiten/maschine-bearbeiten.component";
 import {AnfrageUebersichtComponent} from "@pages/anfrage/anfrage-uebersicht/anfrage-uebersicht.component";
 import {AngebotUebersichtComponent} from "@pages/angebot/angebot-uebersicht/angebot-uebersicht.component";
-import {AngebotErstellenComponent} from "@pages/angebot/angebot-erstellen/angebot-erstellen.component";
 import {AnfrageBearbeitenComponent} from "@pages/anfrage/anfrage-bearbeiten/anfrage-bearbeiten.component";
+import {AngebotErstellenComponent} from "@pages/anfrage/angebot-erstellen/angebot-erstellen.component";
 import {
   SeminareArchivUebersichtComponent
 } from "@pages/seminare_archiv/seminare-archiv-uebersicht/seminare-archiv-uebersicht.component";
 import {
   SeminareArchrivBearbeitenComponent
 } from "@pages/seminare_archiv/seminare-archiv-bearbeiten/seminare-archriv-bearbeiten.component";
+import {AngebotBearbeitenComponent} from "@pages/angebot/angebot-bearbeiten/angebot-bearbeiten.component";
 
 
 const routes: Routes = [
@@ -240,24 +241,36 @@ const routes: Routes = [
       },
       {
         path: 'anfrage/uebersicht/:id',
-        component: AnfrageBearbeitenComponent,
-        data: {
-          title: "Anfrage bearbeiten"
-        }
+        children: [
+          {
+            path: '',
+            component: AnfrageBearbeitenComponent,
+            data: {
+              title: "Anfrage Detailansicht"
+            },
+          },
+          {
+            path: 'angebot',
+            component: AngebotErstellenComponent,
+            data: {
+              title: "Angebot erstellen"
+            }
+          }
+        ]
       },
       {
         path: 'angebot/uebersicht',
         component: AngebotUebersichtComponent,
         data: {
           title: "Angebot Übersicht"
-        }
+        },
       },
       {
-        path: 'angebot/uebersicht/erstellen',
-        component: AngebotErstellenComponent,
+        path: 'angebot/uebersicht/:id',
+        component: AngebotBearbeitenComponent,
         data: {
-          title: "Angebot erstellen"
-        }
+          title: "Angebot Details"
+        },
       }
     ]
   },

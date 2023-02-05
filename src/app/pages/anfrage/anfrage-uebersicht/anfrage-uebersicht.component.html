@@ -18,7 +18,7 @@
   <div class="container-fluid">
     <div class="card w-100" *ngFor="let singleInquiry of inquires">
       <div class="card-header">
-        <h3 class="card-title">{{singleInquiry.title}}</h3>
+        <h3 class="card-title">{{singleInquiry.contact.firstName + ' ' + singleInquiry.contact.lastName}}</h3>
         <div class="card-tools">
           <div typeof="button" class="btn btn-primary" [routerLink]="singleInquiry.id">
             Bearbeiten
@@ -26,7 +26,8 @@
         </div>
       </div>
       <div class="card-body">
-        {{singleInquiry.description}}
+        Abgabe der Teile: {{singleInquiry.partsDeliveryDate | date: 'dd.MM.yyyy'}}<br/>
+        Gewünschter Liefertermin: {{singleInquiry.deadlineDate | date: 'dd.MM.yyyy'}}<br/>
       </div>
     </div>
   </div>

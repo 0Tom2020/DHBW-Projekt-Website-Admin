@@ -16,9 +16,9 @@
 <!-- Main content -->
 <section class="content">
   <!-- Default box -->
-  <div class="container-fluid" *ngFor="let singleMachine of machines">
+  <div class="container-fluid">
     <button class="btn btn-success float-right c-button" [routerLink]="'./erstellen'">Erstellen</button>
-    <div class="card w-100" >
+    <div class="card w-100" *ngFor="let singleMachine of machines">
       <div class="card-header">
         <h3 class="card-title">{{singleMachine.name}}</h3>
         <div class="card-tools">

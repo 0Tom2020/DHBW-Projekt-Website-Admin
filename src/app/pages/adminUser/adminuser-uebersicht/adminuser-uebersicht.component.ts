@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-adminuser-uebersicht',
@@ -16,7 +17,7 @@ export class AdminuserUebersichtComponent implements OnInit {
   title!: string;
   adminUsers: any;
 
-  constructor(private activeRoute: ActivatedRoute, private client: HttpClient) { }
+  constructor(private activeRoute: ActivatedRoute, private client: HttpClient, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.activeRoute.data.subscribe(value => {
@@ -26,7 +27,7 @@ export class AdminuserUebersichtComponent implements OnInit {
     this.client.get('http://localhost:8080/auth/admins').subscribe(data => {
       this.adminUsers = data
     }, error => {
-      console.log(error)
+      this.toastr.error(error.error.message)
     })
 
   }

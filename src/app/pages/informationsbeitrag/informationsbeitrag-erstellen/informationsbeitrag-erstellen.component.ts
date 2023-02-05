@@ -62,22 +62,15 @@ export class InformationsbeitragErstellenComponent implements OnInit {
 
 
   post() {
-    if (this.newArticle.invalid) {
-      this.toastr.error("Bitte füllen Sie alle Felder aus!", "Fehler")
-    } else {
       const body = this.newArticle.value
       this.client.post(environment.backend + '/infoEntry/create', body, {withCredentials:true, }).subscribe(response => {
         this.toastr.success("Es wurde erfolgreich ein neuer Partner angelegt")
       }, error => {
-        console.log("test")
-        console.log(error)
+        this.toastr.error(error.error.message, "Fehler")
       })
 
     }
 
-
-
-  }
 
 
 }

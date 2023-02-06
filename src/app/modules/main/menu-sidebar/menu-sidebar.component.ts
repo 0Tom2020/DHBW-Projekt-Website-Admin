@@ -43,11 +43,6 @@ export const MENU = [
     path: ['/']
   },
   {
-    name: 'Blank',
-    iconClasses: 'fas fa-file',
-    path: ['/blank']
-  },
-  {
     name: 'Dokumente',
     iconClasses: 'fas fa-folder',
     path: ['/dokumente/uebersicht']
@@ -96,6 +91,11 @@ export const MENU = [
     name: 'Maschinen',
     iconClasses: 'fas fa-microscope',
     path: ['/maschinen/uebersicht']
+  },
+  {
+    name: 'Beratungstermine',
+    iconClasses: 'fas fa-calendar',
+    path: ['/beratungstermine/uebersicht']
   },
   {
     name: 'Main Menu',

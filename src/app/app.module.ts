@@ -9,7 +9,6 @@ import {LoginComponent} from '@modules/login/login.component';
 import {HeaderComponent} from '@modules/main/header/header.component';
 import {FooterComponent} from '@modules/main/footer/footer.component';
 import {MenuSidebarComponent} from '@modules/main/menu-sidebar/menu-sidebar.component';
-import {BlankComponent} from '@pages/blank/blank.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DashboardComponent} from '@pages/dashboard/dashboard.component';
@@ -88,7 +87,6 @@ registerLocaleData(localeEn, 'en-EN');
     HeaderComponent,
     FooterComponent,
     MenuSidebarComponent,
-    BlankComponent,
     DashboardComponent,
     UserComponent,
     ForgotPasswordComponent,

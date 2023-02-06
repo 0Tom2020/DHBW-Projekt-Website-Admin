@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {MainComponent} from '@modules/main/main.component';
-import {BlankComponent} from '@pages/blank/blank.component';
 import {LoginComponent} from '@modules/login/login.component';
 import {DashboardComponent} from '@pages/dashboard/dashboard.component';
 import {AuthGuard} from '@guards/auth.guard';
@@ -68,16 +67,8 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
     children: [
       {
-        path: 'blank',
-        component: BlankComponent
-      },
-      {
         path: 'sub-menu-1',
         component: SubMenuComponent
-      },
-      {
-        path: 'sub-menu-2',
-        component: BlankComponent
       },
       {
         path: '',

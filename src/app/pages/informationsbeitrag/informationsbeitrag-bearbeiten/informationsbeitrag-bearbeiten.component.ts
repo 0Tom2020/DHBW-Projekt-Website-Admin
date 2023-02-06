@@ -77,11 +77,10 @@ export class InformationsbeitragBearbeitenComponent implements OnInit {
 
   post() {
     const body = this.editArticle.value
-    console.log(body)
     this.client.put(environment.backend + '/infoEntry/single/' + this.id, body, {withCredentials: true}).subscribe(() => {
       this.toastr.success("Informationsbeitrag wurde erfolgreich bearbeitet")
     }, error => {
-      console.log(error)
+      this.toastr.error(error.error.message, "Fehler")
     })
   }
 

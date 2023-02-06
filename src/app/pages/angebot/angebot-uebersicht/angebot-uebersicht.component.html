@@ -1,1 +1,35 @@
-<p>angebot-uebersicht works!</p>
+<!--Beginn: Header-->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>{{title}}</h1>
+            </div>
+            <div class="col-sm-6">
+                <app-breadcrumb class="float-right" [items]="breadcrumbItems"></app-breadcrumb>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End: Header-->
+
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="container-fluid" *ngFor="let offer of offers">
+        <button class="btn btn-success float-right c-button" [routerLink]="'./erstellen'">Erstellen</button>
+        <div class="card w-100" >
+            <div class="card-header">
+                <h3 class="card-title">{{offer.name}}</h3>
+                <div class="card-tools">
+                    <div typeof="button" class="btn btn-primary"  [routerLink]="offer.id">
+                        Bearbeiten</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->
+

@@ -87,7 +87,7 @@ export class AdminuserBearbeitenComponent implements OnInit {
 
   delete() {
     this.client.delete(environment.backend + '/auth/admin/' + this.id, {withCredentials:true}).subscribe(() => {
-      this.toastr.success("Informationsbeitrag wurde erfolgreich gelöscht")
+      this.toastr.success("Der Adminuser wurde erfolgreich gelöscht")
       this.router.navigate(['/admin/uebersicht'])
     }, error => {
       this.toastr.error(error.error.message)

@@ -47,7 +47,7 @@ export class AdminuserErstellenComponent implements OnInit {
       return this.toastr.error('Passwörter stimmen nicht überein')
     } else {
       this.client.post(environment.backend + '/auth/admins', this.newAdminUser.value, {withCredentials: true}).subscribe(data => {
-        this.toastr.success('Admin User erfolgreich erstellt')
+        this.toastr.success('Adminuser erfolgreich erstellt')
         this.newAdminUser.reset()
       }, error => {
         console.log(error)

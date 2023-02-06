@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-maschine-erstellen',
@@ -32,7 +33,7 @@ export class MaschineErstellenComponent implements OnInit {
   }
 
   post() {
-    this.client.post('http://localhost:8080/machines', this.newMachine.value, {withCredentials: true}).subscribe(value => {
+    this.client.post(environment.backend +'/machines', this.newMachine.value, {withCredentials: true}).subscribe(value => {
       this.toastr.success('Maschine erfolgreich erstellt', 'Erfolgreich')
     }, error => {
       this.toastr.error(error.error.message, 'Fehler')

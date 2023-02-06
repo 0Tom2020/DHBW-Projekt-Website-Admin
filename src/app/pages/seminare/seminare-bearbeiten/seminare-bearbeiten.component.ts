@@ -3,6 +3,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {formatDate} from "@angular/common";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-seminare-bearbeiten',
@@ -51,18 +53,13 @@ export class SeminareBearbeitenComponent implements OnInit {
       }
     })
 
-    this.client.get('http://localhost:8080/seminar/' + this.id, {withCredentials: true}).subscribe(value => {
-
-      const startDate = new Date(value['startDate']).toLocaleDateString()
-      const endDate = new Date(value['endDate']).toLocaleDateString()
-      this.startDate = startDate
-      this.endDate = endDate
+    this.client.get(environment.backend +'/seminar/' + this.id, {withCredentials: true}).subscribe(value => {
 
       this.editSeminar.controls['price'].setValue(value['price'])
       this.editSeminar.controls['accommodationPrice'].setValue(value['accommodationPrice'])
       this.editSeminar.controls['mealsPrice'].setValue(value['mealsPrice'])
-      this.editSeminar.controls['startDate'].setValue(startDate)
-      this.editSeminar.controls['endDate'].setValue(endDate)
+      this.editSeminar.controls['startDate'].setValue(formatDate(value['startDate'], 'dd-MM-yyyy', 'en_US'))
+      this.editSeminar.controls['endDate'].setValue(formatDate(value['endDate'], 'dd-MM-yyyy', 'en_US'))
       this.editSeminar.controls['capacity'].setValue(value['capacity'])
       this.editSeminar.controls['description'].setValue(value['description'])
       this.editSeminar.controls['street'].setValue(value['street'])
@@ -73,7 +70,7 @@ export class SeminareBearbeitenComponent implements OnInit {
       this.toastr.error(error.error.message, "Fehler")
     })
 
-    this.client.get('http://localhost:8080/seminar/' + this.id + '/bookings', {withCredentials: true}).subscribe(value => {
+    this.client.get(environment.backend +'/seminar/' + this.id + '/bookings', {withCredentials: true}).subscribe(value => {
       this.participants = value
       console.log(this.participants)
     }, error => {
@@ -92,40 +89,15 @@ export class SeminareBearbeitenComponent implements OnInit {
 
   post() {
 
-    const tmpStartDate = this.editSeminar.value.startDate
-    const tmpEndDate = this.editSeminar.value.endDate
-    // @ts-ignore
-    if (tmpStartDate instanceof Date) {
-      this.startDate = this.editSeminar.value.startDate
-    } else {
-      this.startDate = this.reformatDate(this.editSeminar.value.startDate)
-    }
-
-    // @ts-ignore
-    if (tmpEndDate instanceof Date) {
-      this.endDate = this.editSeminar.value.endDate
-    } else {
-      this.endDate = this.reformatDate(this.editSeminar.value.endDate)
-    }
-
     const body = {
-      price: this.editSeminar.value.price,
-      accommodationPrice: this.editSeminar.value.accommodationPrice,
-      mealsPrice: this.editSeminar.value.mealsPrice,
-      startDate: this.startDate,
-      endDate: this.endDate,
-      capacity: this.editSeminar.value.capacity,
       description: this.editSeminar.value.description,
-      street: this.editSeminar.value.street,
-      city: this.editSeminar.value.city,
-      postal: this.editSeminar.value.postal,
       title: this.editSeminar.value.title,
     }
 
     console.log(body)
 
 
-    this.client.put('http://localhost:8080/seminar/' + this.id, body, {withCredentials: true}).subscribe(value => {
+    this.client.put(environment.backend +'/seminar/' + this.id, body, {withCredentials: true}).subscribe(value => {
       this.toastr.success("Seminar erfolgreich bearbeitet!", "Erfolg")
     }, error => {
       this.toastr.error(error.error.message, "Fehler")
@@ -133,18 +105,18 @@ export class SeminareBearbeitenComponent implements OnInit {
   }
 
   delete() {
-    this.client.delete('http://localhost:8080/seminar/' + this.id, {withCredentials: true}).subscribe(value => {
+    this.client.delete(environment.backend +'/seminar/' + this.id, {withCredentials: true}).subscribe(value => {
       this.toastr.success("Seminar erfolgreich gelöscht!", "Erfolg")
-      /*this.router.navigate(['/seminare/uebersicht'])*/
+      this.router.navigate(['/seminare/uebersicht'])
     }, error => {
         this.toastr.error(error.error.message, "Fehler")
     })
   }
 
   deleteBooking(id) {
-    this.client.delete('http://localhost:8080/seminar/' + this.id + '/bookings/' + id, {withCredentials: true}).subscribe(value => {
+    this.client.delete(environment.backend +'/seminar/' + this.id + '/bookings/' + id, {withCredentials: true}).subscribe(value => {
       this.toastr.success("Buchung erfolgreich gelöscht!", "Erfolg")
-      this.client.get('http://localhost:8080/seminar/' + this.id + '/bookings', {withCredentials: true}).subscribe(value => {
+      this.client.get(environment.backend +'/seminar/' + this.id + '/bookings', {withCredentials: true}).subscribe(value => {
         this.participants = value
       })
     })

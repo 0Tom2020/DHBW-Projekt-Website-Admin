@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-angebot-uebersicht',
@@ -29,7 +30,7 @@ export class AngebotUebersichtComponent implements OnInit {
       this.title = value['title']
     })
 
-    this.client.get('http://localhost:8080/offer', {withCredentials: true}).subscribe(value => {
+    this.client.get(environment.backend +'/offer', {withCredentials: true}).subscribe(value => {
       this.offers = value
     }, error => {
       this.toastr.error(error.error.message, "Fehler")

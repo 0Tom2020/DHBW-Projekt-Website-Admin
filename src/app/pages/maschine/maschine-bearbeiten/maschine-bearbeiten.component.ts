@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-maschine-bearbeiten',
@@ -36,13 +37,17 @@ export class MaschineBearbeitenComponent implements OnInit {
     this.activeRoute.params.subscribe(value => {
       this.id = value['id']
     })
-    this.client.get('http://localhost:8080/machines/' + this.id, {withCredentials: true}).subscribe(value => {
-      this.editMachine.patchValue(value)
+    this.client.get(environment.backend +'/machines/' + this.id, {withCredentials: true}).subscribe(value => {
+      console.log(value)
+      this.editMachine.controls['hourlyRate'].setValue(value['hourlyRate'])
+      this.editMachine.controls['name'].setValue(value['name'])
+      this.editMachine.controls['maxCapacityInHours'].setValue(value['maxCapacityInHours'])
     })
   }
 
   post() {
-    this.client.put('http://localhost:8080/machines/' + this.id, this.editMachine.value, {withCredentials: true}).subscribe(value => {
+    console.log(this.editMachine.value.hourlyRate)
+    this.client.put(environment.backend +'/machines/' + this.id, this.editMachine.value, {withCredentials: true}).subscribe(value => {
       this.toastr.success('Maschine wurde erfolgreich bearbeitet')
     }, error => {
       this.toastr.error(error.error.message)

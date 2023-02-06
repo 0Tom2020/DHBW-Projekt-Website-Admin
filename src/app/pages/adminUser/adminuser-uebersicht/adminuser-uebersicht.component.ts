@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-adminuser-uebersicht',
@@ -24,7 +25,7 @@ export class AdminuserUebersichtComponent implements OnInit {
       this.title = value['title']
     })
 
-    this.client.get('http://localhost:8080/auth/admins').subscribe(data => {
+    this.client.get(environment.backend +'/auth/admins').subscribe(data => {
       this.adminUsers = data
     }, error => {
       this.toastr.error(error.error.message)

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-seminare-uebersicht',
@@ -25,7 +26,7 @@ export class SeminareUebersichtComponent implements OnInit {
     })
 
 
-    this.client.get('http://localhost:8080/seminar', {withCredentials: true}).subscribe(value => {
+    this.client.get(environment.backend +'/seminar', {withCredentials: true}).subscribe(value => {
       this.seminars = value as any[]
     })
   }

@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {defineLocale, deLocale} from "ngx-bootstrap/chronos";
 import {BsLocaleService} from "ngx-bootstrap/datepicker";
+import {environment} from "../../../../environments/environment";
 defineLocale('de', deLocale);
 
 @Component({
@@ -48,7 +49,7 @@ export class SeminarErstellenComponent implements OnInit {
 
   post() {
     console.log(this.newSeminar.value)
-    this.client.post('http://localhost:8080/seminar', this.newSeminar.value, {withCredentials: true}).subscribe(value => {
+    this.client.post(environment.backend +'/seminar', this.newSeminar.value, {withCredentials: true}).subscribe(value => {
       this.toastr.success("Seminar erfolgreich erstellt!", "Erfolg")
     }, error => {
       this.toastr.error(error.error.message, "Fehler")

@@ -22,7 +22,6 @@ export class DokumentenzugriffErstellenComponent implements OnInit{
     file: new FormControl('', [Validators.required]),
     title: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.email])
-
   })
 
   constructor(private toastr: ToastrService, private activeRoute: ActivatedRoute, private http: HttpClient, private router: Router) {

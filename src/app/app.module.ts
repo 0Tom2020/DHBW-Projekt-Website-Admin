@@ -9,9 +9,7 @@ import {LoginComponent} from '@modules/login/login.component';
 import {HeaderComponent} from '@modules/main/header/header.component';
 import {FooterComponent} from '@modules/main/footer/footer.component';
 import {MenuSidebarComponent} from '@modules/main/menu-sidebar/menu-sidebar.component';
-import {BlankComponent} from '@pages/blank/blank.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ProfileComponent} from '@pages/profile/profile.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DashboardComponent} from '@pages/dashboard/dashboard.component';
 import {ToastrModule} from 'ngx-toastr';
@@ -73,7 +71,11 @@ import { AngebotErstellenComponent } from './pages/anfrage/angebot-erstellen/ang
 import { SeminareArchivUebersichtComponent } from './pages/seminare_archiv/seminare-archiv-uebersicht/seminare-archiv-uebersicht.component';
 import { SeminareArchrivBearbeitenComponent } from './pages/seminare_archiv/seminare-archiv-bearbeiten/seminare-archriv-bearbeiten.component';
 import { AngebotBearbeitenComponent } from './pages/angebot/angebot-bearbeiten/angebot-bearbeiten.component';
-
+import {FullCalendarModule} from "@fullcalendar/angular";
+import { DashboardEventModalComponent } from './components/dashboard-event-modal/dashboard-event-modal.component';
+import {ModalModule} from "ngx-bootstrap/modal";
+import { BeratungsterminUebersichtComponent } from './pages/beratungstermin/beratungstermin-uebersicht/beratungstermin-uebersicht.component';
+import { BeratungsterminBearbeitenComponent } from './pages/beratungstermin/beratungstermin-bearbeiten/beratungstermin-bearbeiten.component';
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
 
@@ -85,8 +87,6 @@ registerLocaleData(localeEn, 'en-EN');
     HeaderComponent,
     FooterComponent,
     MenuSidebarComponent,
-    BlankComponent,
-    ProfileComponent,
     DashboardComponent,
     UserComponent,
     ForgotPasswordComponent,
@@ -124,6 +124,9 @@ registerLocaleData(localeEn, 'en-EN');
     SeminareArchivUebersichtComponent,
     SeminareArchrivBearbeitenComponent,
     AngebotBearbeitenComponent,
+    DashboardEventModalComponent,
+    BeratungsterminUebersichtComponent,
+    BeratungsterminBearbeitenComponent,
   ],
     imports: [
         BrowserModule,
@@ -141,6 +144,8 @@ registerLocaleData(localeEn, 'en-EN');
         NgMultiSelectDropDownModule.forRoot(),
         FormsModule,
       BsDatepickerModule.forRoot(),
+      FullCalendarModule,
+      ModalModule.forRoot()
     ],
   providers: [{provide: APP_BASE_HREF, useValue: environment.baseUrl}],
   bootstrap: [AppComponent]

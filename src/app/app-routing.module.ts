@@ -1,9 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {MainComponent} from '@modules/main/main.component';
-import {BlankComponent} from '@pages/blank/blank.component';
 import {LoginComponent} from '@modules/login/login.component';
-import {ProfileComponent} from '@pages/profile/profile.component';
 import {DashboardComponent} from '@pages/dashboard/dashboard.component';
 import {AuthGuard} from '@guards/auth.guard';
 import {NonAuthGuard} from '@guards/non-auth.guard';
@@ -53,6 +51,12 @@ import {
   SeminareArchrivBearbeitenComponent
 } from "@pages/seminare_archiv/seminare-archiv-bearbeiten/seminare-archriv-bearbeiten.component";
 import {AngebotBearbeitenComponent} from "@pages/angebot/angebot-bearbeiten/angebot-bearbeiten.component";
+import {
+  BeratungsterminUebersichtComponent
+} from "@pages/beratungstermin/beratungstermin-uebersicht/beratungstermin-uebersicht.component";
+import {
+  BeratungsterminBearbeitenComponent
+} from "@pages/beratungstermin/beratungstermin-bearbeiten/beratungstermin-bearbeiten.component";
 
 
 const routes: Routes = [
@@ -63,23 +67,8 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
     children: [
       {
-        path: 'profile',
-        component: ProfileComponent,
-        data: {
-          title: "test"
-        }
-      },
-      {
-        path: 'blank',
-        component: BlankComponent
-      },
-      {
         path: 'sub-menu-1',
         component: SubMenuComponent
-      },
-      {
-        path: 'sub-menu-2',
-        component: BlankComponent
       },
       {
         path: '',
@@ -270,6 +259,20 @@ const routes: Routes = [
         component: AngebotBearbeitenComponent,
         data: {
           title: "Angebot Details"
+        },
+      },
+      {
+        path: 'beratungstermine/uebersicht',
+        component: BeratungsterminUebersichtComponent,
+        data: {
+          title: "Beratungstermin Übersicht"
+        },
+      },
+      {
+        path: 'beratungstermine/uebersicht/:id',
+        component: BeratungsterminBearbeitenComponent,
+        data: {
+          title: "Beratungstermin Details"
         },
       }
     ]

@@ -17,7 +17,7 @@
         <div class="col">Maschine: </div>
         <div class="col"><a [routerLink]="'/maschinen/uebersicht/' + eventEntry.extendedProps.id" (click)="close()">{{eventEntry.title}}</a></div>
       </div>
-      <div class="row font-weight-bold">
+      <div class="row font-weight-bold mt-3">
         <div class="col">Details zum Angebot</div>
       </div>
       <div class="row">
@@ -57,7 +57,7 @@
     </ng-container>
 
     <ng-container *ngIf="eventEntry.extendedProps.contact && eventEntry.extendedProps.contact.email">
-      <div class="row font-weight-bold">
+      <div class="row font-weight-bold mt-3">
         <div class="col">Details zur Person</div>
       </div>
       <div class="row">

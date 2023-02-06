@@ -53,6 +53,12 @@ import {
   SeminareArchrivBearbeitenComponent
 } from "@pages/seminare_archiv/seminare-archiv-bearbeiten/seminare-archriv-bearbeiten.component";
 import {AngebotBearbeitenComponent} from "@pages/angebot/angebot-bearbeiten/angebot-bearbeiten.component";
+import {
+  BeratungsterminUebersichtComponent
+} from "@pages/beratungstermin/beratungstermin-uebersicht/beratungstermin-uebersicht.component";
+import {
+  BeratungsterminBearbeitenComponent
+} from "@pages/beratungstermin/beratungstermin-bearbeiten/beratungstermin-bearbeiten.component";
 
 
 const routes: Routes = [
@@ -270,6 +276,20 @@ const routes: Routes = [
         component: AngebotBearbeitenComponent,
         data: {
           title: "Angebot Details"
+        },
+      },
+      {
+        path: 'beratungstermine/uebersicht',
+        component: BeratungsterminUebersichtComponent,
+        data: {
+          title: "Beratungstermin Übersicht"
+        },
+      },
+      {
+        path: 'beratungstermine/uebersicht/:id',
+        component: BeratungsterminBearbeitenComponent,
+        data: {
+          title: "Beratungstermin Details"
         },
       }
     ]

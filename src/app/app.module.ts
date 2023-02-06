@@ -76,7 +76,8 @@ import { AngebotBearbeitenComponent } from './pages/angebot/angebot-bearbeiten/a
 import {FullCalendarModule} from "@fullcalendar/angular";
 import { DashboardEventModalComponent } from './components/dashboard-event-modal/dashboard-event-modal.component';
 import {ModalModule} from "ngx-bootstrap/modal";
-
+import { BeratungsterminUebersichtComponent } from './pages/beratungstermin/beratungstermin-uebersicht/beratungstermin-uebersicht.component';
+import { BeratungsterminBearbeitenComponent } from './pages/beratungstermin/beratungstermin-bearbeiten/beratungstermin-bearbeiten.component';
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
 
@@ -128,6 +129,8 @@ registerLocaleData(localeEn, 'en-EN');
     SeminareArchrivBearbeitenComponent,
     AngebotBearbeitenComponent,
     DashboardEventModalComponent,
+    BeratungsterminUebersichtComponent,
+    BeratungsterminBearbeitenComponent,
   ],
     imports: [
         BrowserModule,

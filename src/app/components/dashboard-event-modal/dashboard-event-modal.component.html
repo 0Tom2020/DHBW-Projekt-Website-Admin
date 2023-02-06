@@ -1,0 +1,72 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{getTitle()}}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="close()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col">Zeitraum: </div>
+      <div class="col" *ngIf="eventEntry.extendedProps.type === 'MACHINE'">{{eventEntry.start.toLocaleDateString()}} - {{eventEntry.end ? eventEntry.end.toLocaleDateString() : eventEntry.start.toLocaleDateString()}}</div>
+      <div class="col" *ngIf="eventEntry.extendedProps.type !== 'MACHINE'">{{eventEntry.start.toLocaleString()}} - {{eventEntry.end.toLocaleString()}}</div>
+    </div>
+
+    <ng-container *ngIf="eventEntry.extendedProps.type === 'MACHINE'">
+      <div class="row">
+        <div class="col">Maschine: </div>
+        <div class="col"><a [routerLink]="'/maschinen/uebersicht/' + eventEntry.extendedProps.id" (click)="close()">{{eventEntry.title}}</a></div>
+      </div>
+      <div class="row font-weight-bold">
+        <div class="col">Details zum Angebot</div>
+      </div>
+      <div class="row">
+        <div class="col">Beschreibung: </div>
+        <div class="col">{{eventEntry.extendedProps.description}}</div>
+      </div>
+      <div class="row">
+        <div class="col">Status: </div>
+        <div class="col">{{eventEntry.extendedProps.completed ? 'Abgeschlossen' : 'Offen'}}</div>
+      </div>
+      <div class="row">
+        <div class="col">Angebot: </div>
+        <div class="col"><a [routerLink]="'/angebot/uebersicht/' + eventEntry.extendedProps.offerId" (click)="close()">zum Angebot</a></div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="eventEntry.extendedProps.type === 'TRAINING'">
+      <div class="row">
+        <div class="col">Beschreibung: </div>
+        <div class="col">{{eventEntry.extendedProps.description}}</div>
+      </div>
+      <div class="row">
+        <div class="col">Seminar: </div>
+        <div class="col"><a [routerLink]="'/seminare/uebersicht/' + eventEntry.extendedProps.id" (click)="close()">zum Seminar</a></div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="eventEntry.extendedProps.type === 'CONSULTING'">
+      <div class="row">
+        <div class="col">Status: </div>
+        <div class="col">{{eventEntry.extendedProps.accepted && eventEntry.extendedProps.assigned ? 'Gebucht': 'Frei verfügbar'}}</div>
+      </div>
+      <div class="row">
+        <div class="col">Termin: </div>
+        <div class="col"><a [routerLink]="'/beratungstermine/uebersicht/' + eventEntry.extendedProps.id" (click)="close()">zum Beratungstermin</a></div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="eventEntry.extendedProps.contact && eventEntry.extendedProps.contact.email">
+      <div class="row font-weight-bold">
+        <div class="col">Details zur Person</div>
+      </div>
+      <div class="row">
+        <div class="col">Name: </div>
+        <div class="col">{{eventEntry.extendedProps.contact.firstName + ' ' + eventEntry.extendedProps.contact.lastName}}</div>
+      </div>
+      <div class="row">
+        <div class="col">Email-Adresse: </div>
+        <div class="col"><a href="mailto:{{eventEntry.extendedProps.contact.email}}" (click)="close()">{{eventEntry.extendedProps.contact.email}}</a></div>
+      </div>
+    </ng-container>
+  </div>

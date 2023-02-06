@@ -16,7 +16,7 @@ export class AngebotErstellenComponent implements OnInit {
   breadcrumbItems = [
     {label: "Home", route: '/'},
     {label: "Übersicht", route: './..'},
-    {label: "Detailansicht", route: ''},
+    {label: "Angebot erstellen", route: ''},
   ]
 
   title!:string

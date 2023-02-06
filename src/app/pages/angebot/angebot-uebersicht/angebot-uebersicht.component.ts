@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {environment} from "../../../../environments/environment";
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-angebot-uebersicht',
@@ -31,7 +32,19 @@ export class AngebotUebersichtComponent implements OnInit {
     })
 
     this.client.get(environment.backend +'/offer', {withCredentials: true}).subscribe(value => {
+
+      const tmpOffers = []
+
+      tmpOffers.push(value)
+
+      tmpOffers.forEach(offer => {
+        offer.forEach(offer => {
+          offer.deadlineDate = formatDate(offer.deadlineDate, 'dd.MM.yyyy', 'en_US')
+        })
+      })
+
       this.offers = value
+      console.log(value)
     }, error => {
       this.toastr.error(error.error.message, "Fehler")
     })

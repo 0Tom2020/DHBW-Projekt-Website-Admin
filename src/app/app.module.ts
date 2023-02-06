@@ -11,7 +11,6 @@ import {FooterComponent} from '@modules/main/footer/footer.component';
 import {MenuSidebarComponent} from '@modules/main/menu-sidebar/menu-sidebar.component';
 import {BlankComponent} from '@pages/blank/blank.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ProfileComponent} from '@pages/profile/profile.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DashboardComponent} from '@pages/dashboard/dashboard.component';
 import {ToastrModule} from 'ngx-toastr';
@@ -90,7 +89,6 @@ registerLocaleData(localeEn, 'en-EN');
     FooterComponent,
     MenuSidebarComponent,
     BlankComponent,
-    ProfileComponent,
     DashboardComponent,
     UserComponent,
     ForgotPasswordComponent,

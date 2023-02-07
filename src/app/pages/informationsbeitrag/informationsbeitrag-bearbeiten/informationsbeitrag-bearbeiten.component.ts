@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {environment} from "../../../../environments/environment";
+import {timer} from "rxjs";
 
 @Component({
   selector: 'app-informationsbeitrag-bearbeiten',
@@ -30,6 +31,10 @@ export class InformationsbeitragBearbeitenComponent implements OnInit {
     moreInfoLink: new FormControl,
     partners: new FormControl,
   })
+
+  images: string[] = [];
+
+  files: File[] = [];
 
   constructor(private activeRoute: ActivatedRoute, private client: HttpClient, private toastr: ToastrService, private router: Router) {
   }
@@ -73,6 +78,12 @@ export class InformationsbeitragBearbeitenComponent implements OnInit {
     }, error => {
       console.log(error)
     })
+
+    this.client.get<any[]>(environment.backend + '/infoEntry/single/' + this.id + '/images', {withCredentials: true}).subscribe((value: any) => {
+      for (const image of value) {
+        this.images.push(image)
+      }
+    })
   }
 
   post() {
@@ -82,6 +93,19 @@ export class InformationsbeitragBearbeitenComponent implements OnInit {
     }, error => {
       this.toastr.error(error.error.message, "Fehler")
     })
+
+    const formData = new FormData();
+    for (const file of this.files) {
+      formData.append('file', file, file["name"])
+    }
+    this.client.post(environment.backend + '/infoEntry/single/' + this.id + '/images', formData, {withCredentials: true}).subscribe(value => {
+      this.toastr.success("Es wurde erfolgreich '" + this.files.length + "' Bild(er) hochgeladen");
+      for (const file of this.files) {
+        this.images.push(file["name"])
+      }
+    }, error => {
+      console.log(error);
+    });
   }
 
   delete() {
@@ -91,6 +115,24 @@ export class InformationsbeitragBearbeitenComponent implements OnInit {
     }, error => {
       console.log(error)
     })
+  }
+
+  viewImage(imageName: any) {
+    window.open(environment.backend + '/infoEntry/single/' + this.id + '/images/' + imageName, '_blank');
+  }
+
+  deleteImage(imageName: any) {
+    this.client.delete(environment.backend + '/infoEntry/single/' + this.id + '/images/' + imageName, {withCredentials: true}).subscribe(value => {
+      this.images.splice(this.images.indexOf(imageName), 1)
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  onFileChange($event: Event) {
+    if ($event.target["files"].length > 0) {
+      this.files = $event.target["files"];
+    }
   }
 
 }

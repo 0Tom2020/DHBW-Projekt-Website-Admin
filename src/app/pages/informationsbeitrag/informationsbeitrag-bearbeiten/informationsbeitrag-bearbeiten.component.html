@@ -46,7 +46,7 @@
               <label for="exampleInputFile">Bilder Hochladen</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" formControlName="file" id="exampleInputFile">
+                  <input type="file" multiple class="custom-file-input" formControlName="file" id="exampleInputFile" (change)="onFileChange($event)">
                   <label class="custom-file-label" for="exampleInputFile">Datei auswählen</label>
                 </div>
               </div>
@@ -96,21 +96,19 @@
               <thead>
               <tr>
                 <th>Bild Name</th>
-                <th>Bild Größe</th>
                 <th></th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>Functional-requirements.docx</td>
-                <td>49.8005 kb</td>
+              <tr *ngFor="let image of images">
+                <td>{{image}}</td>
                 <td class="text-right py-0 align-middle">
                   <div class="btn-group btn-group-sm">
-                    <div class="btn btn-info"><i class="fas fa-eye"></i></div>
-                    <div class="btn btn-danger"><i class="fas fa-trash"></i></div>
+                    <div class="btn btn-info" (click)="viewImage(image)"><i class="fas fa-eye"></i></div>
+                    <div class="btn btn-danger" (click)="deleteImage(image)"><i class="fas fa-trash"></i></div>
                   </div>
                 </td>
-              <tr>
+              </tr>
               </tbody>
             </table>
           </div>

@@ -43,7 +43,7 @@
                             <label for="exampleInputFile">Bilder Hochladen</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" formControlName="file" id="exampleInputFile">
+                                    <input type="file" multiple class="custom-file-input" formControlName="file" id="exampleInputFile"  (change)="onFileChange($event)">
                                     <label class="custom-file-label" for="exampleInputFile">Datei auswählen</label>
                                 </div>
                             </div>

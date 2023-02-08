@@ -31,6 +31,8 @@ export class InformationsbeitragErstellenComponent implements OnInit {
     partners: new FormControl
   })
 
+  files: File[] = [];
+
   constructor(private activeRoute: ActivatedRoute, private client: HttpClient, private toastr: ToastrService) {}
 
   ngOnInit(): void {
@@ -65,6 +67,15 @@ export class InformationsbeitragErstellenComponent implements OnInit {
       const body = this.newArticle.value
       this.client.post(environment.backend + '/infoEntry/create', body, {withCredentials:true, }).subscribe(response => {
         this.toastr.success("Es wurde erfolgreich ein neuer Partner angelegt")
+        const formData = new FormData();
+        for (const file of this.files) {
+          formData.append('file', file, file["name"])
+        }
+        this.client.post(environment.backend + '/infoEntry/single/' + response["id"] + '/images', formData, {withCredentials: true}).subscribe(value => {
+          this.toastr.success("Es wurde erfolgreich '" + this.files.length + "' Bild(er) hochgeladen");
+        }, error => {
+          console.log(error);
+        });
       }, error => {
         this.toastr.error(error.error.message, "Fehler")
       })
@@ -72,5 +83,9 @@ export class InformationsbeitragErstellenComponent implements OnInit {
     }
 
 
-
+  onFileChange($event: Event) {
+    if ($event.target["files"].length > 0) {
+      this.files = $event.target["files"];
+    }
+  }
 }

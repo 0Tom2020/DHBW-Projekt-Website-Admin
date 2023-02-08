@@ -144,6 +144,7 @@
                   <li>Begleitpersonen</li>
                   <li>Unterkunft</li>
                   <li>Verpflegung</li>
+                  <li>Hinweise</li>
 
                 </ul>
               </div>
@@ -157,6 +158,7 @@
                   <li><input id="accomondationBooked" type="checkbox" checked *ngIf="participant.accommodation" disabled></li>
                   <li><input type="checkbox" id="meals" *ngIf="!participant.meals" disabled></li>
                   <li><input type="checkbox" id="mealsBooked" *ngIf="participant.meals" checked disabled></li>
+                  <li>{{participant.hints}}</li>
                 </ul>
               </div>
               <div class="col-12">

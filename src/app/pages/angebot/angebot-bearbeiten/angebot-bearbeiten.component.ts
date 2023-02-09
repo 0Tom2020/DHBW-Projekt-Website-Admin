@@ -89,7 +89,7 @@ export class AngebotBearbeitenComponent implements OnInit {
   }
 
   finishOffer() {
-    this.client.put(environment.backend + '/offer/' + this.id + '/completed', {}, {withCredentials: true}).subscribe(value => {
+    this.client.put(environment.backend + '/offer/' + this.id + '/completed', {withCredentials: true}).subscribe(value => {
       this.toastr.success('Angebot wurde abgeschlossen')
       this.offerCompleted = true
     }, error => {

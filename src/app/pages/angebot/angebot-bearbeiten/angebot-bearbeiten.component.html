@@ -16,8 +16,6 @@
   <form [formGroup]="offer">
 
 
-
-
     <div class="row">
       <div class="col-md-6">
 
@@ -159,7 +157,13 @@
     </div>
 
     <div class="row">
-      <div class="col-12" *ngIf="offerAccepted === true && offerCompleted  === false">
+
+
+
+
+
+
+      <div class="col-12" >
         <div class="btn-success btn float-right c-button" (click)="finishOffer()">Auftrag abgeschlossen</div>
       </div>
       <div class="col-12">
@@ -169,3 +173,6 @@
     </div>
   </form>
 </section>
+
+<!--*ngIf="offerAccepted === true && offerCompleted  === false"-->
+

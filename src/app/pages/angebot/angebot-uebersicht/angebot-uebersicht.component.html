@@ -17,7 +17,6 @@
 <section class="content">
     <!-- Default box -->
     <div class="container-fluid">
-        <button class="btn btn-success float-right c-button" [routerLink]="'./erstellen'">Erstellen</button>
         <div class="card w-100" *ngFor="let offer of offers">
             <div class="card-header">
 
@@ -57,7 +56,6 @@
             <div class="card-body">
                 {{offer.firstName}} {{offer.lastName}} - Deadline: {{offer.deadlineDate}}
             </div>
-
         </div>
     </div>
     <!-- /.card -->

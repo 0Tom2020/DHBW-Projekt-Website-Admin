@@ -1,4 +1,5 @@
-<!--Beginn: Header-->
+<!--
+Beginn: Header
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -11,10 +12,10 @@
     </div>
   </div>
 </section>
-<!--End: Header-->
+&lt;!&ndash;End: Header&ndash;&gt;
 
 <section class="content">
-  <form [formGroup]="inquiry">
+  <form>
     <div class="row">
       <div class="col-md-6">
 
@@ -147,3 +148,185 @@
   </div>
 </section>
 
+-->
+
+
+<!--OLD-->
+<!--Beginn: Header-->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>{{title}}</h1>
+      </div>
+      <div class="col-sm-6">
+        <app-breadcrumb class="float-right" [items]="breadcrumbItems"></app-breadcrumb>
+      </div>
+    </div>
+  </div>
+</section>
+<!--End: Header-->
+<section class="content">
+  <form [formGroup]="inquiry">
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">Daten zur Anfrage</h3>
+          </div>
+
+          <div class="card-body">
+            <div class="form-group">
+              <label for="inputDescriptionInquiry">Beschreibung</label>
+              <textarea type="text" rows="6" id="inputDescriptionInquiry" class="form-control"
+                        formControlName="descriptionInquiry" disabled></textarea>
+            </div>
+            <div class="form-group">
+              <label for="inputPartsDeliveryDate">Abgabe der Teile</label>
+              <input type="text" id="inputPartsDeliveryDate" class="form-control" formControlName="partsDeliveryDate"
+                     disabled>
+            </div>
+            <div class="form-group">
+              <label for="inputDeadlineDate">Deadline bis zur Durchführung (Wunschtermin vom Kunden)</label>
+              <input type="text" id="inputDeadlineDate" class="form-control" formControlName="deadlineDate" disabled>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-6">
+
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">Daten zum Angebot</h3>
+          </div>
+          <div class="card-body">
+
+            <div class="form-group">
+              <label for="inputDescription">Beschreibung</label>
+              <textarea id="inputDescription" class="form-control" rows="6" formControlName="description"
+                        disabled></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="partCount">Anzahl der Teile</label>
+              <input id="partCount" type="number" class="form-control" formControlName="partCount">
+            </div>
+
+            <div class="form-group">
+              <label >Liefertermin (Vorschlag)</label>
+              <input type="text"
+                     class="form-control"
+                     bsDatepicker
+                     formControlName="completionDeadline"
+                     [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
+                     readonly="readonly">
+            </div>
+
+
+            <div class="form-group">
+              <label >Startdatum (nur intern sichtbar)</label>
+              <input type="text"
+                     class="form-control"
+                     bsDatepicker
+                     (ngModelChange)="onStartDateChange()"
+                     formControlName="startDate"
+                     [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
+                     readonly="readonly">
+            </div>
+            <div class="form-group">
+              <label>Test</label>
+              <select id="machine" class="form-control" formControlName="machineId" (change)="onMachineChange()">
+                <option *ngFor="let machine of machines" [value]="machine.id">{{machine.name}}</option>
+              </select>
+            </div>
+            <div class="alert alert-warning" role="alert" *ngIf="isMachineAvailable === 'NOT_AVAILABLE' && inquiry.controls['machineId'].value">
+              Die Maschine ist nicht verfügbar. Bitte wählen Sie eine andere Maschine oder einen anderen Zeitraum!
+            </div>
+
+            <div class="form-group">
+              <label >Anzahl Arbeitsstunden</label>
+              <input id="workingHours" (keyup)="onWorkingHoursChange()" type="number" class="form-control" formControlName="workingHours">
+            </div>
+
+            <div class="form-group">
+              <label for="inputPrice">Preis</label>
+              <input id="inputPrice" type="number" class="form-control" formControlName="price" disabled>
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <!--Beginn: Card personalinfo-->
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">Angaben zur Person</h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="form-group">
+                  <label for="inputName">Vorname</label>
+                  <input type="text" id="inputName" class="form-control" formControlName="name" disabled>
+                </div>
+              </div>
+              <div class="col-md-6 col-12">
+                <div class="form-group">
+                  <label for="inputLastname">Nachname</label>
+                  <input type="text" id="inputLastname" class="form-control" formControlName="lastName"
+                         disabled>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <div class="form-group">
+                  <label for="inputEmail">Email</label>
+                  <input type="text" id="inputEmail" class="form-control" formControlName="email" disabled>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="form-group">
+                  <label for="inputStreet">Straße</label>
+                  <input type="text" id="inputStreet" class="form-control" formControlName="street" disabled>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="form-group">
+                  <label for="inputPostal">Postleitzahl</label>
+                  <input type="text" id="inputPostal" class="form-control" formControlName="postal" disabled>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="form-group">
+                  <label for="inputCity">Ort</label>
+                  <input type="text" id="inputCity" class="form-control" formControlName="city" disabled>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End: Card personalinfo-->
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-12">
+        <button type="submit" class="btn btn-success float-right" (click)="createOffer()" >Angebot erstellen</button>
+      </div>
+    </div>
+    <!--[disabled]="isMachineAvailable !== 'AVAILABLE'"-->
+  </form>
+</section>

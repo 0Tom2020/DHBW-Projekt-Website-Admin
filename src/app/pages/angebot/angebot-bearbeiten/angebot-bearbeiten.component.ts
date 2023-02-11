@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../../environments/environment";
 import {FormControl, FormGroup} from "@angular/forms";
 import {formatDate} from "@angular/common";
@@ -43,7 +43,7 @@ export class AngebotBearbeitenComponent implements OnInit {
   title!: string
   id!: string
 
-  constructor(private client: HttpClient, private activeRoute: ActivatedRoute, private toastr: ToastrService) {
+  constructor(private client: HttpClient, private activeRoute: ActivatedRoute, private toastr: ToastrService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -85,13 +85,19 @@ export class AngebotBearbeitenComponent implements OnInit {
 
 
   delete() {
-
+    this.client.delete(environment.backend + '/offer/' + this.id, {withCredentials: true}).subscribe(value => {
+      this.toastr.success('Angebot wurde gelöscht')
+      this.router.navigate(['./angebot/uebersicht'])
+    }, error => {
+      this.toastr.error(error.error.message, 'Fehler')
+    })
   }
 
   finishOffer() {
     this.client.put(environment.backend + '/offer/' + this.id + '/completed', {withCredentials: true}).subscribe(value => {
       this.toastr.success('Angebot wurde abgeschlossen')
       this.offerCompleted = true
+      this.router.navigate(['./angebot/uebersicht'])
     }, error => {
       this.toastr.error(error.error.message, 'Fehler')
     })

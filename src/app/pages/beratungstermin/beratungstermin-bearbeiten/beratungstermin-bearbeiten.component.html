@@ -1,1 +1,142 @@
-<p>beratungstermin-bearbeiten works!</p>
+<!--Beginn: Header-->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>{{title}}</h1>
+            </div>
+            <div class="col-sm-6">
+                <app-breadcrumb class="float-sm-right" [items]="breadcrumbItems"></app-breadcrumb>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End: Header-->
+
+
+<section class="content">
+    <form [formGroup]="consulting">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-secondary">
+
+                    <div class="card-header">
+                        <h3 class="card-title">Allgemeine Informationen</h3>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-12 col-md-6">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Datum des Termins</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           formControlName="date">
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Startzeitpunkt</label>
+                                            <timepicker formControlName="startTime" [showSpinners]="false"
+                                                        [showMeridian]="false"></timepicker>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Endzeitpunkt</label>
+                                            <timepicker formControlName="endTime" [showSpinners]="false"
+                                                        [showMeridian]="false"></timepicker>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="price">Preis</label>
+                                    <input type="text" id="price" formControlName="price" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <!--Beginn: Card personalinfo-->
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Angaben zur Person</h3>
+                    </div>
+
+                    <div class="card-body" *ngIf="!accepted">
+                        fdsa
+                    </div>
+
+
+                    <div class="card-body" *ngIf="accepted">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="inputFirstName">Vorname</label>
+                                    <input type="text" id="inputFirstName" class="form-control" formControlName="firstName"
+                                           disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                    <label for="inputLastname">Nachname</label>
+                                    <input type="text" id="inputLastname" class="form-control"
+                                           formControlName="lastName"
+                                           disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="inputEmail">Email</label>
+                                    <input type="text" id="inputEmail" class="form-control" formControlName="email"
+                                           disabled>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="inputStreet">Straße</label>
+                                    <input type="text" id="inputStreet" class="form-control" formControlName="street"
+                                           disabled>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="inputPostal">Postleitzahl</label>
+                                    <input type="text" id="inputPostal" class="form-control" formControlName="postal"
+                                           disabled>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="inputCity">Ort</label>
+                                    <input type="text" id="inputCity" class="form-control" formControlName="city"
+                                           disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <div class="row">
+                <div class="col-12">
+                    <a [routerLink]="'./..'" class="btn btn-secondary">Abbruch</a>
+                    <div (click)="delete()" class="btn btn-danger float-right">Bertungstermin löschen</div>
+                </div>
+            </div>
+    </form>
+</section>

@@ -27,109 +27,122 @@ import {uiReducer} from './store/ui/reducer';
 import {ProfabricComponentsModule} from '@profabric/angular-components';
 import {defineCustomElements} from '@profabric/web-components/loader';
 import {
-  InformationsbeitragErstellenComponent
+    InformationsbeitragErstellenComponent
 } from '@pages/informationsbeitrag/informationsbeitrag-erstellen/informationsbeitrag-erstellen.component';
 import {
-  InformationsbeitragUebersichtComponent
+    InformationsbeitragUebersichtComponent
 } from '@pages/informationsbeitrag/informationsbeitrag-uebersicht/informationsbeitrag-uebersicht.component';
 import {
-  InformationsbeitragBearbeitenComponent
+    InformationsbeitragBearbeitenComponent
 } from '@pages/informationsbeitrag/informationsbeitrag-bearbeiten/informationsbeitrag-bearbeiten.component';
 import {
-  DokumentenzugriffErstellenComponent
+    DokumentenzugriffErstellenComponent
 } from '@pages/dokumentenzugriff/dokumentenzugriff-erstellen/dokumentenzugriff-erstellen.component';
 import {
-  DokumentenzugriffUebersichtComponent
+    DokumentenzugriffUebersichtComponent
 } from '@pages/dokumentenzugriff/dokumentenzugriff-uebersicht/dokumentenzugriff-uebersicht.component';
 import {
-  DokumentenzugriffBearbeitenComponent
+    DokumentenzugriffBearbeitenComponent
 } from '@pages/dokumentenzugriff/dokumentenzugriff-bearbeiten/dokumentenzugriff-bearbeiten.component';
 import {SeminarErstellenComponent} from '@pages/seminare/seminare-erstellen/seminar-erstellen.component';
 import {SeminareUebersichtComponent} from '@pages/seminare/seminare-uebersicht/seminare-uebersicht.component';
 import {SeminareBearbeitenComponent} from '@pages/seminare/seminare-bearbeiten/seminare-bearbeiten.component';
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
-import { DokumenteUebersichtComponent } from '@pages/dokumente/dokumente-uebersicht/dokumente-uebersicht.component';
-import { DokumentFilterPipe } from './pipes/dokument-filter.pipe';
-import { BreadcrumbComponent } from '@components/breadcrumb/breadcrumb.component';
-import { PartnerUebersichtComponent } from '@pages/partner/partner-uebersicht/partner-uebersicht.component';
-import { PartnerBearbeitenComponent } from '@pages/partner/partner-bearbeiten/partner-bearbeiten.component';
-import { PartnerErstellenComponent } from '@pages/partner/partner-erstellen/partner-erstellen.component';
-import { DragAndDropDirective } from './directives/drag-and-drop.directive';
-import { FileSizeFormatterPipe } from './pipes/file-size-formatter.pipe';
+import {DokumenteUebersichtComponent} from '@pages/dokumente/dokumente-uebersicht/dokumente-uebersicht.component';
+import {DokumentFilterPipe} from './pipes/dokument-filter.pipe';
+import {BreadcrumbComponent} from '@components/breadcrumb/breadcrumb.component';
+import {PartnerUebersichtComponent} from '@pages/partner/partner-uebersicht/partner-uebersicht.component';
+import {PartnerBearbeitenComponent} from '@pages/partner/partner-bearbeiten/partner-bearbeiten.component';
+import {PartnerErstellenComponent} from '@pages/partner/partner-erstellen/partner-erstellen.component';
+import {DragAndDropDirective} from './directives/drag-and-drop.directive';
+import {FileSizeFormatterPipe} from './pipes/file-size-formatter.pipe';
 import {environment} from "../environments/environment";
-import { AdminuserUebersichtComponent } from '@pages/adminUser/adminuser-uebersicht/adminuser-uebersicht.component';
-import { AdminuserErstellenComponent } from '@pages/adminUser/adminuser-erstellen/adminuser-erstellen.component';
-import { AdminuserBearbeitenComponent } from '@pages/adminUser/adminuser-bearbeiten/adminuser-bearbeiten.component';
-import { AnfrageBearbeitenComponent } from './pages/anfrage/anfrage-bearbeiten/anfrage-bearbeiten.component';
-import { AnfrageUebersichtComponent } from './pages/anfrage/anfrage-uebersicht/anfrage-uebersicht.component';
-import { AngebotUebersichtComponent } from './pages/angebot/angebot-uebersicht/angebot-uebersicht.component';
-import { MaschineUebersichtComponent } from './pages/maschine/maschine-uebersicht/maschine-uebersicht.component';
-import { MaschineErstellenComponent } from './pages/maschine/maschine-erstellen/maschine-erstellen.component';
-import { MaschineBearbeitenComponent } from './pages/maschine/maschine-bearbeiten/maschine-bearbeiten.component';
+import {AdminuserUebersichtComponent} from '@pages/adminUser/adminuser-uebersicht/adminuser-uebersicht.component';
+import {AdminuserErstellenComponent} from '@pages/adminUser/adminuser-erstellen/adminuser-erstellen.component';
+import {AdminuserBearbeitenComponent} from '@pages/adminUser/adminuser-bearbeiten/adminuser-bearbeiten.component';
+import {AnfrageBearbeitenComponent} from './pages/anfrage/anfrage-bearbeiten/anfrage-bearbeiten.component';
+import {AnfrageUebersichtComponent} from './pages/anfrage/anfrage-uebersicht/anfrage-uebersicht.component';
+import {AngebotUebersichtComponent} from './pages/angebot/angebot-uebersicht/angebot-uebersicht.component';
+import {MaschineUebersichtComponent} from './pages/maschine/maschine-uebersicht/maschine-uebersicht.component';
+import {MaschineErstellenComponent} from './pages/maschine/maschine-erstellen/maschine-erstellen.component';
+import {MaschineBearbeitenComponent} from './pages/maschine/maschine-bearbeiten/maschine-bearbeiten.component';
 import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
-import { AngebotErstellenComponent } from './pages/anfrage/angebot-erstellen/angebot-erstellen.component';
-import { SeminareArchivUebersichtComponent } from './pages/seminare_archiv/seminare-archiv-uebersicht/seminare-archiv-uebersicht.component';
-import { SeminareArchrivBearbeitenComponent } from './pages/seminare_archiv/seminare-archiv-bearbeiten/seminare-archriv-bearbeiten.component';
-import { AngebotBearbeitenComponent } from './pages/angebot/angebot-bearbeiten/angebot-bearbeiten.component';
+import {AngebotErstellenComponent} from './pages/anfrage/angebot-erstellen/angebot-erstellen.component';
+import {
+    SeminareArchivUebersichtComponent
+} from './pages/seminare_archiv/seminare-archiv-uebersicht/seminare-archiv-uebersicht.component';
+import {
+    SeminareArchrivBearbeitenComponent
+} from './pages/seminare_archiv/seminare-archiv-bearbeiten/seminare-archriv-bearbeiten.component';
+import {AngebotBearbeitenComponent} from './pages/angebot/angebot-bearbeiten/angebot-bearbeiten.component';
 import {FullCalendarModule} from "@fullcalendar/angular";
-import { DashboardEventModalComponent } from './components/dashboard-event-modal/dashboard-event-modal.component';
+import {DashboardEventModalComponent} from './components/dashboard-event-modal/dashboard-event-modal.component';
 import {ModalModule} from "ngx-bootstrap/modal";
-import { BeratungsterminUebersichtComponent } from './pages/beratungstermin/beratungstermin-uebersicht/beratungstermin-uebersicht.component';
-import { BeratungsterminBearbeitenComponent } from './pages/beratungstermin/beratungstermin-bearbeiten/beratungstermin-bearbeiten.component';
+import {
+    BeratungsterminUebersichtComponent
+} from './pages/beratungstermin/beratungstermin-uebersicht/beratungstermin-uebersicht.component';
+import {
+    BeratungsterminBearbeitenComponent
+} from './pages/beratungstermin/beratungstermin-bearbeiten/beratungstermin-bearbeiten.component';
+import {TimepickerModule} from "ngx-bootstrap/timepicker";
+import { BeratungsterminErstellenComponent } from './pages/beratungstermin/beratungstermin-erstellen/beratungstermin-erstellen.component';
+
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MainComponent,
-    LoginComponent,
-    HeaderComponent,
-    FooterComponent,
-    MenuSidebarComponent,
-    DashboardComponent,
-    UserComponent,
-    ForgotPasswordComponent,
-    MainMenuComponent,
-    SubMenuComponent,
-    MenuItemComponent,
-    InformationsbeitragErstellenComponent,
-    InformationsbeitragUebersichtComponent,
-    InformationsbeitragBearbeitenComponent,
-    DokumentenzugriffErstellenComponent,
-    DokumentenzugriffUebersichtComponent,
-    DokumentenzugriffBearbeitenComponent,
-    SeminarErstellenComponent,
-    SeminareUebersichtComponent,
-    SeminareBearbeitenComponent,
-    DokumenteUebersichtComponent,
-    DokumentFilterPipe,
-    BreadcrumbComponent,
-    PartnerUebersichtComponent,
-    PartnerBearbeitenComponent,
-    PartnerErstellenComponent,
-    DragAndDropDirective,
-    FileSizeFormatterPipe,
-    AdminuserUebersichtComponent,
-    AdminuserErstellenComponent,
-    AdminuserBearbeitenComponent,
-    AnfrageBearbeitenComponent,
-    AnfrageUebersichtComponent,
-    AngebotErstellenComponent,
-    AngebotUebersichtComponent,
-    MaschineUebersichtComponent,
-    MaschineErstellenComponent,
-    MaschineBearbeitenComponent,
-    AngebotErstellenComponent,
-    SeminareArchivUebersichtComponent,
-    SeminareArchrivBearbeitenComponent,
-    AngebotBearbeitenComponent,
-    DashboardEventModalComponent,
-    BeratungsterminUebersichtComponent,
-    BeratungsterminBearbeitenComponent,
-  ],
+    declarations: [
+        AppComponent,
+        MainComponent,
+        LoginComponent,
+        HeaderComponent,
+        FooterComponent,
+        MenuSidebarComponent,
+        DashboardComponent,
+        UserComponent,
+        ForgotPasswordComponent,
+        MainMenuComponent,
+        SubMenuComponent,
+        MenuItemComponent,
+        InformationsbeitragErstellenComponent,
+        InformationsbeitragUebersichtComponent,
+        InformationsbeitragBearbeitenComponent,
+        DokumentenzugriffErstellenComponent,
+        DokumentenzugriffUebersichtComponent,
+        DokumentenzugriffBearbeitenComponent,
+        SeminarErstellenComponent,
+        SeminareUebersichtComponent,
+        SeminareBearbeitenComponent,
+        DokumenteUebersichtComponent,
+        DokumentFilterPipe,
+        BreadcrumbComponent,
+        PartnerUebersichtComponent,
+        PartnerBearbeitenComponent,
+        PartnerErstellenComponent,
+        DragAndDropDirective,
+        FileSizeFormatterPipe,
+        AdminuserUebersichtComponent,
+        AdminuserErstellenComponent,
+        AdminuserBearbeitenComponent,
+        AnfrageBearbeitenComponent,
+        AnfrageUebersichtComponent,
+        AngebotErstellenComponent,
+        AngebotUebersichtComponent,
+        MaschineUebersichtComponent,
+        MaschineErstellenComponent,
+        MaschineBearbeitenComponent,
+        AngebotErstellenComponent,
+        SeminareArchivUebersichtComponent,
+        SeminareArchrivBearbeitenComponent,
+        AngebotBearbeitenComponent,
+        DashboardEventModalComponent,
+        BeratungsterminUebersichtComponent,
+        BeratungsterminBearbeitenComponent,
+        BeratungsterminErstellenComponent,
+    ],
     imports: [
         BrowserModule,
+        TimepickerModule.forRoot(),
         StoreModule.forRoot({auth: authReducer, ui: uiReducer}),
         HttpClientModule,
         AppRoutingModule,
@@ -143,12 +156,13 @@ registerLocaleData(localeEn, 'en-EN');
         ProfabricComponentsModule,
         NgMultiSelectDropDownModule.forRoot(),
         FormsModule,
-      BsDatepickerModule.forRoot(),
-      FullCalendarModule,
-      ModalModule.forRoot()
+        BsDatepickerModule.forRoot(),
+
+        FullCalendarModule,
+        ModalModule.forRoot()
     ],
-  providers: [{provide: APP_BASE_HREF, useValue: environment.baseUrl}],
-  bootstrap: [AppComponent]
+    providers: [{provide: APP_BASE_HREF, useValue: environment.baseUrl}],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

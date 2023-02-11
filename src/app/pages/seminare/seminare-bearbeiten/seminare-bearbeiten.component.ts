@@ -54,12 +54,12 @@ export class SeminareBearbeitenComponent implements OnInit {
     })
 
     this.client.get(environment.backend +'/seminar/' + this.id, {withCredentials: true}).subscribe(value => {
-
+      console.log(value['startDate'])
       this.editSeminar.controls['price'].setValue(value['price'])
       this.editSeminar.controls['accommodationPrice'].setValue(value['accommodationPrice'])
       this.editSeminar.controls['mealsPrice'].setValue(value['mealsPrice'])
-      this.editSeminar.controls['startDate'].setValue(formatDate(value['startDate'], 'dd-MM-yyyy', 'en_US'))
-      this.editSeminar.controls['endDate'].setValue(formatDate(value['endDate'], 'dd-MM-yyyy', 'en_US'))
+      this.editSeminar.controls['startDate'].setValue(formatDate(value['startDate'], 'dd.MM.yyyy, HH:mm', 'en_US'))
+      this.editSeminar.controls['endDate'].setValue(formatDate(value['endDate'], 'dd.MM.yyyy, HH:mm', 'en_US'))
       this.editSeminar.controls['capacity'].setValue(value['capacity'])
       this.editSeminar.controls['description'].setValue(value['description'])
       this.editSeminar.controls['street'].setValue(value['street'])

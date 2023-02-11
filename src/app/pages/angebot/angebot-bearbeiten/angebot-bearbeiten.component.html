@@ -164,9 +164,9 @@
 
 
       <div class="col-12" >
-        <div class="btn-success btn float-right c-button" (click)="finishOffer()">Auftrag abgeschlossen</div>
+        <div class="btn-success btn float-right c-button" (click)="finishOffer()" *ngIf="offerAccepted === true && offerCompleted  === false">Auftrag abgeschlossen</div>
       </div>
-      <div class="col-12">
+      <div class="col-12" *ngIf="offerAccepted === null">
         <a [routerLink]="'./..'" class="btn btn-secondary">Abbruch</a>
         <div class="btn btn-danger float-right c-delete" (click)="delete()">Angebot löschen</div>
       </div>
@@ -174,5 +174,5 @@
   </form>
 </section>
 
-<!--*ngIf="offerAccepted === true && offerCompleted  === false"-->
+<!---->
 

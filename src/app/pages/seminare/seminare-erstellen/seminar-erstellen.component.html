@@ -82,8 +82,12 @@
                                      [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
                                      [minDate]="minDate"
                                      readonly="readonly">
+                                <timepicker  formControlName="startTime" [showMeridian]="false"></timepicker>
+                            </div>
+                            <div>
 
                             </div>
+
                             <div class="form-group">
                               <label>Enddatum</label>
                               <input type="text"
@@ -94,6 +98,7 @@
                                      [minDate]="minDate"
                                      readonly
                               >
+                                <timepicker  formControlName="endTime" [showMeridian]="false"></timepicker>
                             </div>
                             <div class="form-group">
                                 <label for="inputCapacity">Anzahl Personen</label>

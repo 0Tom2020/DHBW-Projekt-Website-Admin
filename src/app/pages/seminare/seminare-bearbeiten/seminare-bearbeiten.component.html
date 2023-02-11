@@ -76,20 +76,13 @@
                 <label>Startdatum</label>
                 <input type="text"
                        class="form-control"
-                       bsDatepicker
-                       formControlName="startDate"
-                       [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
-                       readonly="readonly">
+                       formControlName="startDate">
               </div>
               <div class="form-group">
                 <label>Enddatum</label>
                 <input type="text"
                        class="form-control"
-                       bsDatepicker
-                       formControlName="endDate"
-                       [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
-                       [minDate]=minDate
-                       readonly>
+                       formControlName="endDate">
               </div>
               <div class="form-group">
                 <label for="inputCapacity">Anzahl Personen</label>

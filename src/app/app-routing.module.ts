@@ -57,6 +57,9 @@ import {
 import {
   BeratungsterminBearbeitenComponent
 } from "@pages/beratungstermin/beratungstermin-bearbeiten/beratungstermin-bearbeiten.component";
+import {
+  BeratungsterminErstellenComponent
+} from "@pages/beratungstermin/beratungstermin-erstellen/beratungstermin-erstellen.component";
 
 
 const routes: Routes = [
@@ -268,6 +271,14 @@ const routes: Routes = [
           title: "Beratungstermin Übersicht"
         },
       },
+      {
+        path: 'beratungstermine/uebersicht/erstellen',
+        component: BeratungsterminErstellenComponent,
+        data: {
+          title: "Beratungstermin Erstellen"
+        },
+      },
+
       {
         path: 'beratungstermine/uebersicht/:id',
         component: BeratungsterminBearbeitenComponent,

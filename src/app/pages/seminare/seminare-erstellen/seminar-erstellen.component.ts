@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {defineLocale, deLocale} from "ngx-bootstrap/chronos";
 import {BsLocaleService} from "ngx-bootstrap/datepicker";
@@ -43,7 +43,7 @@ export class SeminarErstellenComponent implements OnInit {
         {label: "Übersicht", route: './..'},
     ]
 
-    constructor(private toastr: ToastrService, private activeRoute: ActivatedRoute, private client: HttpClient, private bsLocaleService: BsLocaleService) {
+    constructor(private toastr: ToastrService, private activeRoute: ActivatedRoute, private client: HttpClient, private bsLocaleService: BsLocaleService, private router: Router) {
         this.bsLocaleService.use('de')
     }
 
@@ -80,6 +80,8 @@ export class SeminarErstellenComponent implements OnInit {
         }
         this.client.post(environment.backend +'/seminar', body, {withCredentials: true}).subscribe(value => {
           this.toastr.success("Seminar erfolgreich erstellt!", "Erfolg")
+            console.log(value)
+            this.router.navigate(['./../' + value['training']['id']], {relativeTo: this.activeRoute})
         }, error => {
           this.toastr.error(error.error.message, "Fehler")
         })

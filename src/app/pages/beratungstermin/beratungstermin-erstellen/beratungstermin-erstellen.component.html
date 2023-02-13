@@ -62,9 +62,24 @@
                                     <label for="price">Preis</label>
                                     <input type="text" id="price" formControlName="price" class="form-control">
                                 </div>
+                                <div class="row">
+                                    <div class="col-1">
+                                        <label>Serientermin</label>
+                                        <input [ngModelOptions]="{standalone: true}" type="checkbox" [(ngModel)]="isChecked" name="serial" id="serial">
+                                    </div>
+                                    <div *ngIf="isChecked" class="col-11">
+                                        <label></label>
+                                        <input class="form-control" type="number" formControlName="repetition" placeholder="Anzahl Termine">
+                                    </div>
+                                </div>
+
                             </div>
 
+
+
+
                         </div>
+
 
 
                     </div>

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {defineLocale, deLocale} from "ngx-bootstrap/chronos";
 import {BsLocaleService} from "ngx-bootstrap/datepicker";
@@ -19,6 +19,7 @@ export class BeratungsterminErstellenComponent implements OnInit {
 
   title!: string
   minDate = new Date()
+  isChecked = false
 
 
   newConsultingAppointment = new FormGroup({
@@ -26,7 +27,7 @@ export class BeratungsterminErstellenComponent implements OnInit {
     date: new FormControl('', Validators.required),
     startTime: new FormControl('', Validators.required),
     endTime: new FormControl('', Validators.required),
-
+    repetition: new FormControl(''),
   })
 
   breadcrumbItems = [
@@ -35,7 +36,7 @@ export class BeratungsterminErstellenComponent implements OnInit {
     {label: "Beratungstermin erstellen", route: ''},
   ]
 
-  constructor(private toastr: ToastrService, private activeRoute: ActivatedRoute, private client: HttpClient, private bsLocaleService: BsLocaleService) {
+  constructor(private toastr: ToastrService, private activeRoute: ActivatedRoute, private client: HttpClient, private bsLocaleService: BsLocaleService, private router: Router) {
     this.bsLocaleService.use('de')
   }
 
@@ -65,11 +66,15 @@ export class BeratungsterminErstellenComponent implements OnInit {
         price: this.newConsultingAppointment.controls['price'].value,
         startDate: startDateAndTime,
         endDate: endDateAndTime,
+        repetition: this.newConsultingAppointment.controls['repetition'].value
     }
 
     this.client.post(environment.backend + '/consulting/create', body).subscribe(value => {
       this.toastr.success('Beratungstermin erfolgreich erstellt', 'Erfolg')
+      this.router.navigate(['./..'], {relativeTo: this.activeRoute})
 
+    }, error => {
+        this.toastr.error(error.error.message, 'Fehler')
     })
 
 

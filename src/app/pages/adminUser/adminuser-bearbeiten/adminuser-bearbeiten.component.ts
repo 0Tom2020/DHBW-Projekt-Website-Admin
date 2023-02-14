@@ -18,19 +18,20 @@ export class AdminuserBearbeitenComponent implements OnInit {
     {label: "Bearbeiten", route: ''},
   ]
 
-  id:string
-  title!:string
+  id: string
+  title!: string
 
-  editAdminUser = new FormGroup ({
-    firstName: new FormControl('',[Validators.required]),
-    lastName: new FormControl('',[Validators.required]),
-    email: new FormControl('',[Validators.required]),
-    password: new FormControl('',[Validators.minLength(8)]),
-    passwordRepeat: new FormControl('',[Validators.minLength(8)]),
+  editAdminUser = new FormGroup({
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.minLength(8)]),
+    passwordRepeat: new FormControl('', [Validators.minLength(8)]),
   })
 
 
-  constructor(private activeRoute: ActivatedRoute, private client: HttpClient, private toastr: ToastrService, private router: Router) { }
+  constructor(private activeRoute: ActivatedRoute, private client: HttpClient, private toastr: ToastrService, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.activeRoute.data.subscribe(value => {
@@ -54,52 +55,37 @@ export class AdminuserBearbeitenComponent implements OnInit {
 
   post() {
     const body = this.editAdminUser.value
-    const form = this.editAdminUser
-    const password = form.get('password')
-    if (this.editAdminUser.get('password').invalid) {
-      return this.toastr.error("Bitte geben Sie ein gültiges Password ein")
-    } else if (this.editAdminUser.invalid) {
-      return this.toastr.error('Bitte alle Felder ausfüllen')
-    } else if (!this.checkEmail()) {
-      return this.toastr.error('Bitte eine gültige Email eingeben')
-    } else if (this.editAdminUser.value.password != this.editAdminUser.value.passwordRepeat) {
-      return this.toastr.error('Passwörter stimmen nicht überein')
-    } else {
-      this.client.post(environment.backend + '/auth/admin/' + this.id, body, {withCredentials: true}).subscribe(() => {
-        if (this.editAdminUser.value.password && this.editAdminUser.value.passwordRepeat) {
-          this.client.post(environment.backend + '/auth/admin/' + this.id + '/password', body , {withCredentials:true}).subscribe(() => {
-            this.toastr.success("Es wurde erfolgreich das Passwort geändert und der Admin bearbeitet")
-          }, error => {
-            console.log(error)
-          })
-        } else {
-          this.toastr.success("Admin wurde erfolgreich bearbeitet")
-        }
 
-
-
-
-      }, error => {
-        console.log(error)
-      })
-    }
+    this.client.post(environment.backend + '/auth/admin/' + this.id, body, {withCredentials: true}).subscribe(() => {
+      if (this.editAdminUser.value.password && this.editAdminUser.value.passwordRepeat || this.editAdminUser.value.password) {
+        this.client.post(environment.backend + '/auth/admin/' + this.id + '/password', body, {withCredentials: true}).subscribe(() => {
+          this.toastr.success("Es wurde erfolgreich das Passwort geändert und der Admin bearbeitet")
+        }, error => {
+          this.toastr.error(error.error.message, "Fehler")
+        })
+      } else {
+        this.toastr.success("Admin wurde erfolgreich bearbeitet")
+      }
+    }, error => {
+      this.toastr.error(error.error.message, "Fehler")
+    })
   }
 
   delete() {
-    this.client.delete(environment.backend + '/auth/admin/' + this.id, {withCredentials:true}).subscribe(() => {
+    this.client.delete(environment.backend + '/auth/admin/' + this.id, {withCredentials: true}).subscribe(() => {
       this.toastr.success("Der Adminuser wurde erfolgreich gelöscht")
       this.router.navigate(['/admin/uebersicht'])
     }, error => {
       this.toastr.error(error.error.message)
-        console.log(error)
+      console.log(error)
     })
   }
 
-    checkEmail() {
-      let email = this.editAdminUser.value.email
-      let pattern = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')
-      return pattern.test(email);
-    }
+  checkEmail() {
+    let email = this.editAdminUser.value.email
+    let pattern = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')
+    return pattern.test(email);
+  }
 
 
 }

@@ -80,7 +80,6 @@ export class AngebotBearbeitenComponent implements OnInit {
     })
 
 
-
   }
 
 

@@ -19,15 +19,15 @@ export class DokumentenzugriffBearbeitenComponent implements OnInit {
     {label: "Zugangscode", route: '/'},
   ]
 
-  searchTerm:string = ""
-  searchTermAdded:string = ""
+  searchTerm: string = ""
+  searchTermAdded: string = ""
 
-  keyId:string = "";
+  keyId: string = "";
   documents = []
   documentsAdded = []
-  title! :string
+  title!: string
   newAccessCode = new FormGroup({
-    accessCode: new FormControl({value: '', disabled: true},[this.onlyCharsValidator, Validators.required]),
+    accessCode: new FormControl({value: '', disabled: true}, [this.onlyCharsValidator, Validators.required]),
     title: new FormControl('', [Validators.required]),
   })
 
@@ -35,9 +35,8 @@ export class DokumentenzugriffBearbeitenComponent implements OnInit {
   }
 
 
-
   ngOnInit() {
-    this.activatedRoute.data.subscribe( value => {
+    this.activatedRoute.data.subscribe(value => {
       this.title = value['title']
     })
 
@@ -49,25 +48,20 @@ export class DokumentenzugriffBearbeitenComponent implements OnInit {
     })
 
 
-
-
   }
 
   post() {
-    if (this.newAccessCode.controls.accessCode.invalid) {
-      return this.toastr.error("Es sind nur folgende Zeichen zugelassen: Klein- und Großbuchstaben, sowie Zahlen")
-    }
-
-    if (!this.newAccessCode.controls.title.invalid) {
-      this.http.post(environment.backend + '/data-transfer/key/' + this.keyId, {
-        description: this.newAccessCode.controls.title.value,
-        documents: this.documentsAdded.map(value => value.id)
-      }, {withCredentials: true}).subscribe(value => {
-        this.toastr.success("Zugangscode erfolgreich bearbeitet");
-        this.loadData();
-      });
-    }
+    this.http.post(environment.backend + '/data-transfer/key/' + this.keyId, {
+      description: this.newAccessCode.controls.title.value,
+      documents: this.documentsAdded.map(value => value.id)
+    }, {withCredentials: true}).subscribe(value => {
+      this.toastr.success("Zugangscode erfolgreich bearbeitet");
+      this.loadData();
+    }, error => {
+      this.toastr.error(error.error.message, "Fehler");
+    });
   }
+
 
   loadData() {
     this.http.get<[]>(environment.backend + '/data-transfer/key/' + this.keyId, {withCredentials: true}).subscribe(key => {
@@ -100,19 +94,19 @@ export class DokumentenzugriffBearbeitenComponent implements OnInit {
   onlyCharsValidator(control: FormControl) {
     const onlyCharsRegex = /^[a-zA-Z1-9]*$/;
     if (!onlyCharsRegex.test(control.value)) {
-      return { onlyChars: true };
+      return {onlyChars: true};
     }
     return null;
   }
 
-  delete () {
+  delete() {
     this.http.delete(environment.backend + '/data-transfer/key/' + this.keyId, {withCredentials: true}).subscribe(value => {
       this.toastr.success("Zugangscode erfolgreich gelöscht");
       this.router.navigate(['/dokumentenzugriff/uebersicht']);
     });
   }
 
-  sortFunction (documentNameA, documentNameB) {
+  sortFunction(documentNameA, documentNameB) {
     const tmpDocumentNameA = documentNameA.name.toUpperCase();
     const tmpDocumentNameB = documentNameB.name.toUpperCase();
     if (tmpDocumentNameA < tmpDocumentNameB) {

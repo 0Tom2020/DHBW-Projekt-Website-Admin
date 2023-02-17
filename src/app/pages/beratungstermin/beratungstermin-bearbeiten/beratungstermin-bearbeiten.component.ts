@@ -71,7 +71,7 @@ export class BeratungsterminBearbeitenComponent implements OnInit {
             }
 
         }, error => {
-
+            this.toastr.error(error.error.message, "Fehler")
         })
     }
 

@@ -60,11 +60,13 @@ export class AdminuserBearbeitenComponent implements OnInit {
       if (this.editAdminUser.value.password && this.editAdminUser.value.passwordRepeat || this.editAdminUser.value.password) {
         this.client.post(environment.backend + '/auth/admin/' + this.id + '/password', body, {withCredentials: true}).subscribe(() => {
           this.toastr.success("Es wurde erfolgreich das Passwort geändert und der Admin bearbeitet")
+          this.router.navigate(['/admin/uebersicht'])
         }, error => {
           this.toastr.error(error.error.message, "Fehler")
         })
       } else {
         this.toastr.success("Admin wurde erfolgreich bearbeitet")
+        this.router.navigate(['/admin/uebersicht'])
       }
     }, error => {
       this.toastr.error(error.error.message, "Fehler")
@@ -79,12 +81,6 @@ export class AdminuserBearbeitenComponent implements OnInit {
       this.toastr.error(error.error.message)
       console.log(error)
     })
-  }
-
-  checkEmail() {
-    let email = this.editAdminUser.value.email
-    let pattern = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')
-    return pattern.test(email);
   }
 
 

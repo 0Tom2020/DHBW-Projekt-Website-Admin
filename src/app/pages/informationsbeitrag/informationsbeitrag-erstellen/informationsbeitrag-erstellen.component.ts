@@ -67,7 +67,7 @@ export class InformationsbeitragErstellenComponent implements OnInit {
   post() {
       const body = this.newArticle.value
       this.client.post(environment.backend + '/infoEntry/create', body, {withCredentials:true, }).subscribe(response => {
-        this.toastr.success("Es wurde erfolgreich ein neuer Partner angelegt")
+        this.toastr.success("Es wurde erfolgreich ein neuer Informationsbeitrag angelegt")
         this.infoEntryId = response["id"]
         const formData = new FormData();
         for (const file of this.files) {

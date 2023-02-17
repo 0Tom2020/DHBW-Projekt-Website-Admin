@@ -37,7 +37,7 @@ export class MaschineBearbeitenComponent implements OnInit {
     this.activeRoute.params.subscribe(value => {
       this.id = value['id']
     })
-    this.client.get(environment.backend +'/machines/' + this.id, {withCredentials: true}).subscribe(value => {
+    this.client.get(environment.backend + '/machines/' + this.id, {withCredentials: true}).subscribe(value => {
       console.log(value)
       this.editMachine.controls['hourlyRate'].setValue(value['hourlyRate'])
       this.editMachine.controls['name'].setValue(value['name'])
@@ -46,8 +46,7 @@ export class MaschineBearbeitenComponent implements OnInit {
   }
 
   post() {
-    console.log(this.editMachine.value.hourlyRate)
-    this.client.put(environment.backend +'/machines/' + this.id, this.editMachine.value, {withCredentials: true}).subscribe(value => {
+    this.client.put(environment.backend + '/machines/' + this.id, this.editMachine.value, {withCredentials: true}).subscribe(value => {
       this.toastr.success('Maschine wurde erfolgreich bearbeitet')
     }, error => {
       this.toastr.error(error.error.message)
@@ -55,7 +54,11 @@ export class MaschineBearbeitenComponent implements OnInit {
   }
 
   delete() {
-
+    this.client.delete(environment.backend + '/machines/' + this.id, {withCredentials: true}).subscribe(value => {
+      this.toastr.success('Maschine wurde erfolgreich gelöscht')
+    }, error => {
+      this.toastr.error(error.error.message)
+    })
   }
 
 }

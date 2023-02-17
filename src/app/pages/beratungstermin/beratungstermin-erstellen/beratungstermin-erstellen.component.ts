@@ -47,7 +47,6 @@ export class BeratungsterminErstellenComponent implements OnInit {
   }
 
   post() {
-    console.log(this.newConsultingAppointment.value)
     const startDate = new Date(this.newConsultingAppointment.controls['date'].value)
     const startTime = new Date(this.newConsultingAppointment.controls['startTime'].value)
     const endTime = new Date(this.newConsultingAppointment.controls['endTime'].value)
@@ -69,9 +68,9 @@ export class BeratungsterminErstellenComponent implements OnInit {
         repetition: this.newConsultingAppointment.controls['repetition'].value
     }
 
-    this.client.post(environment.backend + '/consulting/create', body).subscribe(value => {
+    this.client.post(environment.backend + '/consulting/create', body, {withCredentials: true}).subscribe(value => {
       this.toastr.success('Beratungstermin erfolgreich erstellt', 'Erfolg')
-      this.router.navigate(['./..'], {relativeTo: this.activeRoute})
+      this.router.navigate(['./../'+ value['id']], {relativeTo: this.activeRoute})
 
     }, error => {
         this.toastr.error(error.error.message, 'Fehler')

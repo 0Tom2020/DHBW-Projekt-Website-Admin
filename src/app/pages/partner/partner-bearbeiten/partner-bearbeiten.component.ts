@@ -27,7 +27,7 @@ export class PartnerBearbeitenComponent implements OnInit {
     {label: "Bearbeiten", route: ''},
   ]
   backend = environment.backend;
-  existsPartnerPicture:boolean
+  existsPartnerPicture: boolean
 
   file: any;
 
@@ -55,29 +55,32 @@ export class PartnerBearbeitenComponent implements OnInit {
   }
 
   post() {
-    if (this.editPartner.invalid) {
-      this.toastr.error("Bitte füllen Sie alle Felder aus!", "Fehler")
-    } else {
-      const body = this.editPartner.value
-      this.client.put(environment.backend + '/partner/single/' + this.id, body, {withCredentials: true}).subscribe(data => {
-        this.toastr.success("Es wurde erfolgreich der Partner geändert")
-        const formData = new FormData();
+
+    const body = this.editPartner.value
+    this.client.put(environment.backend + '/partner/single/' + this.id, body, {withCredentials: true}).subscribe(data => {
+      this.toastr.success("Es wurde erfolgreich der Partner geändert")
+
+      const formData = new FormData();
+      if (this.file) {
         const file = this.file;
         formData.append('file', file, file["name"])
         this.client.post(environment.backend + '/partner/single/' + this.id + '/picture', formData, {withCredentials: true}).subscribe(value => {
           this.toastr.success("Es wurde erfolgreich ein neues Bild hochgeladen");
+          this.router.navigate(['/partner/uebersicht/'])
         }, error => {
           console.log(error);
         });
-      }, error => {
-        console.log(error)
-      })
+      }
+      this.router.navigate(['/partner/uebersicht/'])
+    }, error => {
+      console.log(error)
+    })
 
-    }
+
   }
 
   delete() {
-    this.client.delete(environment.backend + '/partner/single/' + this.id, {withCredentials: true}).subscribe (data => {
+    this.client.delete(environment.backend + '/partner/single/' + this.id, {withCredentials: true}).subscribe(data => {
       this.toastr.success("Partner wurde erfolgreich gelöscht")
       this.router.navigate(['/partner/uebersicht'])
     }, error => {

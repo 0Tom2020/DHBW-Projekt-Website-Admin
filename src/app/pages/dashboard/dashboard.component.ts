@@ -56,6 +56,9 @@ export class DashboardComponent implements AfterViewInit {
           case "MACHINE":
             eventEntry['backgroundColor'] = 'green';
             eventEntry['borderColor'] = 'green';
+            const endDate = new Date(eventEntry['end']);
+            endDate.setDate(endDate.getDate() + 1);
+            eventEntry['end'] = formatDate(endDate, 'yyyy-MM-dd', 'en_US');
             break;
           case "TRAINING":
             eventEntry['backgroundColor'] = 'blue';

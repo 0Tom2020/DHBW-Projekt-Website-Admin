@@ -68,7 +68,7 @@ export class AngebotBearbeitenComponent implements OnInit {
       this.offer.controls['city'].setValue(value['contact']['city'])
       this.offer.controls['deadline'].setValue(value['inquiry']['deadlineDate'])
       this.offer.controls['levy'].setValue(value['inquiry']['partsDeliveryDate'])
-      this.offer.controls['price'].setValue(value['price'])
+      this.offer.controls['price'].setValue(value['price'].toFixed(2).replace('.', ','))
       this.offer.controls['partCount'].setValue(value['partCount'])
       this.offer.controls['workingHours'].setValue(value['workingHours'])
       this.offer.controls['startDate'].setValue(formatDate(value['startDate'], 'dd.MM.yyyy', 'en_US'))

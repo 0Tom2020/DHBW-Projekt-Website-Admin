@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {FormControl, FormGroup} from "@angular/forms";
 import {environment} from "../../../../environments/environment";
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-anfrage-bearbeiten',
@@ -52,8 +53,8 @@ export class AnfrageBearbeitenComponent implements OnInit {
         this.inquiry.controls['street'].setValue(value['contact']['street'])
         this.inquiry.controls['postal'].setValue(value['contact']['postalCode'])
         this.inquiry.controls['city'].setValue(value['contact']['city'])
-        this.inquiry.controls['deadline'].setValue(value['deadlineDate'])
-        this.inquiry.controls['levy'].setValue(value['partsDeliveryDate'])
+        this.inquiry.controls['deadline'].setValue(formatDate(value['deadlineDate'], 'dd.MM.yyyy', 'en-US'))
+        this.inquiry.controls['levy'].setValue(formatDate(value['partsDeliveryDate'], 'dd.MM.yyyy', 'en-US'))
       }, error => {
         if (error.error.message) {
           this.toastr.error(error.error.message)
@@ -61,11 +62,19 @@ export class AnfrageBearbeitenComponent implements OnInit {
           this.toastr.error("Es ist ein Fehler aufgetreten!")
         }
       })
-
       this.client.get<any[]>(environment.backend + '/inquiry/' + value["id"] + '/offers', {withCredentials: true}).subscribe(value => {
-        for (const offer of value) {
-          this.offers.push(offer)
-        }
+        console.log(value)
+
+        value.map(offer => {
+          console.log(offer)
+            offer['completionDeadline'] = formatDate(offer['completionDeadline'], 'dd.MM.yyyy', 'en-US')
+            offer['startDate'] = formatDate(offer['startDate'], 'dd.MM.yyyy', 'en-US')
+            offer['price'] = offer['price'].toFixed(2).replace('.', ',')
+        })
+
+        this.offers = value
+        console.log(value)
+
       })
 
     })

@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {environment} from "../../../../environments/environment";
 import {formatDate} from "@angular/common";
+import {BsLocaleService} from "ngx-bootstrap/datepicker";
 
 @Component({
   selector: 'app-angebot-erstellen',
@@ -47,8 +48,9 @@ export class AngebotErstellenComponent implements OnInit {
   isMachineAvailable: MachineAvailability = "UNKNOWN";
   completionDate
 
-  constructor(private activeRoute: ActivatedRoute, private client: HttpClient, private toastr: ToastrService, private router: Router) { }
-
+  constructor(private activeRoute: ActivatedRoute, private client: HttpClient, private toastr: ToastrService,private bsLocaleService: BsLocaleService, private router: Router) {
+    this.bsLocaleService.use('de')
+  }
   ngOnInit(): void {
     this.activeRoute.data.subscribe(value => {
       this.title = value['title']

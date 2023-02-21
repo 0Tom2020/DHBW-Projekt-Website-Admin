@@ -112,8 +112,8 @@ export class SeminareBearbeitenComponent implements OnInit {
       this.client.get(environment.backend +'/seminar/' + this.id + '/bookings', {withCredentials: true}).subscribe(value => {
         this.participants = value
       })
+    }, error => {
+      this.toastr.error(error.error.message, "Fehler")
     })
-
   }
-
 }

@@ -38,39 +38,9 @@ export class MenuSidebarComponent implements OnInit {
 
 export const MENU = [
   {
-    name: 'Dashboard',
+    name: 'Kalender',
     iconClasses: 'fas fa-tachometer-alt',
     path: ['/']
-  },
-  {
-    name: 'Dokumente',
-    iconClasses: 'fas fa-folder',
-    path: ['/dokumente/uebersicht']
-  },
-  {
-    name: 'Informationsbeitrag',
-    iconClasses: 'fas fa-newspaper',
-    path: ['/informationsbeitrag/uebersicht']
-  },
-  {
-    name: 'Dokumentenzugriff',
-    iconClasses: 'fas fa-download',
-    path: ['/dokumentenzugriff/uebersicht']
-  },
-  {
-    name: 'Seminare',
-    iconClasses: 'fas fa-graduation-cap',
-    path: ['/seminare/uebersicht']
-  },
-  {
-    name: 'Seminararchiv',
-    iconClasses: 'fas fa-graduation-cap',
-    path: ['/seminararchiv/uebersicht']
-  },
-  {
-    name: 'Partner',
-    iconClasses: 'fas fa-handshake',
-    path: ['/partner/uebersicht']
   },
   {
     name: 'Admin-Benutzer',
@@ -88,15 +58,47 @@ export const MENU = [
     path: ['/angebot/uebersicht']
   },
   {
+    name: 'Beratungstermine',
+    iconClasses: 'fas fa-calendar',
+    path: ['/beratungstermine/uebersicht']
+  },
+  {
+    name: 'Dokumente',
+    iconClasses: 'fas fa-folder',
+    path: ['/dokumente/uebersicht']
+  },
+  {
+    name: 'Dokumentenzugriff',
+    iconClasses: 'fas fa-download',
+    path: ['/dokumentenzugriff/uebersicht']
+  },
+  {
+    name: 'Informationsbeitrag',
+    iconClasses: 'fas fa-newspaper',
+    path: ['/informationsbeitrag/uebersicht']
+  },
+  {
     name: 'Maschinen',
     iconClasses: 'fas fa-microscope',
     path: ['/maschinen/uebersicht']
   },
   {
-    name: 'Beratungstermine',
-    iconClasses: 'fas fa-calendar',
-    path: ['/beratungstermine/uebersicht']
+    name: 'Partner',
+    iconClasses: 'fas fa-handshake',
+    path: ['/partner/uebersicht']
   },
+  {
+    name: 'Seminare',
+    iconClasses: 'fas fa-graduation-cap',
+    path: ['/seminare/uebersicht']
+  },
+  {
+    name: 'Seminararchiv',
+    iconClasses: 'fas fa-graduation-cap',
+    path: ['/seminararchiv/uebersicht']
+  },
+
+
   {
     name: 'Main Menu',
     iconClasses: 'fas fa-folder',

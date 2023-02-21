@@ -45,21 +45,23 @@ export class DokumentenzugriffErstellenComponent implements OnInit{
     if (this.newAccessCode.controls.accessCode.invalid) {
       return this.toastr.error("Es sind nur folgende Zeichen zugelassen: Klein- und Großbuchstaben, sowie Zahlen")
     }
+    console.log(1)
 
     const files = [];
 
     for (const doc of this.documentsAdded) {
       files.push(doc.id)
     }
+    console.log(2)
 
-    this.http.post(environment.backend + '/data-transfer/keys/', {
+    this.http.post(environment.backend + '/data-transfer/keys', {
       key: this.newAccessCode.controls.accessCode.value,
       description: this.newAccessCode.controls.title.value,
       documents: files,
       email: this.newAccessCode.controls.email.value
     }, {withCredentials: true}).subscribe(value => {
       this.toastr.success("Der Zugriff wurde erfolgreich erstellt")
-      this.router.navigate( ['/dokumentenzugriff/code/' + value['id']]);
+      //  this.router.navigate( ['/dokumentenzugriff/code/' + value['id']]);
     }, error => {
       console.log(error);
       this.toastr.error(error.error.message)

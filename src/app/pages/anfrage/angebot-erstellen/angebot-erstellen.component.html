@@ -1,157 +1,3 @@
-<!--
-Beginn: Header
-<section class="content-header">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-6">
-        <h1>{{title}}</h1>
-      </div>
-      <div class="col-sm-6">
-        <app-breadcrumb class="float-right" [items]="breadcrumbItems"></app-breadcrumb>
-      </div>
-    </div>
-  </div>
-</section>
-&lt;!&ndash;End: Header&ndash;&gt;
-
-<section class="content">
-  <form>
-    <div class="row">
-      <div class="col-md-6">
-
-        <div class="card card-secondary">
-          <div class="card-header">
-            <h3 class="card-title">Daten zur Person</h3>
-          </div>
-
-          <div class="card-body">
-            <div class="form-group">
-              <label for="inputName">Vorname</label>
-              <input type="text" id="inputName" class="form-control" formControlName="name" disabled>
-            </div>
-            <div class="form-group">
-              <label for="inputLastname">Nachname</label>
-              <input type="text" id="inputLastname" class="form-control" formControlName="lastName" disabled>
-            </div>
-            <div class="form-group">
-              <label for="inputEmail">Email</label>
-              <input type="text" id="inputEmail" class="form-control" formControlName="email" disabled>
-            </div>
-            <div class="form-group">
-              <label for="inputStreet">Straße</label>
-              <input type="text" id="inputStreet" class="form-control" formControlName="street" disabled>
-            </div>
-            <div class="form-group">
-              <label for="inputPostal">Postleitzahl</label>
-              <input type="text" id="inputPostal" class="form-control" formControlName="postal" disabled>
-            </div>
-            <div class="form-group">
-              <label for="inputCity">Ort</label>
-              <input type="text" id="inputCity" class="form-control" formControlName="city" disabled>
-            </div>
-          </div>
-        </div>
-
-        <div class="card card-secondary">
-          <div class="card-header">
-            <h3 class="card-title">Preis</h3>
-          </div>
-          <div class="card-body">
-            <div class="form-group">
-              <input id="price" type="number" class="form-control" formControlName="price">
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-md-6">
-
-        <div class="card card-secondary">
-          <div class="card-header">
-            <h3 class="card-title">Anzahl der Teile</h3>
-          </div>
-          <div class="card-body">
-            <div class="form-group">
-              <input id="partCount" type="number" class="form-control" formControlName="partCount">
-            </div>
-          </div>
-        </div>
-
-        <div class="card card-secondary">
-          <div class="card-header">
-            <h3 class="card-title">Beschreibung des Angebots</h3>
-          </div>
-          <div class="card-body">
-            <div class="form-group">
-              <textarea id="inputDescription" class="form-control" rows="6" formControlName="description" disabled></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div class="card card-secondary">
-          <div class="card-header">
-            <h3 class="card-title">Maschine</h3>
-          </div>
-          <div class="card-body">
-            <div class="form-group">
-              <select id="machine" class="form-control" formControlName="machineId" (change)="onMachineChange()">
-                <option *ngFor="let machine of machines" [value]="machine.id">{{machine.name}}</option>
-              </select>
-            </div>
-            <div class="alert alert-warning" role="alert" *ngIf="isMachineAvailable === 'NOT_AVAILABLE' && inquiry.controls['machineId'].value">
-              Die Maschine ist nicht verfügbar. Bitte wählen Sie eine andere Maschine oder einen anderen Zeitraum!
-            </div>
-          </div>
-        </div>
-
-
-        <div class="card card-secondary">
-          <div class="card-header">
-            <h3 class="card-title">Zeitliche Informationen</h3>
-          </div>
-          <div class="card-body">
-            <div class="form-group">
-              <label >Liefertermin</label>
-              <input type="text"
-                     class="form-control"
-                     bsDatepicker
-                     formControlName="completionDeadline"
-                     [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
-                     readonly="readonly">
-            </div>
-            <div class="form-group">
-              <label >Startdatum (nur intern sichtbar)</label>
-              <input type="text"
-                     class="form-control"
-                     bsDatepicker
-                     (ngModelChange)="onStartDateChange()"
-                     formControlName="startDate"
-                     [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
-                     readonly="readonly">
-            </div>
-            <div class="form-group">
-              <label >Anzahl Arbeitsstunden</label>
-              <input id="workingHours" (keyup)="onWorkingHoursChange()" type="number" class="form-control" formControlName="workingHours">
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-  </form>
-
-  <div class="row">
-    <div class="col-12">
-      <button type="submit" class="btn btn-success float-right" (click)="createOffer()" [disabled]="isMachineAvailable !== 'AVAILABLE'">Angebot erstellen</button>
-    </div>
-  </div>
-</section>
-
--->
-
-
-<!--OLD-->
 <!--Beginn: Header-->
 <section class="content-header">
   <div class="container-fluid">
@@ -206,39 +52,39 @@ Beginn: Header
           <div class="card-body">
 
             <div class="form-group">
-              <label for="inputDescription">Beschreibung</label>
+              <label for="inputDescription">Beschreibung*</label>
               <textarea id="inputDescription" class="form-control" rows="6" formControlName="description"
                         disabled></textarea>
             </div>
 
             <div class="form-group">
-              <label for="partCount">Anzahl der Teile</label>
+              <label for="partCount">Anzahl der Teile*</label>
               <input id="partCount" type="number" class="form-control" formControlName="partCount">
             </div>
 
             <div class="form-group">
-              <label >Liefertermin (Vorschlag)</label>
+              <label >Liefertermin (Vorschlag aus Anfrage)*</label>
               <input type="text"
                      class="form-control"
                      bsDatepicker
                      formControlName="completionDeadline"
-                     [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
+                     [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true, selectFromOtherMonth: true}"
                      readonly="readonly">
             </div>
 
 
             <div class="form-group">
-              <label >Startdatum (nur intern sichtbar)</label>
+              <label >Startdatum (nur intern sichtbar) (Wann wird begonnen)*</label>
               <input type="text"
                      class="form-control"
                      bsDatepicker
                      (ngModelChange)="onStartDateChange()"
                      formControlName="startDate"
-                     [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
+                     [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true, selectFromOtherMonth: true}"
                      readonly="readonly">
             </div>
             <div class="form-group">
-              <label>Maschine</label>
+              <label>Maschine*</label>
               <select id="machine" class="form-control" formControlName="machineId" (change)="onMachineChange()">
                 <option *ngFor="let machine of machines" [value]="machine.id">{{machine.name}}</option>
               </select>
@@ -248,12 +94,12 @@ Beginn: Header
             </div>
 
             <div class="form-group">
-              <label >Anzahl Arbeitsstunden</label>
+              <label>Anzahl Arbeitsstunden*</label>
               <input id="workingHours" (keyup)="onWorkingHoursChange()" type="number" class="form-control" formControlName="workingHours">
             </div>
 
             <div class="form-group">
-              <label for="inputPrice">Preis</label>
+              <label for="inputPrice">Preis*</label>
               <input id="inputPrice" type="number" class="form-control" formControlName="price" disabled>
             </div>
 

@@ -100,9 +100,11 @@ export class InformationsbeitragBearbeitenComponent implements OnInit {
     }
     this.client.post(environment.backend + '/infoEntry/single/' + this.id + '/images', formData, {withCredentials: true}).subscribe(value => {
       this.toastr.success("Es wurde erfolgreich '" + this.files.length + "' Bild(er) hochgeladen");
+      this.images.splice(0, this.images.length)
       for (const file of this.files) {
         this.images.push(file["name"])
       }
+      this.files.splice(0, this.files.length)
     }, error => {
       console.log(error);
     });

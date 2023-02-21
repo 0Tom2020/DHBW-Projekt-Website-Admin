@@ -61,7 +61,7 @@ export class DokumentenzugriffErstellenComponent implements OnInit{
       email: this.newAccessCode.controls.email.value
     }, {withCredentials: true}).subscribe(value => {
       this.toastr.success("Der Zugriff wurde erfolgreich erstellt")
-      //  this.router.navigate( ['/dokumentenzugriff/code/' + value['id']]);
+      this.router.navigate( ['/dokumentenzugriff/code/' + value['id']]);
     }, error => {
       console.log(error);
       this.toastr.error(error.error.message)

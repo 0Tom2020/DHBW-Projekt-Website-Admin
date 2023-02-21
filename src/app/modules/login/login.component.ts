@@ -9,6 +9,7 @@ import {UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {AppService} from '@services/app.service';
 import {ActivatedRoute, Router} from "@angular/router";
+import {environment} from "../../../environments/environment";
 
 @Component({
     selector: 'app-login',
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             'login-page'
         );
         this.loginForm = new UntypedFormGroup({
-            email: new UntypedFormControl('test@test.de', Validators.required),
+            email: new UntypedFormControl(environment.production ? '' : 'test@test.de', Validators.required),
             password: new UntypedFormControl('', Validators.required)
         });
 

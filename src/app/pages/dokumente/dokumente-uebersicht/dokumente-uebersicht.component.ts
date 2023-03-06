@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {timer} from "rxjs";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-dokumente-uebersicht',
@@ -17,7 +18,7 @@ export class DokumenteUebersichtComponent implements OnInit {
   documents = []
   value:string = ""
 
-  constructor(private activeRoute: ActivatedRoute, private http: HttpClient) {
+  constructor(private activeRoute: ActivatedRoute, private http: HttpClient, private toastr: ToastrService) {
 
   }
 
@@ -42,11 +43,14 @@ export class DokumenteUebersichtComponent implements OnInit {
     for(const file of files) {
       const formData = new FormData();
       formData.append('file', file, file.name)
+      this.toastr.info(file.name + " wird hochgeladen...", "Datei Upload")
       this.http.post<[]>(environment.backend + '/data-transfer/documents/', formData, {withCredentials: true}).subscribe(value => {
         for (const doc of value) {
           this.documents.push(doc);
         }
+        this.toastr.success(file.name + " wurde hochgeladen", "Datei Upload")
       }, error => {
+        this.toastr.error(file.name + " konnte nicht hochgeladen werden!", "Datei Upload")
         console.log(error);
       });
 

@@ -17,6 +17,7 @@ export class DashboardComponent implements AfterViewInit {
   @ViewChild('calendar') calendarComponent: FullCalendarComponent;
 
   calendarOptions: CalendarOptions = {
+    height: '85vh',
     initialView: 'dayGridMonth',
     firstDay: 1,
     locale: 'de',

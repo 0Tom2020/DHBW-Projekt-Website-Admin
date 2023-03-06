@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {formatDate} from "@angular/common";
 import {ToastrService} from "ngx-toastr";
+import {environment} from "../../../../environments/environment";
 
 @Component({
     selector: 'app-beratungstermin-bearbeiten',
@@ -50,14 +51,15 @@ export class BeratungsterminBearbeitenComponent implements OnInit {
         this.activeRoute.params.subscribe(value => {
             this.id = value['id']
         })
-        this.client.get('http://localhost:8080/consulting/' + this.id , {withCredentials: true}).subscribe(value => {
+        this.client.get(environment.backend + '/consulting/' + this.id , {withCredentials: true}).subscribe(value => {
+
             this.consulting.controls['price'].setValue(value['price'])
             this.consulting.controls['date'].setValue(formatDate(value['startDate'], 'dd.MM.yyyy', 'en_US'))
             this.consulting.controls['startTime'].setValue(value['startDate'])
             this.consulting.controls['endTime'].setValue(value['endDate'])
             this.accepted = value['accepted']
             if (value['accepted']) {
-                this.client.get('http://localhost:8080/consulting/' + value['userID'] + '/bookinguser', {withCredentials: true}).subscribe(value => {
+                this.client.get(environment.backend + '/consulting/' + value['userID'] + '/bookinguser', {withCredentials: true}).subscribe(value => {
                     this.consulting.controls['firstName'].setValue(value['firstName'])
                     this.consulting.controls['lastName'].setValue(value['lastName'])
                     this.consulting.controls['email'].setValue(value['email'])
@@ -75,7 +77,7 @@ export class BeratungsterminBearbeitenComponent implements OnInit {
     }
 
     delete() {
-        this.client.delete('http://localhost:8080/consulting/' + this.id , {withCredentials: true}).subscribe(value => {
+        this.client.delete(environment.backend + '/consulting/' + this.id , {withCredentials: true}).subscribe(value => {
             this.toastr.success("Beratungstermin erfolgreich gelöscht", "Erfolg")
             this.router.navigate(['./..'], {relativeTo: this.activeRoute})
         }, error => {

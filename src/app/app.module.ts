@@ -18,8 +18,6 @@ import {APP_BASE_HREF, registerLocaleData} from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import {UserComponent} from '@modules/main/header/user/user.component';
 import {ForgotPasswordComponent} from '@modules/forgot-password/forgot-password.component';
-import {MainMenuComponent} from '@pages/main-menu/main-menu.component';
-import {SubMenuComponent} from '@pages/main-menu/sub-menu/sub-menu.component';
 import {MenuItemComponent} from '@components/menu-item/menu-item.component';
 import {StoreModule} from '@ngrx/store';
 import {authReducer} from './store/auth/reducer';
@@ -101,8 +99,6 @@ registerLocaleData(localeEn, 'en-EN');
         DashboardComponent,
         UserComponent,
         ForgotPasswordComponent,
-        MainMenuComponent,
-        SubMenuComponent,
         MenuItemComponent,
         InformationsbeitragErstellenComponent,
         InformationsbeitragUebersichtComponent,

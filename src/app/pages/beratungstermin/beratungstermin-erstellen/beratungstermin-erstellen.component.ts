@@ -23,7 +23,7 @@ export class BeratungsterminErstellenComponent implements OnInit {
 
 
   newConsultingAppointment = new FormGroup({
-    price: new FormControl('50'),
+    price: new FormControl(''),
     date: new FormControl('', Validators.required),
     startTime: new FormControl('', Validators.required),
     endTime: new FormControl('', Validators.required),

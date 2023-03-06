@@ -15,127 +15,134 @@
 
 
 <section class="content">
-    <form [formGroup]="newSeminar" (ngSubmit)="post()">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card card-secondary">
-                    <div class="card-header">
-                        <h3 class="card-title">Allgemeine Informationen</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="inputName">Name</label>
-                            <input type="text" id="inputName" formControlName="title" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputDescription">Beschreibung</label>
-                            <textarea id="inputDescription" class="form-control" formControlName="description" rows="4"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card card-secondary">
-                    <div class="card-header">
-                        <h3 class="card-title">Adressdaten</h3>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="form-group">
-
-                            <div class="form-group">
-                                <label for="inputStreet">Straße</label>
-                                <input type="text" id="inputStreet" formControlName="street" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPostal">Postleitzahl</label>
-                                <input type="text" id="inputPostal" formControlName="postal" class="form-control">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputCity">Stadt</label>
-                                <input type="text" id="inputCity" formControlName="city" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
+  <form [formGroup]="newSeminar" (ngSubmit)="post()">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">Allgemeine Informationen</h3>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="inputName">Name*</label>
+              <input type="text" id="inputName" formControlName="title" class="form-control">
             </div>
-
-
-            <div class="col-md-6">
-
-                <div class="card card-secondary">
-                    <div class="card-header">
-                        <h3 class="card-title">Zusätzliche Informationen</h3>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="form-group">
-
-                            <div class="form-group">
-                                <label >Startdatum</label>
-                              <input type="text"
-                                     class="form-control"
-                                     bsDatepicker
-                                     formControlName="startDate"
-                                     [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
-                                     [minDate]="minDate"
-                                     readonly="readonly">
-                                <timepicker  formControlName="startTime" [showMeridian]="false"></timepicker>
-                            </div>
-                            <div>
-
-                            </div>
-
-                            <div class="form-group">
-                              <label>Enddatum</label>
-                              <input type="text"
-                                     class="form-control"
-                                     bsDatepicker
-                                     formControlName="endDate"
-                                     [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
-                                     [minDate]="minDate"
-                                     readonly
-                              >
-                                <timepicker  formControlName="endTime" [showMeridian]="false"></timepicker>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputCapacity">Anzahl Personen</label>
-                                <input type="number" id="inputCapacity" formControlName="capacity" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card card-secondary">
-                    <div class="card-header">
-                        <h3 class="card-title">Preisinformationen</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="inputPrice">Preis der Schulung in €</label>
-                            <input type="number" id="inputPrice" formControlName="price" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAccommodationPrice">Preis p.P. für die Unterkunft in €</label>
-                            <input type="number" id="inputAccommodationPrice" formControlName="accommodationPrice" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputMealsPrice">Preis p.P. für die Verpflegung in €</label>
-                            <input type="number" id="inputMealsPrice" formControlName="mealsPrice" class="form-control">
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group">
+              <label for="inputDescription">Beschreibung*</label>
+              <textarea id="inputDescription" class="form-control" formControlName="description" rows="4"></textarea>
             </div>
+          </div>
+        </div>
+
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">Adressdaten</h3>
+          </div>
+
+          <div class="card-body">
+            <div class="form-group">
+
+              <div class="form-group">
+                <label for="inputStreet">Straße*</label>
+                <input type="text" id="inputStreet" formControlName="street" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="inputPostal">Postleitzahl*</label>
+                <input type="text" id="inputPostal" formControlName="postal" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="inputCity">Stadt*</label>
+                <input type="text" id="inputCity" formControlName="city" class="form-control">
+              </div>
+            </div>
+          </div>
         </div>
 
 
-        <div class="row">
-            <div class="col-12">
-                <a [routerLink]="'./..'" class="btn btn-secondary">Abbruch</a>
-                <button type="submit" class="btn btn-success float-right">Seminar erstellen</button>
+      </div>
+
+
+      <div class="col-md-6">
+
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">Zusätzliche Informationen</h3>
+          </div>
+
+          <div class="card-body">
+            <div class="form-group">
+
+              <div class="form-group">
+                <label>Startdatum*</label>
+                <input type="text"
+                       class="form-control"
+                       bsDatepicker
+                       formControlName="startDate"
+                       [bsConfig]="{selectFromOtherMonth: true, dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
+                       [minDate]="minDate"
+                       readonly="readonly">
+
+              </div>
+              <div class="form-group">
+                <timepicker formControlName="startTime" [showSpinners]="false" [showMeridian]="false"></timepicker>
+              </div>
+
+              <div>
+
+              </div>
+
+              <div class="form-group">
+                <label>Enddatum*</label>
+                <input type="text"
+                       class="form-control"
+                       bsDatepicker
+                       formControlName="endDate"
+                       [bsConfig]="{selectFromOtherMonth: true, dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
+                       [minDate]="minDate"
+                       readonly
+                >
+              </div>
+              <div class="form-group">
+                <timepicker formControlName="endTime" [showSpinners]="false" [showMeridian]="false"></timepicker>
+              </div>
+              <div class="form-group">
+                <label for="inputCapacity">Anzahl Personen*</label>
+                <input type="number" id="inputCapacity" formControlName="capacity" class="form-control">
+              </div>
             </div>
+          </div>
         </div>
-    </form>
+
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">Preisinformationen</h3>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="inputPrice">Preis der Schulung in €*</label>
+              <input type="number" id="inputPrice" formControlName="price" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="inputAccommodationPrice">Preis p.P. für die Unterkunft in €*</label>
+              <input type="number" id="inputAccommodationPrice" formControlName="accommodationPrice"
+                     class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="inputMealsPrice">Preis p.P. für die Verpflegung in €*</label>
+              <input type="number" id="inputMealsPrice" formControlName="mealsPrice" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-12">
+        <a [routerLink]="'./..'" class="btn btn-secondary">Abbruch</a>
+        <button type="submit" class="btn btn-success float-right">Seminar erstellen</button>
+      </div>
+    </div>
+  </form>
 </section>

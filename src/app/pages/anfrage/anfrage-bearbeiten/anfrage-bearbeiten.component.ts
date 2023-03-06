@@ -63,17 +63,14 @@ export class AnfrageBearbeitenComponent implements OnInit {
         }
       })
       this.client.get<any[]>(environment.backend + '/inquiry/' + value["id"] + '/offers', {withCredentials: true}).subscribe(value => {
-        console.log(value)
 
         value.map(offer => {
-          console.log(offer)
             offer['completionDeadline'] = formatDate(offer['completionDeadline'], 'dd.MM.yyyy', 'en-US')
             offer['startDate'] = formatDate(offer['startDate'], 'dd.MM.yyyy', 'en-US')
             offer['price'] = offer['price'].toFixed(2).replace('.', ',')
         })
 
         this.offers = value
-        console.log(value)
 
       })
 

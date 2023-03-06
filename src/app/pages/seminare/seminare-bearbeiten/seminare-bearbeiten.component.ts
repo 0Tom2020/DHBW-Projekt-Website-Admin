@@ -54,7 +54,6 @@ export class SeminareBearbeitenComponent implements OnInit {
     })
 
     this.client.get(environment.backend +'/seminar/' + this.id, {withCredentials: true}).subscribe(value => {
-      console.log(value['startDate'])
       this.editSeminar.controls['price'].setValue(value['price'])
       this.editSeminar.controls['accommodationPrice'].setValue(value['accommodationPrice'])
       this.editSeminar.controls['mealsPrice'].setValue(value['mealsPrice'])
@@ -72,7 +71,6 @@ export class SeminareBearbeitenComponent implements OnInit {
 
     this.client.get(environment.backend +'/seminar/' + this.id + '/bookings', {withCredentials: true}).subscribe(value => {
       this.participants = value
-      console.log(this.participants)
     }, error => {
       this.toastr.error(error.error.message, "Fehler")
     })
@@ -86,8 +84,6 @@ export class SeminareBearbeitenComponent implements OnInit {
       description: this.editSeminar.value.description,
       title: this.editSeminar.value.title,
     }
-
-    console.log(body)
 
 
     this.client.put(environment.backend +'/seminar/' + this.id, body, {withCredentials: true}).subscribe(value => {

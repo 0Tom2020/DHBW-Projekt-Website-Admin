@@ -39,7 +39,6 @@ export class PartnerErstellenComponent implements OnInit {
 
   post() {
     let partnerID: string;
-    console.log(this.newPartner.value)
     const body = {
       name: this.newPartner.value.name,
       website: this.newPartner.value.website,

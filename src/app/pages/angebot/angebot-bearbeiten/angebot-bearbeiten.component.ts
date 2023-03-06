@@ -58,7 +58,6 @@ export class AngebotBearbeitenComponent implements OnInit {
     this.client.get(environment.backend + '/offer/' + this.id + '/detail', {withCredentials: true}).subscribe(value => {
       this.offerAccepted = value['accepted']
       this.offerCompleted = value['completed']
-      console.log(value)
       this.offer.controls['name'].setValue(value['contact']['firstName'])
       this.offer.controls['lastName'].setValue(value['contact']['lastName'])
       this.offer.controls['email'].setValue(value['contact']['email'])
@@ -93,7 +92,8 @@ export class AngebotBearbeitenComponent implements OnInit {
   }
 
   finishOffer() {
-    this.client.put(environment.backend + '/offer/' + this.id + '/completed', {withCredentials: true}).subscribe(value => {
+    const body = null
+    this.client.put(environment.backend + '/offer/' + this.id + '/completed', body, {withCredentials: true}).subscribe(value => {
       this.toastr.success('Angebot wurde abgeschlossen')
       this.offerCompleted = true
       this.router.navigate(['./angebot/uebersicht'])

@@ -21,19 +21,19 @@ export class SeminarErstellenComponent implements OnInit {
     minDate = new Date()
 
     newSeminar = new FormGroup({
-        price: new FormControl('50'),
-        accommodationPrice: new FormControl('50'),
-        mealsPrice: new FormControl('50'),
+        price: new FormControl(''),
+        accommodationPrice: new FormControl(''),
+        mealsPrice: new FormControl(''),
         startDate: new FormControl(''),
         startTime: new FormControl('', Validators.required),
         endDate: new FormControl(''),
         endTime: new FormControl('', Validators.required),
-        capacity: new FormControl('10'),
-        description: new FormControl('Testbeschreibung'),
-        street: new FormControl('teststraße 1'),
-        city: new FormControl('teststadt'),
-        postal: new FormControl('testplz'),
-        title: new FormControl('testseminar'),
+        capacity: new FormControl(''),
+        description: new FormControl(''),
+        street: new FormControl(''),
+        city: new FormControl(''),
+        postal: new FormControl(''),
+        title: new FormControl(''),
 
 
     })
@@ -80,7 +80,6 @@ export class SeminarErstellenComponent implements OnInit {
         }
         this.client.post(environment.backend +'/seminar', body, {withCredentials: true}).subscribe(value => {
           this.toastr.success("Seminar erfolgreich erstellt!", "Erfolg")
-            console.log(value)
             this.router.navigate(['./../' + value['training']['id']], {relativeTo: this.activeRoute})
         }, error => {
           this.toastr.error(error.error.message, "Fehler")

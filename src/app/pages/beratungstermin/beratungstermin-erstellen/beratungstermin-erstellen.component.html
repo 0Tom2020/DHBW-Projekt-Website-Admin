@@ -1,93 +1,97 @@
 <!--Beginn: Header-->
 <section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>{{title}}</h1>
-            </div>
-            <div class="col-sm-6">
-                <app-breadcrumb class="float-sm-right" [items]="breadcrumbItems"></app-breadcrumb>
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>{{title}}</h1>
+      </div>
+      <div class="col-sm-6">
+        <app-breadcrumb class="float-sm-right" [items]="breadcrumbItems"></app-breadcrumb>
+      </div>
     </div>
+  </div>
 </section>
 <!--End: Header-->
 
 
 <section class="content">
-    <form [formGroup]="newConsultingAppointment" (ngSubmit)="post()">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-secondary">
+  <form [formGroup]="newConsultingAppointment" (ngSubmit)="post()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-secondary">
 
-                    <div class="card-header">
-                        <h3 class="card-title">Allgemeine Informationen</h3>
-                    </div>
+          <div class="card-header">
+            <h3 class="card-title">Allgemeine Informationen</h3>
+          </div>
 
-                    <div class="row">
+          <div class="row">
 
-                        <div class="col-12 col-md-6">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label>Datum des Termins</label>
-                                    <input type="text"
-                                           class="form-control"
-                                           bsDatepicker
-                                           formControlName="date"
-                                           [bsConfig]="{dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
-                                           [minDate]="minDate"
-                                           readonly>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label>Startzeitpunkt</label>
-                                            <timepicker formControlName="startTime" [showSpinners]="false" [showMeridian]="false"></timepicker>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label>Endzeitpunkt</label>
-                                            <timepicker formControlName="endTime" [showSpinners]="false" [showMeridian]="false"></timepicker>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="price">Preis</label>
-                                    <input type="text" id="price" formControlName="price" class="form-control">
-                                </div>
-                                <div class="row">
-                                    <div class="col-1">
-                                        <label>Serientermin</label>
-                                        <input [ngModelOptions]="{standalone: true}" type="checkbox" [(ngModel)]="isChecked" name="serial" id="serial">
-                                    </div>
-                                    <div *ngIf="isChecked" class="col-11">
-                                        <label></label>
-                                        <input class="form-control" type="number" formControlName="repetition" placeholder="Anzahl Termine">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-12 col-md-6">
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Datum des Termins*</label>
+                  <input type="text"
+                         class="form-control"
+                         bsDatepicker
+                         formControlName="date"
+                         [bsConfig]="{selectFromOtherMonth: true, dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default', returnFocusToInput: true}"
+                         [minDate]="minDate"
+                         readonly>
                 </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label>Startzeitpunkt*</label>
+                      <timepicker formControlName="startTime" [showSpinners]="false"
+                                  [showMeridian]="false"></timepicker>
+                    </div>
+                  </div>
 
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label>Endzeitpunkt*</label>
+                      <timepicker formControlName="endTime" [showSpinners]="false" [showMeridian]="false"></timepicker>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
+            <div class="col-12 col-md-6">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="price">Preis in €*</label>
+                  <input type="text" id="price" formControlName="price" class="form-control">
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <label>Serientermin (wöchentliche Wiederholung)</label>
+                  </div>
+                  <div class="col-1">
 
-        </div>
-
-
-        <div class="row">
-            <div class="col-12">
-                <a [routerLink]="'./..'" class="btn btn-secondary">Abbruch</a>
-                <button type="submit"  class="btn btn-success float-right">Bertungstermin erstellen</button>
+                    <input [ngModelOptions]="{standalone: true}" type="checkbox" [(ngModel)]="isChecked" name="serial"
+                           id="serial" class="checkbox">
+                  </div>
+                  <div *ngIf="isChecked" class="col-11">
+                    <input class="form-control" type="number" formControlName="repetition" placeholder="Anzahl Termine">
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </form>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-12">
+        <a [routerLink]="'./..'" class="btn btn-secondary">Abbruch</a>
+        <button type="submit" class="btn btn-success float-right">Beratungstermin erstellen</button>
+      </div>
+    </div>
+  </form>
 </section>

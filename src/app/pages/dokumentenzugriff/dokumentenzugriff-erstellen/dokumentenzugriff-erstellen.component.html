@@ -33,18 +33,18 @@
           <div class="card-body">
             <!--Beginn: Bezeichnung Formularfeld-->
             <div class="form-group">
-              <label for="inputOverview">Bezeichnug des Zugriffs</label>
+              <label for="inputOverview">Bezeichnug des Zugriffs*</label>
               <input type="text" id="inputOverview" formControlName="title" class="form-control">
             </div>
             <!--End: Bezeichnung Formularfeld-->
 
             <!--Beginn: Zugangscode Formularfeld-->
             <div class="form-group">
-              <label for="accessCode">Zugangscode</label>
+              <label for="accessCode">Zugangscode*</label>
               <div class="input-group mb-3">
                 <input type="text" id="accessCode" formControlName="accessCode" class="form-control">
                 <div class="input-group-append">
-                  <div type="button" class="btn btn-success" (click)="generateCode(10)">Code generieren</div>
+                  <button type="button" class="btn btn-success" (click)="generateCode(10)">Code generieren</button>
                 </div>
               </div>
             </div>

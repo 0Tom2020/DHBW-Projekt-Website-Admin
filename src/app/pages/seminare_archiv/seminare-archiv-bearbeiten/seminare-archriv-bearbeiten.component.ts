@@ -70,7 +70,6 @@ export class SeminareArchrivBearbeitenComponent implements OnInit {
 
     this.client.get(environment.backend +'/seminar/' + this.id + '/bookings', {withCredentials: true}).subscribe(value => {
       this.participants = value
-      console.log(this.participants)
     }, error => {
       this.toastr.error(error.error.message, "Fehler")
     })

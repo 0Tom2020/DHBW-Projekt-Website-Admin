@@ -44,7 +44,6 @@ export class AngebotUebersichtComponent implements OnInit {
       })
 
       this.offers = value
-      console.log(value)
     }, error => {
       this.toastr.error(error.error.message, "Fehler")
     })

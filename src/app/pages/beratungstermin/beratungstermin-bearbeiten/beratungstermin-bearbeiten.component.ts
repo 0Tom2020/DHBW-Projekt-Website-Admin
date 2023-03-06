@@ -51,7 +51,6 @@ export class BeratungsterminBearbeitenComponent implements OnInit {
             this.id = value['id']
         })
         this.client.get('http://localhost:8080/consulting/' + this.id , {withCredentials: true}).subscribe(value => {
-           console.log(value)
             this.consulting.controls['price'].setValue(value['price'])
             this.consulting.controls['date'].setValue(formatDate(value['startDate'], 'dd.MM.yyyy', 'en_US'))
             this.consulting.controls['startTime'].setValue(value['startDate'])

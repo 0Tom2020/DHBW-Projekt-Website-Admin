@@ -88,10 +88,10 @@ export class AngebotErstellenComponent implements OnInit {
 
 
   createOffer() {
-    /*if (this.isMachineAvailable !== "AVAILABLE") {
+    if (this.isMachineAvailable !== "AVAILABLE") {
       this.toastr.error("Die Maschine ist leider nicht verfügbar!")
       return;
-    }*/
+    }
     if (this.isValidDateFormat(this.inquiry.controls.completionDeadline.value)) {
       const dateStrings = this.inquiry.controls.completionDeadline.value.toString()
       let dateParts = dateStrings.split(".");
@@ -190,14 +190,6 @@ export class AngebotErstellenComponent implements OnInit {
 
   }
 
-  reformatDate(date) {
-    console.log(date)
-    const parts = date.split(".");
-    const year = parseInt(parts[2], 10);
-    const month = parseInt(parts[1], 10) - 1;
-    const day = parseInt(parts[0], 10);
-    return new Date(year, month, day).toDateString();
-  }
 
 }
 type MachineAvailability = "AVAILABLE" | "NOT_AVAILABLE" | "UNKNOWN";

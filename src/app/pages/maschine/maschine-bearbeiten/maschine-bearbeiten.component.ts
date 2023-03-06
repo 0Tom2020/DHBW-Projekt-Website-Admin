@@ -38,7 +38,6 @@ export class MaschineBearbeitenComponent implements OnInit {
       this.id = value['id']
     })
     this.client.get(environment.backend + '/machines/' + this.id, {withCredentials: true}).subscribe(value => {
-      console.log(value)
       this.editMachine.controls['hourlyRate'].setValue(value['hourlyRate'])
       this.editMachine.controls['name'].setValue(value['name'])
       this.editMachine.controls['maxCapacityInHours'].setValue(value['maxCapacityInHours'])

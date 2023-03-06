@@ -29,9 +29,6 @@ export class BeratungsterminUebersichtComponent implements OnInit {
 
     this.client.get<any[]>(environment.backend + '/consulting', {withCredentials: true}).subscribe(value => {
       this.consultingAppointments = value
-      console.log(value)
-
-
     })
 
   }

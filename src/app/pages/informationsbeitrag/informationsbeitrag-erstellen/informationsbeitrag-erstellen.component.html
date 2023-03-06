@@ -21,11 +21,11 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="inputOverview">Überschirft</label>
+                            <label for="inputOverview">Überschirft*</label>
                             <input type="text" id="inputOverview" formControlName="title" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="inputDescription">Beschreibung</label>
+                            <label for="inputDescription">Beschreibung*</label>
                             <textarea id="inputDescription" class="form-control" formControlName="description" rows="4"></textarea>
                         </div>
                     </div>
@@ -38,7 +38,6 @@
 
 
                     <div class="card-body">
-
                         <div class="form-group">
                             <label for="exampleInputFile">Bilder Hochladen</label>
                             (Empfohlene Größe: 540x360px / Format: .webp)
@@ -49,16 +48,12 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="form-group">
                             <label for="inputMoreInfoLink">Verlinkung auf eine andere Seite / weitere Informationen</label>
                             <input type="text" id="inputMoreInfoLink" formControlName="moreInfoLink" class="form-control">
                         </div>
                     </div>
-
                 </div>
-
             </div>
 
 
@@ -67,16 +62,8 @@
                     <div class="card-header">
                         <h3 class="card-title">Projektpartner</h3>
                     </div>
-
-
-
-
-
-
                     <div class="card-body">
                         <div class="form-group">
-
-
                           <ng-multiselect-dropdown
                             [placeholder]="'Projektpartner'"
                             [settings]="dropdownSettings"

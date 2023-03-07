@@ -57,7 +57,7 @@
           </div>
           <div class="card-body">
             <div *ngIf="existsPartnerPicture">
-              <img class="" [src]="backend + '/partner/single/'+ id + '/picture'" alt="">
+              <img class="" [src]="backend + '/partner/single/'+ id + '/picture'" alt="" #PartnerImage>
             </div>
             <div *ngIf="!existsPartnerPicture">
               Kein Logo vorhanden

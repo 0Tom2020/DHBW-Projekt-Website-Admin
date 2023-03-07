@@ -3,7 +3,7 @@
         <a [routerLink]="['/']" class="h1"><b>Steinbeis</b><br/>Adminpanel</a>
     </div>
     <div class="card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg"></p>
 
         <form [formGroup]="loginForm" (ngSubmit)="loginByAuth()">
             <div class="input-group mb-3">
@@ -11,7 +11,7 @@
                     formControlName="email"
                     type="email"
                     class="form-control"
-                    placeholder="Email"
+                    placeholder="E-Mail"
                 />
                 <div class="input-group-append">
                     <div class="input-group-text">
@@ -24,7 +24,7 @@
                     formControlName="password"
                     type="password"
                     class="form-control"
-                    placeholder="Password"
+                    placeholder="Passwort"
                 />
                 <div class="input-group-append">
                     <div class="input-group-text">
@@ -34,29 +34,15 @@
             </div>
             <div class="row">
                 <div class="col-7">
-<!--                    <div class="icheck-primary">-->
-<!--                        <input type="checkbox" id="remember" />-->
-<!--                        <label for="remember"> Remember Me </label>-->
-<!--                    </div>-->
                 </div>
-                <!-- /.col -->
                 <div class="col-5">
-                    <!--<pf-button
-                        [type]="'submit'"
-                        [block]="true"
-                        [loading]="isAuthLoading"
-                        [disabled]="isFacebookLoading || isGoogleLoading"
-                    >
-                        Sign In
-                    </pf-button>-->
-                  <button class="btn btn-primary float-right" type="submit"> Sign In</button>
+                  <button class="btn btn-primary float-right" type="submit">Anmelden</button>
                 </div>
-                <!-- /.col -->
             </div>
         </form>
 
         <p class="mb-1">
-            <a [routerLink]="['/forgot-password']">I forgot my password</a>
+            <a [routerLink]="['/forgot-password']">Passwort vergessen</a>
         </p>
     </div>
     <!-- /.login-card-body -->

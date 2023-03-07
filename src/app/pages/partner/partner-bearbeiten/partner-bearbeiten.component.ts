@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -30,6 +30,8 @@ export class PartnerBearbeitenComponent implements OnInit {
   existsPartnerPicture: boolean
 
   file: any;
+
+  @ViewChild('PartnerImage') PartnerImageElement: any;
 
   constructor(private activeRoute: ActivatedRoute, private client: HttpClient, private router: Router, private toastr: ToastrService) {
   }
@@ -66,12 +68,11 @@ export class PartnerBearbeitenComponent implements OnInit {
         formData.append('file', file, file["name"])
         this.client.post(environment.backend + '/partner/single/' + this.id + '/picture', formData, {withCredentials: true}).subscribe(value => {
           this.toastr.success("Es wurde erfolgreich ein neues Bild hochgeladen");
-          this.router.navigate(['/partner/uebersicht/'])
+          this.refreshImage();
         }, error => {
           console.log(error);
         });
       }
-      this.router.navigate(['/partner/uebersicht/'])
     }, error => {
       console.log(error)
     })
@@ -93,5 +94,9 @@ export class PartnerBearbeitenComponent implements OnInit {
       const file = $event.target["files"][0];
       this.file = file;
     }
+  }
+
+  refreshImage() {
+    this.PartnerImageElement.nativeElement.src = this.PartnerImageElement.nativeElement.src + '?' + new Date().getTime();
   }
 }

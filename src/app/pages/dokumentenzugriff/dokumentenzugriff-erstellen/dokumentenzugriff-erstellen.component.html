@@ -95,7 +95,7 @@
               </thead>
               <tbody>
               <tr *ngFor="let singleDocument of documents | dokumentFilter: searchTerm">
-                <td>{{singleDocument.name}}</td>
+                <td><span [title]="singleDocument.name">{{(singleDocument.name.length>50)? (singleDocument.name | slice:0:50)+'...':(singleDocument.name)}}</span></td>
                 <td class="text-right py-0 align-middle">
                   <div class="btn-group btn-group-sm">
                     <div class="btn btn-info" (click)="viewDocument(singleDocument)"><i class="fas fa-eye"></i></div>
@@ -152,7 +152,7 @@
               </thead>
               <tbody>
               <tr *ngFor="let singleDocument of documentsAdded | dokumentFilter: searchTermAdded">
-                <td>{{singleDocument.name}}</td>
+                <td><span [title]="singleDocument.name">{{(singleDocument.name.length>50)? (singleDocument.name | slice:0:50)+'...':(singleDocument.name)}}</span></td>
                 <td class="text-right py-0 align-middle">
                   <div class="btn-group btn-group-sm">
                     <div class="btn btn-info" (click)="viewDocument(singleDocument)"><i class="fas fa-eye"></i></div>
